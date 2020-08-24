@@ -1,8 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Electrolize&family=Montserrat&family=Ubuntu&display=swap');
+/*
+font-family: 'Electrolize', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+*/
+
 body {
+  overflow-y: hidden;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  color: rgb(25, 25, 25);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1.8vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +18,11 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+kb {
+  font-family: 'Electrolize', sans-serif;
+  color: dodgerblue;
+  font-weight: 900;
+  cursor: pointer;
 }

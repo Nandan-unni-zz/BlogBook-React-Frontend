@@ -1,3 +1,36 @@
-.CreateBlog {
-    color: dodgerblue;
+.blog-create {
+    font-family: 'Ubuntu', sans-serif;
+    border-radius: 0.5vh;
+    padding: 3vh 3vw;
+    margin: auto;
+    width: fit-content;
+}
+.blog-create label {
+    font-size: 1.7vh;
+}
+.blog-create h2 {
+    color: rgb(0, 70, 140);
+    font-size: 2.5vh;
+    font-weight: 900;
+}
+.blog-create a {
+    font-size: 1.8vh;
+}
+.blog-create input[type="text"] {
+    width: 60vh;
+    border: none;
+    border-bottom: 0.3vh solid rgb(0, 128, 255);
+}
+.content {
+    height: 600vh;
+    width: 75vw;
+    border-radius: 0.5vh;
+    resize: none;
+    outline: none;
+    font-size: 1.8vh;
+    padding: 0.5vh 0.5vw;
+}
+.blog-create-nav {
+    display: flex;
+    justify-content: center;
 }

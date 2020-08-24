@@ -1,3 +1,16 @@
-.Home {
-    color: dodgerblue;
+.auth-content {
+    margin-right: 12vw;
+    margin-left: 5vw;
+    margin-top: 5vw;
+}
+.auth-nav {
+    display: flex;
+    justify-content: space-between;
+}
+.auth-content p {
+    line-height: 3vh;
+}
+.auth-img {
+    max-width: 100%;
+    height: auto;
 }

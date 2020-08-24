@@ -1,3 +1,27 @@
 .Portal {
-    color: dodgerblue;
+    font-family: 'Ubuntu', sans-serif;
+    border: 0.1vh solid rgb(0, 50, 100);
+    border-radius: 0.5vh;
+    padding: 3vh 3vw;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+}
+.Portal label {
+    font-size: 1.7vh;
+}
+.Portal h2 {
+    color: rgb(0, 70, 140);
+    font-size: 2.5vh;
+    font-weight: 900;
+}
+.Portal a {
+    font-size: 1.8vh;
+}
+
+.Portal input[type="text"] {
+    width: 36vh;
+}
+.Portal input[type="password"] {
+    width: 28.8vh;
 }

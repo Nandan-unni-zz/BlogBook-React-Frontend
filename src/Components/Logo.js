@@ -5,7 +5,9 @@ class Logo extends Component {
   render() {
     return (
       <div className="Logo">
-        KeyBlogs_Logo
+        <div className="logo-text">
+          <kb>Key Blogs</kb>
+        </div>
       </div>
     );
   }
