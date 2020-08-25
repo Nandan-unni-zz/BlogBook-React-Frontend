@@ -1,3 +1,42 @@
 .ViewAccount {
+    font-family: 'Ubuntu', sans-serif;
     color: dodgerblue;
+}
+.Prof-img img {
+    border-radius: 100%;
+    height: 22.5vh;
+    width: 22.5vh;
+}
+.Prof-dtl nm {
+    color: tomato;
+    font-size: 2.5vh;
+    font-weight: 900;
+}
+.Prof-dtl unm, .Prof-dtl eml {
+    font-size: 1.6vh;
+    color: rgb(85, 85, 85);
+}
+.Prof-dtl flw {
+    font-size: 1.6vh;
+    color: rgb(45, 45, 45);
+}
+.Prof-dtl bio {
+    color: rgb(0, 128, 255);
+    font-size: 1.8vh;
+}
+.Prof-ctrl {
+    display: flex;
+}
+.ctrl-edit {
+    margin-left: 5vw;
+    margin-right: auto;
+}
+.ctrl-delete {
+    margin-right: 5vw;
+    margin-left: auto;
+    order: 2;
+}
+.Prof-divider {
+    background-color: rgb(0, 30, 70);
+    height: 0.1vh;
 }

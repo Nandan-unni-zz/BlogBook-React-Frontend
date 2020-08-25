@@ -18,6 +18,19 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+        <script>
+            window.onscroll = function() {classChange()};
+            var navbar = document.getElementById("Navbar");
+            var sticky = navbar.offsetTop;
+    
+            function classChange() {
+                if(window.pageYOffset >= sticky){
+                    navbar.classList.add("Navfixbar");
+                }
+                else
+                    navbar.classList.remove("Navfixbar");
+            }
+        </script>
     </body>
 
 </html>

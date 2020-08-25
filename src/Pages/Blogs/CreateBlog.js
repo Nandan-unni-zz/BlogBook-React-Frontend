@@ -3,6 +3,7 @@ import { Form, Input } from 'antd';
 
 import './CreateBlog.css';
 import Button from '../../Components/Button';
+import Navbar from '../../Components/Navbar';
 import { blogCreater, blogSaver } from '../../Services/BlogServices';
 
 class CreateBlog extends Component {
@@ -32,7 +33,11 @@ class CreateBlog extends Component {
   render() {
     return (
       <div className="CreateBlog">
-        <br /><br /><br />
+        <Navbar>
+          <a href="/account/logout/"><i class="material-icons">power_settings_new</i><z> Logout</z></a>
+          <a href="/account/view/"><i class="material-icons">account_circle</i><z> Profile</z></a>
+          <a href="/feed/"><i class="material-icons">home</i><z> Feeds</z></a>
+        </Navbar><br /><br />
         <div className="blog-create">
           <Form onFinish={this.handleSubmit}>
 
@@ -57,7 +62,7 @@ class CreateBlog extends Component {
                 <Button class="outline" onClick={() => this.selectMethod('save')}>Save</Button> &nbsp; &nbsp; &nbsp;
                 <Button class="normal" onClick={() => this.selectMethod('publish')}>Publish</Button>
               </div><br />
-              <center><a href="/feed/">Cancel</a></center>
+              <center><a href="/feed/">Discard</a></center>
             </Form.Item>
 
           </Form>

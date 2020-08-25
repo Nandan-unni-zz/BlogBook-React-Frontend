@@ -1,3 +1,36 @@
 .Navbar {
+    background-color: rgb(0, 30, 70);
+    border-top: 0.1vh solid rgb(0, 20, 60);
+    float: right;
+    width: 100vw;
+}
+.Navfixbar {
+    position: fixed;
+}
+.collapse z {
+    color: transparent;
+    font-size: 0.1px;
+}
+.Navbar a {
+    color: tomato;
+    text-decoration: none;
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 0.5vw;
+    margin-right: 0vw;
+    width: 12vw;
+    font-size: 1.6vh;
+}
+.Navbar a:hover {
     color: dodgerblue;
+}
+.Navbar a:active {
+    color: rgb(0, 102, 204);
+}
+.expand a {
+    width: 8vw;
+}
+.expand z {
+    color: white;
 }

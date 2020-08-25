@@ -1,3 +1,52 @@
 .Feed {
+    background-color: rgb(246, 246, 246);
+}
+.Blogs {
+    padding-top: 12vh;
+}
+.Blog {
+    font-family: 'Montserrat', sans-serif;
+    height: fit-content;
+    width: 80vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    border-top: 0.1vh solid rgb(0, 100, 140);
+    border-bottom: 0.3vh solid rgb(0, 100, 140);
+    background-color: rgb(235, 235, 235);
+    border-radius: 1vh;
+}
+.Blog h3 {
+    font-family: 'Open Sans', sans-serif;
+    color: dodgerblue;
+    font-weight: 900;
+    font-size: 3vh;
+}
+.Blog a {
+    color: tomato;
+    padding-left: 0.5vw;
+    font-size: 2vh;
+}
+.Blog p {
+    font-size: 1.8vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+}
+.Blog-Content {
+    padding: 3vh;
+}
+.Blog-Nav {
+    display: flex;
+}
+.Blog-Nav-left {
+    margin-right: auto;
+}
+.Blog-Nav-right {
+    margin-left: auto;
+    order: 2;
+}
+.filled a, .filled b {
+    color: tomato;
+}
+.empty a, .empty b {
     color: dodgerblue;
 }

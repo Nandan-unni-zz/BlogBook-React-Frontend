@@ -24,7 +24,7 @@
     background-color: rgb(200, 0, 0);
 }
 .danger button:hover {
-    background-color: rgb(220, 0, 0);
+    background-color: tomato;
 }
 .danger button:active {
     background-color: rgb(180, 0, 0);
