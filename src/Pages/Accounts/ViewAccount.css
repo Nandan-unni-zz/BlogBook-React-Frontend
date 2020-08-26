@@ -9,20 +9,33 @@
 }
 .Prof-dtl nm {
     color: tomato;
-    font-size: 2.5vh;
+    font-size: 2.7vh;
     font-weight: 900;
 }
 .Prof-dtl unm, .Prof-dtl eml {
     font-size: 1.6vh;
     color: rgb(85, 85, 85);
 }
-.Prof-dtl flw {
-    font-size: 1.6vh;
-    color: rgb(45, 45, 45);
-}
 .Prof-dtl bio {
     color: rgb(0, 128, 255);
     font-size: 1.8vh;
+}
+.Prof-math {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.math-dtl {
+    padding: 2vh;
+}
+.math-dtl n {
+    font-size: 2.1vh;
+    font-weight: 900;
+    color: dodgerblue;
+}
+.math-dtl t {
+    font-size: 1.8vh;
+    color: rgb(65, 65, 65);
 }
 .Prof-ctrl {
     display: flex;
@@ -39,4 +52,38 @@
 .Prof-divider {
     background-color: rgb(0, 30, 70);
     height: 0.1vh;
+}
+.Prof-Nav {
+    width: 100vw;
+}
+.Prof-Nav {
+    width: 100vw;
+    display: flex;
+    line-height: 1.8vh;
+}
+.Prof-Nav a {
+    height: 8vh;
+    width: 20vw;
+    padding: 2vh;
+    font-size: 2vh;
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background-color: transparent;
+    color: tomato;
+    border-bottom: 0.1vh solid rgb(180, 180, 180);
+}
+.Prof-Nav a:hover {
+    color: rgb(0, 128, 255);
+    border-bottom: 0.2vh solid dodgerblue;
+}
+.Prof-Nav a:active {
+    color: rgb(0, 128, 255);
+    border-bottom: 0.2vh solid dodgerblue;
+}
+.Prof-Nav-item z {
+    font-size: 1.2vh;
+    font-weight: 900;
+    color: rgb(65, 65, 65);
 }

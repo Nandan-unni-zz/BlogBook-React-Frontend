@@ -1,0 +1,16 @@
+.footer a {
+    text-decoration: none;
+    width: 3vh;
+}
+.fa-github {
+    color: #333;
+}
+.fa-linkedin {
+    color: #0e76a8;
+}
+.fa-twitter {
+    color:  #00acee;
+}
+.fa-instagram {
+    color: #dd2a7b;
+}

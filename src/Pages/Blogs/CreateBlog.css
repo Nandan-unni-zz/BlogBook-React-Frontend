@@ -30,6 +30,12 @@
     font-size: 1.8vh;
     padding: 0.5vh 0.5vw;
 }
+.bio {
+    resize: none;
+    outline: none;
+    font-size: 1.8vh;
+    padding: 0.5vh 0.5vw;
+}
 .blog-create-nav {
     display: flex;
     justify-content: center;

@@ -36,7 +36,7 @@ function App() {
 
           <Route exact path="/account/create/" component={CreateAccount} />
           <Route exact path="/account/login/" component={LoginAccount} />
-          <Route exact path="/account/view/" component={ViewAccount} />
+          <Route exact path="/account/view" component={ViewAccount} />
           <Route exact path="/account/edit/" component={EditAccount} />
           <Route exact path="/account/delete/" component={DeleteAccount} />
 

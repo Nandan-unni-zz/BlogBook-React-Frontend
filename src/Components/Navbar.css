@@ -7,10 +7,6 @@
 .Navfixbar {
     position: fixed;
 }
-.collapse z {
-    color: transparent;
-    font-size: 0.1px;
-}
 .Navbar a {
     color: tomato;
     text-decoration: none;
@@ -19,8 +15,6 @@
     text-align: center;
     padding: 0.5vw;
     margin-right: 0vw;
-    width: 12vw;
-    font-size: 1.6vh;
 }
 .Navbar a:hover {
     color: dodgerblue;
@@ -28,9 +22,23 @@
 .Navbar a:active {
     color: rgb(0, 102, 204);
 }
+.collapse {
+    line-height: 1.6vh;
+}
+.collapse a {
+    width: 15vw;
+}
+.collapse z {
+    font-size: 1.2vh;
+    color: white;
+}
+.expand {
+    line-height: 1.8vh;
+}
 .expand a {
     width: 8vw;
 }
 .expand z {
+    font-size: 1.5vh;
     color: white;
 }

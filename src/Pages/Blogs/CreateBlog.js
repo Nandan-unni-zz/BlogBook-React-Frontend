@@ -34,9 +34,9 @@ class CreateBlog extends Component {
     return (
       <div className="CreateBlog">
         <Navbar>
-          <a href="/account/logout/"><i class="material-icons">power_settings_new</i><z> Logout</z></a>
-          <a href="/account/view/"><i class="material-icons">account_circle</i><z> Profile</z></a>
-          <a href="/feed/"><i class="material-icons">home</i><z> Feeds</z></a>
+          <a href="/account/logout/"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href="/account/view/"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+          <a href="/feed/"><i class="material-icons">home</i><br/><z>Feeds</z></a>
         </Navbar><br /><br />
         <div className="blog-create">
           <Form onFinish={this.handleSubmit}>
@@ -46,7 +46,7 @@ class CreateBlog extends Component {
             <label for="title">Title</label><br />
             <Form.Item
               name="title"  
-              rules={[{required: true, message: "Enter a title for your blog"}]}>
+              rules={[{required: true, min: 1, max: 40, message: "Enter 1-40 characters"}]}>
               <Input onChange={this.handleChange} />
             </Form.Item><br />
 

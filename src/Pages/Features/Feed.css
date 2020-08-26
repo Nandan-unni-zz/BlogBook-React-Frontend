@@ -2,12 +2,13 @@
     background-color: rgb(246, 246, 246);
 }
 .Blogs {
-    padding-top: 12vh;
+    padding-top: 5vh;
 }
 .Blog {
     font-family: 'Montserrat', sans-serif;
     height: fit-content;
     width: 80vw;
+    margin-top: 8vh;
     margin-left: 10vw;
     margin-right: 10vw;
     border-top: 0.1vh solid rgb(0, 100, 140);
@@ -37,6 +38,16 @@
 .Blog-Nav {
     display: flex;
 }
+.Blog-Nav z {
+    color: rgb(0, 128, 255);
+    font-size: 2.5vh;
+}
+.Blog-Nav button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
 .Blog-Nav-left {
     margin-right: auto;
 }
@@ -44,9 +55,11 @@
     margin-left: auto;
     order: 2;
 }
-.filled a, .filled b {
+.Blog-Nav-right i:hover, .Blog-Nav-left i {
+    font-size: 4vh;
     color: tomato;
 }
-.empty a, .empty b {
-    color: dodgerblue;
+.Blog-Nav-right i, .Blog-Nav-left i:hover {
+    font-size: 4vh;
+    color: rgb(0, 128, 255);
 }
