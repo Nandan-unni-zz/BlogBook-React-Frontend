@@ -42,3 +42,16 @@
 .outline button:active {
     border: 0.2vh solid rgb(0, 82, 165);
 }
+.normal-small button {
+    height: 4vh;
+    width: 10vh;
+    font-size: 1.3vh;
+    background-color: rgb(0, 123, 247);
+}
+.normal-small button:hover {
+    background-color: dodgerblue;
+}
+.normal-small button:active {
+    background-color: rgb(0, 82, 165);
+    border: 1px solid dodgerblue;
+}
