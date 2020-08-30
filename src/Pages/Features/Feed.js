@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import './Feed.css';
 import Logo from '../../Components/Logo';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import { feedTool } from '../../Services/FeatureServices';
+
+function Skltn () {
+  return (
+    <div className="Sk">
+      <Skeleton height={"3.5vh"} width={"20vw"}/><br/>
+      <Skeleton height={"2vh"} width={"10vw"}/><br/><br/>
+      <Skeleton height={"3vh"} width={"80vw"}/><br/>
+      <Skeleton height={"3vh"} width={"80vw"}/><br/>
+      <Skeleton height={"3vh"} width={"80vw"}/><br/>
+      <Skeleton height={"3vh"} width={"80vw"}/><br/>
+      <Skeleton height={"3vh"} width={"80vw"}/><br/><br/>
+      <div className="Sk-Nav">
+        <div className="Sk-left"><Skeleton height={"5vh"} width={"7.5vh"}/><Skeleton circle={true} height={"5vh"} width={"5vh"}/></div>
+        <div className="Sk-right"><Skeleton circle={true} height={"5vh"} width={"5vh"}/></div>
+      </div><br/><br/>
+    </div>
+  );
+}
 
 class Feed extends Component {
   constructor(props) {
@@ -13,13 +32,14 @@ class Feed extends Component {
       a: 91,
       b: 92,
       blogs: [],
+      loaded: false,
     }
     this.handleLike = this.handleLike.bind(this);
     this.handleBmark = this.handleBmark.bind(this);
   }
   componentDidMount() {
     feedTool().then(result => {
-      this.setState({ blogs: result })
+      this.setState({ blogs: result, loaded: true })
     });
 }
   handleLike = (x) => {
@@ -52,7 +72,7 @@ class Feed extends Component {
           <a href="/blog/create/"><i class="material-icons">edit</i><br/><z>New Blog</z></a>
         </Navbar>
         <div className="Blogs">
-          {this.state.blogs.map(blog => 
+        {this.state.loaded ? this.state.blogs.map(blog => 
             <div className="Blog">
               <div className="Blog-Content">
                 <h3>{blog.title}</h3>
@@ -65,7 +85,7 @@ class Feed extends Component {
                 </div>
               </div>
             </div>
-          )}
+          ) : <p><Skltn /><Skltn /></p>}
         </div>
         <br/><br/><hr/><Footer></Footer>
       </div>

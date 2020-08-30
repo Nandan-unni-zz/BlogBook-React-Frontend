@@ -63,3 +63,20 @@
     font-size: 3.5vh;
     color: rgb(0, 128, 255);
 }
+
+.Sk {
+    margin-top: 8vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    border-bottom: 0.3vh solid rgb(220, 220, 220);
+}
+.Sk-Nav {
+    display: flex;
+}
+.Sk-left {
+    margin-right: auto;
+}
+.Sk-right {
+    margin-left: auto;
+    order: 2;
+}

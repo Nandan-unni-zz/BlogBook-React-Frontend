@@ -1,4 +1,7 @@
-# 💡 [Key Blogs](https://keyblogs.herokuapp.com) ✏️
+# 💡 [Key Blogs](https://keyblogs.web.app) ✏️
+
+### [Open Website](https://keyblogs.web.app)
+### [Open API](https://keyblogs.herokuapp.com/api/)
 
 This is a website where you can write and publish Blogs. <br />
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -14,8 +17,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **1.** React <br />
 **2.** Axios <br />
-**3.** Ant Designs <br />
-**4.** Material Icons <br />
+**3.** Loading Skeletons <br />
+**4.** Ant Designs <br />
+**5.** Material Icons <br />
 
 ## Backend
 
@@ -23,7 +27,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Status
 
-**_>** The frontend made with React is still under development. It's not yet hosted anywhere.<br />
+**_>** The frontend made with React is still under development and is hosted on Firebase.<br />
 **_>** The backend development is almost completed and is hosted on Heroku with a temporary frontend using Django Templates.<br />
+**_>** The frontend is available at [Keyblogs Frontend](https://keyblogs.web.app) <br />
 **_>** The temporary website is available at [KeyBlogs Website](https://keyblogs.herokuapp.com) <br />
 **_>** The API is available at [KeyBlogs API](https://keyblogs.herokuapp.com/api/) <br />
