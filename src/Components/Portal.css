@@ -37,3 +37,7 @@
 .Portal input[type="password"] {
     width: 28.8vh;
 }
+.Portal err {
+    font-size: 1.8vh;
+    color: rgb(220, 0, 0);
+}

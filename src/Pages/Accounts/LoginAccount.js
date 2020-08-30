@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input } from 'antd';
+import { Redirect } from "react-router-dom";
 
 import './LoginAccount.css';
 import Button from '../../Components/Button';
@@ -13,15 +14,22 @@ class LoginAccount extends Component {
     this.state = {
         email: "",
         password: "",
+        errMsg: "",
+        isSuccess: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange = (event) => {
-    this.setState({[event.target.id]: event.target.value});
+    this.setState({[event.target.id]: event.target.value, errMsg: ""});
   }
-  handleSubmit = () => {
-    accountLogger(this.state.name, this.state.email, this.state.password);
+  handleSubmit = async () => {
+    const status = await accountLogger({"email": this.state.email, "password": this.state.password});
+    console.log(status)
+    if ((status === 200) && (status !== undefined))
+      this.setState({isSuccess: true});
+    else
+      this.setState({errMsg: "Invalid email or password."})
   }
   render() {
     return (
@@ -44,8 +52,9 @@ class LoginAccount extends Component {
               name="password"
               rules={[{required: true, message: "Enter your passoword to login"}]}>
               <Input.Password onChange={this.handleChange} />
-            </Form.Item><br />
-
+            </Form.Item>
+            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/feed/" />}</center>
+            <br />
             <Form.Item>
               <center>
                 <Button class="normal">Log In</Button><br />

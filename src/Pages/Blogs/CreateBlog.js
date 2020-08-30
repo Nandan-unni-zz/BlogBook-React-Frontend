@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Form, Input } from 'antd';
+import { Redirect } from "react-router-dom";
 
 import './CreateBlog.css';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
-import { blogCreater, blogSaver } from '../../Services/BlogServices';
+import { blogCreater } from '../../Services/BlogServices';
 
 class CreateBlog extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class CreateBlog extends Component {
         title: "",
         content: "",
         type: "",
+        status: "",
     }
     this.handleChange = this.handleChange.bind(this);
     this.selectMethod = this.selectMethod.bind(this);
@@ -24,12 +26,17 @@ class CreateBlog extends Component {
   selectMethod = (method) => {
     this.setState({type: method})
   }
-  handleSubmit = () => {
+  handleSubmit = async () => {
+    let status;
     if (this.state.type === 'save')
-      blogSaver(this.state.title, this.state.content);
+      status = await blogCreater({"title": this.state.title, "content": this.state.content, "is_published": false});
     else
-      blogCreater(this.state.title, this.state.content);
-  }
+      status = await blogCreater({"title": this.state.title, "content": this.state.content, "is_published": true});
+    if (status === 200)
+        this.setState({isSuccess: true});
+    else
+        this.setState({errMsg: "Some error occured."})
+}
   render() {
     return (
       <div className="CreateBlog">
@@ -55,7 +62,9 @@ class CreateBlog extends Component {
               name="content"
               rules={[{required: true, message: "Write some blog content"}]}>
               <Input.TextArea onChange={this.handleChange} className="content" rows="15"/>
-            </Form.Item><br />
+            </Form.Item>
+            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/feed/" />}</center>
+            <br />
 
             <Form.Item>
               <div className="blog-create-nav">

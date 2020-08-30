@@ -107,7 +107,7 @@ class Message extends Component {
             <a href="/account/view/"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
             <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
           </Navbar><br/><br/><br/>
-          <center><i class="material-icons" style={{color: "red"}}>warning</i><p style={{color: "tomato", fontSize: "1.8vh"}}>Not compatible with this device. Use Desktop/Laptop for better experience</p></center>
+          <center><i class="material-icons" style={{color: "red"}}>warning</i><p style={{color: "tomato", fontSize: "1.8vh"}}>This feature is not compatible with this device. Use Desktop/Laptop for better experience</p></center>
         </div>
       );
   }

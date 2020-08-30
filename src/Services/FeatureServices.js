@@ -1,5 +1,5 @@
-//import axios from 'axios';
-const API = "http://localhost:8000/api/";
+import axios from 'axios';
+const API = "http://localhost:8000/api";
 
 
 export const messageTool = async () => {
@@ -16,5 +16,5 @@ export const searchTool = async () => {
 
 export const feedTool = async () => {
     const url = `${API}/feed/`;
-    console.log(url);
+    return axios.get(url).then(response => response.data);
 };

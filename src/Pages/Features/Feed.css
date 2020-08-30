@@ -40,7 +40,7 @@
 }
 .Blog-Nav z {
     color: rgb(0, 128, 255);
-    font-size: 2.5vh;
+    font-size: 2.4vh;
 }
 .Blog-Nav button {
     border: none;
@@ -56,10 +56,10 @@
     order: 2;
 }
 .Blog-Nav-right i:hover, .Blog-Nav-left i {
-    font-size: 4vh;
+    font-size: 3.5vh;
     color: tomato;
 }
 .Blog-Nav-right i, .Blog-Nav-left i:hover {
-    font-size: 4vh;
+    font-size: 3.5vh;
     color: rgb(0, 128, 255);
 }

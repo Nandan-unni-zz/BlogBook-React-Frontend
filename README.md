@@ -10,6 +10,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 **3.** Seacrh, find and follow users with unique Pen Name. <br />
 **4.** Message users and reply to their messages. <br />
 
+## Tech
+
+**1.** React <br />
+**2.** Axios <br />
+**3.** Ant Designs <br />
+**4.** Material Icons <br />
+
 ## Backend
 
 **Django 3** serves from the backend for various features including email verifications and uses PostgreSQL as the database. The source code for backend can be found in the repo [KeyBlogs Django Backend](https://github.com/nandan-unni/KeyBlogs-Django-Backend) <br />

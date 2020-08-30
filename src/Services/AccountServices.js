@@ -1,4 +1,4 @@
-//import axios from 'axios';
+import axios from 'axios';
 const API = "http://localhost:8000/api";
 
 
@@ -8,15 +8,22 @@ export const accountCreater = async () => {
 };
 
 
-export const accountLogger = async () => {
+export const accountLogger = async (data) => {
     const url = `${API}/account/login/`;
-    console.log(url);
+    var response;
+    try {
+        response = await axios.post(url, data);
+        console.log(response.status);
+    } catch(error) {
+        console.log(error);
+    };
+    return response.status;
 };
 
 
-export const accountViewer = async () => {
-    const url = `${API}/account/view/`;
-    console.log(url);
+export const accountViewer = async (pname) => {
+    const url = `${API}/account/manage/${pname}`;
+    return axios.get(url).then(response => response.data);
 };
 
 
