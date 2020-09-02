@@ -10,6 +10,9 @@ import { blogDeleter } from '../../Services/BlogServices';
 class DeleteBlog extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user: JSON.parse(localStorage.getItem('user')),
+    }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit = () => {

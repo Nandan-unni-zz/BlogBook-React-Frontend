@@ -5,7 +5,7 @@ import './ViewAccount.css';
 import Navbar from '../../Components/Navbar';
 import Button from '../../Components/Button';
 
-import { accountViewer } from '../../Services/AccountServices'
+import { accountViewer, accountLogout } from '../../Services/AccountServices'
 
 function Skltn () {
   return (
@@ -27,8 +27,8 @@ function Skltn () {
         </center><br/>
       </div>
       <div className="Prof-ctrl">
-        <div className="ctrl-edit"><Button class="normal" href={`/account/edit/`}>Edit Account</Button></div>
-        <div className="ctrl-delete"><Button class="danger" href={`/account/delete/`}>Delete Account</Button></div>
+        <div className="ctrl-edit"><Skeleton height={"5vh"} width={"15vh"}/></div>
+        <div className="ctrl-delete"><Skeleton height={"5vh"} width={"15vh"}/></div>
       </div>
     </div>
   );
@@ -38,24 +38,29 @@ class ViewAccount extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      user: JSON.parse(localStorage.getItem('user')),
       writer: {},
       loaded: false,
     }
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+  handleLogout = () => {
+    accountLogout(this.state.user.pk)
+    localStorage.removeItem('user')
   }
   componentDidMount() {
-    console.log(this.props.match.params.username);
-    accountViewer(this.props.match.params.username).then(result => {
-      this.setState({ writer: result, loaded: true })
-      console.log(this.state.writer);
+    accountViewer(this.props.match.params.username).then(res => {
+      this.setState({ writer: res, loaded: true });
     });
   }
   render() {
     const writer = this.state.writer;
+    const user = this.state.user;
     return (
       <div className="ViewAccount">
         <Navbar>
-          <a href="/account/logout/"><i class="material-icons">power_settings_new</i><br/><z> Logout</z></a>
-          <a href="/account/view/"><i class="material-icons">settings</i><br/><z> Settings</z></a>
+          <a href="/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">settings</i><br/><z> Settings</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z> Feeds</z></a>
         </Navbar>
         { this.state.loaded ? <div className="Profile">
@@ -77,10 +82,17 @@ class ViewAccount extends Component {
               <bio>{writer.bio}</bio><br/>
             </center><br/>
           </div>
-          <div className="Prof-ctrl">
-            <div className="ctrl-edit"><Button class="normal" href={`/account/edit/${writer.username}`}>Edit Account</Button></div>
-            <div className="ctrl-delete"><Button class="danger" href={`/account/delete/${writer.username}`}>Delete Account</Button></div>
-          </div>
+          { user.username === writer.username ? 
+            <div className="Prof-ctrl">
+              <div className="ctrl-edit"><Button class="normal" href={`/account/edit/${writer.username}`}>Edit Account</Button></div>
+              <div className="ctrl-delete"><Button class="danger" href={`/account/delete/${writer.username}`}>Delete Account</Button></div>
+            </div> : 
+            <div className="Prof-ctrl">
+              { writer.followers.some(follower => follower.username !== user.username ) ?
+              <div className="ctrl-edit"><Button class="normal">Follow</Button></div> :
+              <div className="ctrl-edit"><Button class="outline">Unfollow</Button></div>
+              }
+            </div> }
         </div> : <Skltn />}<br />
         <div className="Prof-divider"></div>
           <div className="Prof-Nav">
@@ -88,7 +100,7 @@ class ViewAccount extends Component {
             <div className="Prof-Nav-item"><a href="?tab=followers"><i class="material-icons">people</i><br/><z>Followers</z></a></div>
             <div className="Prof-Nav-item item-active"><a href="?tab=published"><i class="material-icons">library_books</i><br/><z>Published</z></a></div>
             <div className="Prof-Nav-item"><a href="?tab=saved"><i class="material-icons">archive</i><br/><z>Saved</z></a></div>
-            <div className="Prof-Nav-item"><a href="?tab=bookmarked"><i class="material-icons">bookmark</i><br/><z>Bookmarked</z></a></div>
+            <div className="Prof-Nav-item"><a href="?tab=bookmarked"><i class="material-icons">bookmarks</i><br/><z>Bookmarked</z></a></div>
           </div>
           <div className="item-dtl">
           </div>

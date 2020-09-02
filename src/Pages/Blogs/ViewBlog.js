@@ -8,6 +8,7 @@ class ViewBlog extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: JSON.parse(localStorage.getItem('user')),
       a: 1,
       b: 2,
     }
@@ -36,7 +37,7 @@ class ViewBlog extends Component {
     return (
       <div className="Feed">
         <Navbar>
-          <a href="/account/view/"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+          <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
         </Navbar>
         <div className="Blogs">

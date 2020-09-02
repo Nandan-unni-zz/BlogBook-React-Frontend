@@ -28,15 +28,15 @@ export const blogEditor = async (pk) => {
 };
 
 
-export const blogLiker = async (pk) => {
-    const url = `${API}/blog/like/${pk}`;
-    console.log(url);
+export const blogLiker = async (blog_pk, user_pk) => {
+    const url = `${API}/blog/like/${blog_pk}/${user_pk}`;
+    return axios.get(url);
 };
 
 
 export const blogBMarker = async (pk) => {
     const url = `${API}/blog/bmark/${pk}`;
-    console.log(url);
+    axios.get(url);
 };
 
 

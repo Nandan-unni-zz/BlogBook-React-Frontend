@@ -31,6 +31,7 @@
     font-size: 1.8vh;
     padding-left: 2vw;
     padding-right: 2vw;
+    white-space: pre-wrap;
 }
 .Blog-Content {
     padding: 3vh;

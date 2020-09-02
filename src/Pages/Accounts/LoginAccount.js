@@ -24,10 +24,14 @@ class LoginAccount extends Component {
     this.setState({[event.target.id]: event.target.value, errMsg: ""});
   }
   handleSubmit = async () => {
-    const status = await accountLogger({"email": this.state.email, "password": this.state.password});
-    console.log(status)
-    if ((status === 200) && (status !== undefined))
-      this.setState({isSuccess: true});
+    const response = await accountLogger({"email": this.state.email, "password": this.state.password});
+    console.log(response.status)
+    if (response.status === 200)
+    {
+      localStorage.setItem('user', JSON.stringify(response.data));
+      if (localStorage.getItem('user'))
+        this.setState({isSuccess: true});
+    }
     else
       this.setState({errMsg: "Invalid email or password."})
   }
@@ -53,7 +57,7 @@ class LoginAccount extends Component {
               rules={[{required: true, message: "Enter your passoword to login"}]}>
               <Input.Password onChange={this.handleChange} />
             </Form.Item>
-            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/feed/" />}</center>
+            <center>{!localStorage.getItem('user') ? <err>{this.state.errMsg}</err> : <Redirect to="/feed/" />}</center>
             <br />
             <Form.Item>
               <center>

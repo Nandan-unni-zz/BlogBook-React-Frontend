@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Features
 import Home from "../Pages/Features/Home";
@@ -28,14 +28,14 @@ function App() {
     <div className="Keyblogs">
       <BrowserRouter>
         <Switch>
-
           <Route exact path="/" component={Home} />
+          <Route exact path="/account/create/" component={CreateAccount} />
+          <Route exact path="/account/login/" component={LoginAccount} />
+
           <Route exact path="/feed/" component={Feed} />
           <Route exact path="/message/" component={Message} />
           <Route exact path="/search/" component={Search} />
 
-          <Route exact path="/account/create/" component={CreateAccount} />
-          <Route exact path="/account/login/" component={LoginAccount} />
           <Route exact path="/account/view/:username" component={ViewAccount} />
           <Route exact path="/account/edit/:username" component={EditAccount} />
           <Route exact path="/account/delete/:username" component={DeleteAccount} />
@@ -44,7 +44,6 @@ function App() {
           <Route exact path="/blog/view/" component={ViewBlog} />
           <Route exact path="/blog/edit/" component={EditBlog} />
           <Route exact path="/blog/delete/" component={DeleteBlog} />
-
           <Route exact path="*" component={NotFound} />
 
         </Switch>

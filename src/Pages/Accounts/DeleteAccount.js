@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Input } from 'antd';
+import { Redirect } from "react-router-dom";
 
 import './DeleteAccount.css';
 import Logo from '../../Components/Logo';
@@ -11,7 +12,9 @@ class DeleteAccount extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        user: JSON.parse(localStorage.getItem('user')),
         password: "",
+        isSuccess: false,
         emsg: "",
     }
     this.handleChange = this.handleChange.bind(this);
@@ -21,7 +24,9 @@ class DeleteAccount extends Component {
     this.setState({[event.target.id]: event.target.value});
   }
   handleSubmit = () => {
-    accountDeleter(this.state.password);
+    accountDeleter(this.state.user.username, {"password": this.state.password,});
+    localStorage.removeItem('user')
+    this.setState({isSuccess: true})
   }
   render() {
     return (
@@ -36,7 +41,9 @@ class DeleteAccount extends Component {
               name="password"
               rules={[{required: true, message: "Enter your passoword to confirm delete"}]}>
               <Input.Password onChange={this.handleChange} />
-            </Form.Item><br />
+            </Form.Item>
+            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/" />}</center>
+            <br />
 
             <Form.Item>
               <center>

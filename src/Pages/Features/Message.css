@@ -8,7 +8,7 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: white;
   overflow-x: hidden;
   padding-top: 2vh;
 }
@@ -17,12 +17,13 @@
   padding: 4vh 8vw 4vh 2vw;
   text-decoration: none;
   font-size: 2vh;
-  color: #818181;
+  color: rgb(17, 17, 17);
   display: block;
+  border-bottom: 0.1vh solid rgb(201, 201, 201);
 }
 
 .chat-menu a:hover {
-  color: #f1f1f1;
+  color: rgb(0, 30, 70);
 }
 
 .chat-box {

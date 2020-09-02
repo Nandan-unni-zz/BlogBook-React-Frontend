@@ -18,7 +18,7 @@ export const accountLogger = async (data) => {
     } catch(error) {
         console.log(error);
     };
-    return response.status;
+    return response;
 };
 
 
@@ -28,13 +28,18 @@ export const accountViewer = async (pname) => {
 };
 
 
-export const accountEditor = async () => {
-    const url = `${API}/account/edit/`;
-    console.log(url);
+export const accountEditor = async (pname, data) => {
+    const url = `${API}/account/manage/${pname}`;
+    return axios.patch(url, data).then(response => {return response;})
 };
 
 
-export const accountDeleter = async () => {
-    const url = `${API}/account/delete/`;
-    console.log(url);
+export const accountDeleter = async (pname, data) => {
+    const url = `${API}/account/delete/${pname}`;
+    return axios.post(url, data).then(response => {return response});
 };
+
+export const accountLogout = async (pk) => {
+    const url = `${API}/account/logout/${pk}`;
+    axios.get(url);
+}
