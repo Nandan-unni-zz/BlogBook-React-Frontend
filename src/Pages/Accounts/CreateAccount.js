@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Form, Input } from 'antd';
+import { Redirect } from "react-router-dom";
 
 import './CreateAccount.css';
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { accountCreater } from '../../Services/AccountServices';
+import { accountCreator } from '../../Services/AccountServices';
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -15,7 +16,8 @@ class CreateAccount extends Component {
         email: "",
         password: "",
         cpassword: "",
-        emsg: "",
+        isSuccess: false,
+        errMsg: "",
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,11 +25,19 @@ class CreateAccount extends Component {
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value});
   }
-  handleSubmit = () => {
+  handleSubmit = async () => {
+    let res;
     if ( this.state.password === this.state.cpassword )
-      accountCreater(this.state.name, this.state.email, this.state.password);
+    {
+      res = await accountCreator({'name': this.state.name, 'email': this.state.email, 'username': this.state.email, 'password': this.state.password});
+      console.log(res.status)
+      if (res.status === 201)
+        this.setState({isSuccess: true});
+      else
+        this.setState({errMsg: "Email already in use."})
+    }
     else
-      this.setState({emsg: "Passwords didn't match"})
+      this.setState({errMsg: "Passwords didn't match"});
   }
   render() {
     return (
@@ -48,7 +58,7 @@ class CreateAccount extends Component {
             <label for="email">Email</label><br />
             <Form.Item
               name="email"
-              rules={[{required: true, min: 4, message: "Please enter a verified email"}]}>
+              rules={[{required: true, type: "email", min: 4, message: "Please enter a verified email"}]}>
               <Input onChange={this.handleChange} />
             </Form.Item>
 
@@ -64,7 +74,9 @@ class CreateAccount extends Component {
               name="cpassword"
               rules={[{required: true, min:4, message: "Re-enter your passoword to confirm"}]}>
               <Input.Password onChange={this.handleChange} />
-            </Form.Item><br />
+            </Form.Item>
+            <center>{ !this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/success/" />}</center>
+            <br />
 
             <Form.Item>
               <center>

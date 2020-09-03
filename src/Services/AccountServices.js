@@ -3,10 +3,15 @@ import axios from 'axios';
 const API = "https://keyblogs.herokuapp.com/api";
 
 
-export const accountCreater = async () => {
+export const accountCreator = async (data) => {
     const url = `${API}/account/create/`;
-    console.log(url);
+    return axios.post(url, data).then(response => { return response })
 };
+
+export const usernameCreator = async (pk, data) => {
+    const url = `${API}/account/username/${pk}`;
+    return axios.post(url, data).then(response => { return response })
+}
 
 
 export const accountLogger = async (data) => {

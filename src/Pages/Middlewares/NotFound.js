@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 
-import './Error.css';
-import Logo from './Logo';
-import Portal from './Portal';
-import Button from './Button';
+import Logo from '../../Components/Logo';
+import Portal from '../../Components/Portal';
+import Button from '../../Components/Button';
 
 class NotFound extends Component {
   render() {

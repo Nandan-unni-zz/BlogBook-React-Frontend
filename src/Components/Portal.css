@@ -41,3 +41,7 @@
     font-size: 1.8vh;
     color: rgb(220, 0, 0);
 }
+.multi-button {
+    display: flex;
+    justify-content: space-between;
+}

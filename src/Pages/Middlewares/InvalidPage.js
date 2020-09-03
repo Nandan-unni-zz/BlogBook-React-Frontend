@@ -1,0 +1,26 @@
+import React, { Component } from 'react';
+
+import Logo from '../../Components/Logo';
+import Portal from '../../Components/Portal';
+import Button from '../../Components/Button';
+
+class InvalidPage extends Component {
+  render() {
+    return (
+      <div className="InvalidPage">
+        <Logo></Logo><br/><br/><br/>
+        <Portal>
+          <center><h2>Invalid Link</h2><br />
+          <p>You have recieved an invalid or expired link. Request for a new one to continue</p>
+          <br/>
+          <div className="multi-button">
+            <Button href="/account/login/" class="outline">Resend Mail</Button> &nbsp;
+            <Button href="/account/login/" class="normal">Login</Button>
+          </div></center>
+        </Portal>
+      </div>
+    );
+  }
+}
+
+export default InvalidPage;

@@ -21,7 +21,10 @@ import EditBlog from '../Pages/Blogs/EditBlog';
 import DeleteBlog from '../Pages/Blogs/DeleteBlog';
 
 // Components
-import NotFound from '../Components/404';
+import NotFound from '../Pages/Middlewares/NotFound'
+import CreatePenName from '../Pages/Middlewares/CreatePenName';
+import SuccessPage from '../Pages/Middlewares/SuccessPage'
+import InvalidPage from '../Pages/Middlewares/InvalidPage';
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/account/create/" component={CreateAccount} />
           <Route exact path="/account/login/" component={LoginAccount} />
+          <Route exact path="/penName/:username" component={CreatePenName} />
+          <Route exact path="/success/" component={SuccessPage} />
+          <Route exact path="/invalid/" component={InvalidPage} /> 
 
           <Route exact path="/feed/" component={Feed} />
           <Route exact path="/message/" component={Message} />
