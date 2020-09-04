@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import './ViewAccount.css';
 import Navbar from '../../Components/Navbar';
 import Button from '../../Components/Button';
+import defaultdp from '../../Images/writer.png';
 
 import { accountViewer, accountLogout } from '../../Services/AccountServices'
 
@@ -65,7 +66,7 @@ class ViewAccount extends Component {
         </Navbar>
         { this.state.loaded ? <div className="Profile">
           <div className="Prof-img">
-            {<center><img src={writer.dp} alt="DP" /></center>}
+            {<center><img src={defaultdp} alt="DP" /></center>}
           </div>
           <div className="Prof-dtl">
             <center>

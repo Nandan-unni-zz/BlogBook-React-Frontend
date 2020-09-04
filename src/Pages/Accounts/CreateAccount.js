@@ -27,6 +27,7 @@ class CreateAccount extends Component {
   }
   handleSubmit = async () => {
     let res;
+    this.setState({errMsg: "Please wait..."})
     if ( this.state.password === this.state.cpassword )
     {
       res = await accountCreator({'name': this.state.name, 'email': this.state.email, 'username': this.state.email, 'password': this.state.password});
