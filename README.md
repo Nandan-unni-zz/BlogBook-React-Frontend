@@ -8,8 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Features
 
-**1.** Create, Edit, View and Delete Account. <br />
-**2.** Create, Edit, View and Delete Blogs. <br />
+**1.** Create, Read, Update and Delete Account. <br />
+**2.** Create, Read, Update and Delete Blogs. <br />
 **3.** Seacrh, find and follow users with unique Pen Name. <br />
 **4.** Message users and reply to their messages. <br />
 **5.** Publish or Archive Blogs according to user's convenience. <br />
