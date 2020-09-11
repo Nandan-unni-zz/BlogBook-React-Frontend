@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'antd';
 
-import './DeleteBlog.css';
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';

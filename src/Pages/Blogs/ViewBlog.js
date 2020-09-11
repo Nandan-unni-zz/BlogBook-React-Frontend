@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import './ViewBlog.css';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
 

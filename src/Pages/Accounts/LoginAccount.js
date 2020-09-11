@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Input } from 'antd';
 import { Redirect } from "react-router-dom";
 
-import './LoginAccount.css';
 import Button from '../../Components/Button';
 import Portal from '../../Components/Portal';
 import Logo from '../../Components/Logo';

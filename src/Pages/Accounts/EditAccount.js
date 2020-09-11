@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Form, Input } from 'antd';
 import { Redirect } from "react-router-dom";
 
-import './EditAccount.css';
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
