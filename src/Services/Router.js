@@ -3,13 +3,14 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Features
 import Home from "../Pages/Features/Home";
+import Login from '../Pages/Features/Login';
 import Feed from "../Pages/Features/Feed";
 import Message from "../Pages/Features/Message";
 import Search from "../Pages/Features/Search";
 
 // Accounts
 import CreateAccount from '../Pages/Accounts/CreateAccount';
-import LoginAccount from '../Pages/Accounts/LoginAccount';
+import SetupAccount from '../Pages/Accounts/SetupAccount';
 import ViewAccount from '../Pages/Accounts/ViewAccount';
 import EditAccount from '../Pages/Accounts/EditAccount';
 import DeleteAccount from '../Pages/Accounts/DeleteAccount';
@@ -21,8 +22,7 @@ import EditBlog from '../Pages/Blogs/EditBlog';
 import DeleteBlog from '../Pages/Blogs/DeleteBlog';
 
 // Components
-import NotFound from '../Pages/Middlewares/NotFound'
-import CreatePenName from '../Pages/Middlewares/CreatePenName';
+import NotFound from '../Pages/Middlewares/NotFound';
 import SuccessPage from '../Pages/Middlewares/SuccessPage'
 import InvalidPage from '../Pages/Middlewares/InvalidPage';
 
@@ -32,24 +32,25 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/account/create/" component={CreateAccount} />
-          <Route exact path="/account/login/" component={LoginAccount} />
-          <Route exact path="/penName/:username" component={CreatePenName} />
-          <Route exact path="/success/" component={SuccessPage} />
-          <Route exact path="/invalid/" component={InvalidPage} /> 
-
+          <Route exact path="/login/" component={Login} />
+          <Route exact path="/logout/" component={Home} />
           <Route exact path="/feed/" component={Feed} />
           <Route exact path="/message/" component={Message} />
           <Route exact path="/search/" component={Search} />
 
-          <Route exact path="/account/view/:username" component={ViewAccount} />
-          <Route exact path="/account/edit/:username" component={EditAccount} />
-          <Route exact path="/account/delete/:username" component={DeleteAccount} />
+          <Route exact path="/writer/create/" component={CreateAccount} />
+          <Route exact path="/writer/setup/:username" component={SetupAccount} />
+          <Route exact path="/writer/view/:username" component={ViewAccount} />
+          <Route exact path="/writer/edit/:username" component={EditAccount} />
+          <Route exact path="/writer/delete/:username" component={DeleteAccount} />
 
           <Route exact path="/blog/create/" component={CreateBlog} />
-          <Route exact path="/blog/view/" component={ViewBlog} />
-          <Route exact path="/blog/edit/" component={EditBlog} />
-          <Route exact path="/blog/delete/" component={DeleteBlog} />
+          <Route exact path="/blog/view/:pk" component={ViewBlog} />
+          <Route exact path="/blog/edit/:pk" component={EditBlog} />
+          <Route exact path="/blog/delete/:pk" component={DeleteBlog} />
+
+          <Route exact path="/success/" component={SuccessPage} />
+          <Route exact path="/invalid/" component={InvalidPage} /> 
           <Route exact path="*" component={NotFound} />
 
         </Switch>

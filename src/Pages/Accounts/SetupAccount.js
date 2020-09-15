@@ -7,7 +7,7 @@ import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
 import { usernameCreator, accountViewer } from '../../Services/AccountServices';
 
-class CreatePenName extends Component {
+class AccountSetup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,4 +65,4 @@ class CreatePenName extends Component {
   }
 }
 
-export default CreatePenName;
+export default AccountSetup;

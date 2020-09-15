@@ -72,12 +72,12 @@ class EditAccount extends Component {
             <Form.Item>
               <center>
                 <Button class="normal">Save</Button><br />
-                <a href="/account/view/">Change Profile Pic</a>
+                <a href="/writer/view/">Change Profile Pic</a>
               </center>
             </Form.Item>
 
           </Form>
-          <center><a href={`/account/view/${user.username}`}>Cancel</a></center>
+          <center><a href={`/writer/view/${user.username}`}>Cancel</a></center>
         </Portal>
       </div>
     );

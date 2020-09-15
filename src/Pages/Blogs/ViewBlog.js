@@ -36,7 +36,7 @@ class ViewBlog extends Component {
     return (
       <div className="Feed">
         <Navbar>
-          <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+          <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
         </Navbar>
         <div className="Blogs">
@@ -44,7 +44,7 @@ class ViewBlog extends Component {
           <div className="Blog">
             <div className="Blog-Content">
               <h3>Django: The Python Framework</h3>
-              <a href='/account/view/'>Django Software Foundation</a><br /><br />
+              <a href='/writer/view/'>Django Software Foundation</a><br /><br />
               <p>
                 Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
                 Built by experienced developers, it takes care of much of the hassle of Web development, 

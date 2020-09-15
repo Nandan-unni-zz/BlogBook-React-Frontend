@@ -4,7 +4,7 @@ import { Form, Input } from 'antd';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
 import { blogEditor } from '../../Services/BlogServices';
-import { accountLogout } from '../../Services/AccountServices';
+import { logoutTool } from '../../Services/FeatureServices';
 
 class EditBlog extends Component {
   constructor(props) {
@@ -26,15 +26,15 @@ class EditBlog extends Component {
     blogEditor(this.state.title, this.state.content);
   }
   handleLogout = () => {
-    accountLogout(this.state.user.pk)
+    logoutTool(this.state.user.pk)
     localStorage.removeItem('user')
   }
   render() {
     return (
       <div className="EditBlog">
         <Navbar>
-          <a href="/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
-          <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+          <a href="/logout/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feeds</z></a>
         </Navbar><br /><br />
         <div className="blog-create">

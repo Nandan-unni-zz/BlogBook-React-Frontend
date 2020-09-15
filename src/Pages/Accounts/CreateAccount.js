@@ -81,7 +81,7 @@ class CreateAccount extends Component {
             <Form.Item>
               <center>
                 <Button class="normal">Create Account</Button><br />
-                <a href="/account/login/">Already have an account ?</a>
+                <a href="/login/">Already have an account ?</a>
               </center>
             </Form.Item>
 

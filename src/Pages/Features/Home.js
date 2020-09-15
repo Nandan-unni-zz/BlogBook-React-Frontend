@@ -19,8 +19,8 @@ class Home extends Component {
           </p><br/>
           <div className="auth-nav">
               &nbsp;
-              <Button href='/account/create/' class="normal">Create Account</Button>
-              <Button href='/account/login/' class="normal">Log In</Button>
+              <Button href='/writer/create/' class="normal">Create Account</Button>
+              <Button href='/login/' class="normal">Log In</Button>
               &nbsp;
           </div>
         </div>

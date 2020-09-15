@@ -5,9 +5,8 @@ import './Feed.css';
 import Logo from '../../Components/Logo';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
-import { feedTool } from '../../Services/FeatureServices';
+import { feedTool, logoutTool } from '../../Services/FeatureServices';
 import { blogLiker } from '../../Services/BlogServices';
-import { accountLogout } from '../../Services/AccountServices';
 
 function Skltn () {
   return (
@@ -60,7 +59,7 @@ class Feed extends Component {
       document.getElementById(id).innerHTML = liked;
   }
   handleLogout = () => {
-    accountLogout(this.state.user.pk)
+    logoutTool(this.state.user.pk)
     localStorage.removeItem('user')
   }
   render() {
@@ -69,7 +68,7 @@ class Feed extends Component {
       <div className="Feed">
         <Logo></Logo>
         <Navbar>
-          <a href="/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href="/logout/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
           <a href={`/account/view/${user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/search/"><i class="material-icons">person_add_alt_1</i><br/><z>Search</z></a>
           <a href="/message/"><i class="material-icons">chat</i><br/><z>Message</z></a>

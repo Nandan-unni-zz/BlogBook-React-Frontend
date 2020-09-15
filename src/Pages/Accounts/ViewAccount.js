@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import './ViewAccount.css';
+import './Accounts.css';
 import Navbar from '../../Components/Navbar';
 import Button from '../../Components/Button';
 import defaultdp from '../../Images/writer.png';
 
-import { accountViewer, accountLogout } from '../../Services/AccountServices'
+import { accountViewer } from '../../Services/AccountServices';
+import { logoutTool } from '../../Services/FeatureServices';
 
 function Skltn () {
   return (
@@ -46,7 +47,7 @@ class ViewAccount extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout = () => {
-    accountLogout(this.state.user.pk)
+    logoutTool(this.state.user.pk)
     localStorage.removeItem('user')
   }
   componentDidMount() {
@@ -60,8 +61,8 @@ class ViewAccount extends Component {
     return (
       <div className="ViewAccount">
         <Navbar>
-          <a href="/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
-          <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">settings</i><br/><z> Settings</z></a>
+          <a href="/logout/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">settings</i><br/><z> Settings</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z> Feeds</z></a>
         </Navbar>
         { this.state.loaded ? <div className="Profile">

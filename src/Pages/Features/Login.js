@@ -5,9 +5,9 @@ import { Redirect } from "react-router-dom";
 import Button from '../../Components/Button';
 import Portal from '../../Components/Portal';
 import Logo from '../../Components/Logo';
-import { accountLogger } from '../../Services/AccountServices';
+import { loginTool } from '../../Services/FeatureServices';
 
-class LoginAccount extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class LoginAccount extends Component {
     this.setState({[event.target.id]: event.target.value, errMsg: ""});
   }
   handleSubmit = async () => {
-    const response = await accountLogger({"email": this.state.email, "password": this.state.password});
+    const response = await loginTool({"email": this.state.email, "password": this.state.password});
     console.log(response.status)
     if (response.status === 200)
     {
@@ -72,4 +72,4 @@ class LoginAccount extends Component {
   }
 }
 
-export default LoginAccount;
+export default Login;

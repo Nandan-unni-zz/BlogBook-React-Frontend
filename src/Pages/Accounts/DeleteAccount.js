@@ -47,7 +47,7 @@ class DeleteAccount extends Component {
             <Form.Item>
               <center>
                 <Button class="danger">Delete Account</Button><br />
-                <a href="/account/view/">Cancel</a>
+                <a href="/writer/view/">Cancel</a>
               </center>
             </Form.Item>
 

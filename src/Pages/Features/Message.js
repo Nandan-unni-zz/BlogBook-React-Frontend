@@ -36,7 +36,7 @@ class Message extends Component {
         <div class="chat-box">
           <div className="chat-head">
             <Navbar>
-              <a href={`/account/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+              <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
               <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
               <center><a href="/message/"><h1>React Software Foundation</h1></a></center>
             </Navbar>

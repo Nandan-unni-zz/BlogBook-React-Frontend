@@ -15,8 +15,8 @@ class SuccessPage extends Component {
           <br/>
           <div className="multi-button">
             <Button href="https://mail.google.com/mail/u/0/#inbox" class="normal">Gmail</Button> &nbsp;
-            <Button href="/account/login/" class="outline">Resend Mail</Button> &nbsp;
-            <Button href="/account/login/" class="normal">Login</Button>
+            <Button href="/login/" class="outline">Resend Mail</Button> &nbsp;
+            <Button href="/login/" class="normal">Login</Button>
           </div></center>
         </Portal>
       </div>

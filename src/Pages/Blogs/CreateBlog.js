@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Input } from 'antd';
 import { Redirect } from "react-router-dom";
 
-import './CreateBlog.css';
+import './Blogs.css';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
 import { blogCreater } from '../../Services/BlogServices';
@@ -42,8 +42,8 @@ class CreateBlog extends Component {
     return (
       <div className="CreateBlog">
         <Navbar>
-          <a href="/account/logout/"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
-          <a href="/account/view/"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
+          <a href="/logout/"><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
+          <a href="/writer/view/"><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feeds</z></a>
         </Navbar><br /><br />
         <div className="blog-create">
