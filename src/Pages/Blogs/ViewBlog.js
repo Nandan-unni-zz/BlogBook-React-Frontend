@@ -3,36 +3,35 @@ import React, { Component } from 'react';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
 
+import { likeBlogAPI, saveBlogAPI, getBlogAPI } from '../../Services/BlogServices';
+
 class ViewBlog extends Component {
   constructor(props) {
     super(props);
     this.state = {
       user: JSON.parse(localStorage.getItem('user')),
-      a: 1,
-      b: 2,
+      blog: {}, 
+      loaded: false,
     }
     this.handleLike = this.handleLike.bind(this);
-    this.handleBmark = this.handleBmark.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
-  handleLike = (x) => {
-    const liked = `<button><i class="material-icons">favorite</i></button>`;
-    const like = `<button><i class="material-icons">favorite_border</i></button>`;
-    const code = document.getElementById(x).innerHTML
-    if (code === liked)
-      document.getElementById(x).innerHTML = like;
-    else
-      document.getElementById(x).innerHTML = liked;
+  handleLike = async (pk) => {
+    const res = await likeBlogAPI(pk, this.state.user.pk);
+    this.setState({ blogs: res.data })
   }
-  handleBmark = (x) => {
-    const liked = `<button><i class="material-icons">bookmark</i></button>`;
-    const like = `<button><i class="material-icons">bookmark_border</i></button>`;
-    const code = document.getElementById(x).innerHTML
-    if (code === liked)
-      document.getElementById(x).innerHTML = like;
-    else
-      document.getElementById(x).innerHTML = liked;
+  handleSave = async (pk) => {
+    const res = await saveBlogAPI(pk, this.state.user.pk);
+    this.setState({ blogs: res.data })
+  }
+  componentDidMount() {
+    getBlogAPI(this.props.match.params.pk).then(res => {
+      this.setState({ blog: res, loaded: true });
+      console.log(res, this.state.blog)
+    });
   }
   render() {
+    const blog = this.state.blog;
     return (
       <div className="Feed">
         <Navbar>
@@ -40,26 +39,27 @@ class ViewBlog extends Component {
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
         </Navbar>
         <div className="Blogs">
-
           <div className="Blog">
             <div className="Blog-Content">
-              <h3>Django: The Python Framework</h3>
-              <a href='/writer/view/'>Django Software Foundation</a><br /><br />
-              <p>
-                Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
-                Built by experienced developers, it takes care of much of the hassle of Web development, 
-                so you can focus on writing your app without needing to reinvent the wheel. It’s free and open source. <br/><br/>
-                Ridiculously fast.<br/>
-                Django was designed to help developers take applications from concept to completion as quickly as possible.<br/><br/>
-                Reassuringly secure.<br/>
-                Django takes security seriously and helps developers avoid many common security mistakes.<br/><br/>
-                Exceedingly scalable.<br/>
-                Some of the busiest sites on the Web leverage Django’s ability to quickly and flexibly scale.<br/><br/>
-              </p>
+              <h3>{blog.title}</h3>
+              <a href={`/writer/view/${blog.author.username}`}>{blog.author.username}</a><br /><br />
+              <p>{blog.content}</p><br/>
+              { blog.author.username === this.state.user.username ?
+              <div className="Blog-Nav">
+                <z>{blog.no_of_likes}</z>
+                { blog.likes.some(like => like.username === this.state.user.username ) ?
+                <div className="Blog-Nav-left" onClick={() => this.handleLike(blog.pk)}><button><i class="material-icons">favorite</i></button></div> :
+                <div className="Blog-Nav-left" onClick={() => this.handleLike(blog.pk)}><button><i class="material-icons">favorite_border</i></button></div>
+                }
+                { blog.saves.some(save => save.username === this.state.user.username ) ?
+                <div className="Blog-Nav-right" onClick={() => this.handleSave(blog.pk)}><button><i class="material-icons">bookmark</i></button></div> :
+                <div className="Blog-Nav-right" onClick={() => this.handleSave(blog.pk)}><button><i class="material-icons">bookmark_border</i></button></div>
+                }
+              </div> :
               <div className="Prof-ctrl">
-                <div className="Blog-Nav-left"><Button class="normal" href="/blog/edit/">Edit Blog</Button></div>
-                <div className="Blog-Nav-right"><Button class="danger" href="/blog/delete/">Delete Blog</Button></div>
-              </div>
+                <div className="Blog-Nav-left"><Button class="normal" href={`/blog/edit/${blog.pk}`}>Edit Blog</Button></div>
+                <div className="Blog-Nav-right"><Button class="danger" href={`/blog/delete/${blog.pk}`}>Delete Blog</Button></div>
+              </div> }
             </div>
           </div>
         </div>

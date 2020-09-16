@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { accountEditor } from '../../Services/AccountServices';
+import { updateWriterAPI } from '../../Services/WriterServices';
 
 class EditAccount extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class EditAccount extends Component {
     this.setState({[event.target.id]: event.target.value});
   }
   handleSubmit = async () => {
-    const response = await accountEditor(this.state.user.username, {"name": this.state.name, "bio": this.state.bio});
+    const response = await updateWriterAPI(this.state.user.username, {"name": this.state.name, "bio": this.state.bio});
     if (response.status === 200)
     {
       this.setState({isSuccess: true});
@@ -66,7 +66,7 @@ class EditAccount extends Component {
               <Input.TextArea onChange={this.handleChange} className="bio" rows="5"/>
             </Form.Item>
 
-            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to={`/account/view/${user.username}`} />}</center>
+            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to={`/writer/view/${user.username}`} />}</center>
             <br />
 
             <Form.Item>

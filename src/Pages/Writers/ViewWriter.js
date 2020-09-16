@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Skeleton from 'react-loading-skeleton';
 
-import './Accounts.css';
+import './Writers.css';
 import Navbar from '../../Components/Navbar';
 import Button from '../../Components/Button';
 import defaultdp from '../../Images/writer.png';
 
-import { accountViewer } from '../../Services/AccountServices';
-import { logoutTool } from '../../Services/FeatureServices';
+import { logoutWriterAPI, getWriterAPI } from '../../Services/WriterServices';
 
 function Skltn () {
   return (
@@ -47,11 +46,11 @@ class ViewAccount extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleLogout = () => {
-    logoutTool(this.state.user.pk)
+    logoutWriterAPI(this.state.user.pk)
     localStorage.removeItem('user')
   }
   componentDidMount() {
-    accountViewer(this.props.match.params.username).then(res => {
+    getWriterAPI(this.props.match.params.username).then(res => {
       this.setState({ writer: res, loaded: true });
     });
   }
@@ -86,8 +85,8 @@ class ViewAccount extends Component {
           </div>
           { user.username === writer.username ? 
             <div className="Prof-ctrl">
-              <div className="ctrl-edit"><Button class="normal" href={`/account/edit/${writer.username}`}>Edit Account</Button></div>
-              <div className="ctrl-delete"><Button class="danger" href={`/account/delete/${writer.username}`}>Delete Account</Button></div>
+              <div className="ctrl-edit"><Button class="normal" href={`/writer/edit/${writer.username}`}>Edit Account</Button></div>
+              <div className="ctrl-delete"><Button class="danger" href={`/writer/delete/${writer.username}`}>Delete Account</Button></div>
             </div> : 
             <div className="Prof-ctrl">
               { writer.followers.some(follower => follower.username !== user.username ) ?

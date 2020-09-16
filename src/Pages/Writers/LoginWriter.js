@@ -5,9 +5,9 @@ import { Redirect } from "react-router-dom";
 import Button from '../../Components/Button';
 import Portal from '../../Components/Portal';
 import Logo from '../../Components/Logo';
-import { loginTool } from '../../Services/FeatureServices';
+import { loginWriterAPI } from '../../Services/WriterServices';
 
-class Login extends Component {
+class LoginWriter extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +23,7 @@ class Login extends Component {
     this.setState({[event.target.id]: event.target.value, errMsg: ""});
   }
   handleSubmit = async () => {
-    const response = await loginTool({"email": this.state.email, "password": this.state.password});
+    const response = await loginWriterAPI({"email": this.state.email, "password": this.state.password});
     console.log(response.status)
     if (response.status === 200)
     {
@@ -72,4 +72,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default LoginWriter;

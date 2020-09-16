@@ -3,8 +3,8 @@ import { Form, Input } from 'antd';
 
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
-import { blogEditor } from '../../Services/BlogServices';
-import { logoutTool } from '../../Services/FeatureServices';
+import { updateBlogAPI } from '../../Services/BlogServices';
+import { logoutWriterAPI } from '../../Services/WriterServices';
 
 class EditBlog extends Component {
   constructor(props) {
@@ -23,10 +23,10 @@ class EditBlog extends Component {
     this.setState({[event.target.id]: event.target.value});
   }
   handleSubmit = () => {
-    blogEditor(this.state.title, this.state.content);
+    updateBlogAPI(this.state.title, this.state.content);
   }
   handleLogout = () => {
-    logoutTool(this.state.user.pk)
+    logoutWriterAPI(this.state.user.pk)
     localStorage.removeItem('user')
   }
   render() {

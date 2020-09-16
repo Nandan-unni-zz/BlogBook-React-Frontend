@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { usernameCreator, accountViewer } from '../../Services/AccountServices';
+import { getWriterAPI, setupWriterAPI } from '../../Services/WriterServices';
 
 class AccountSetup extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class AccountSetup extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   componentDidMount() {
-    accountViewer(this.props.match.params.username).then(res => {
+    getWriterAPI(this.props.match.params.username).then(res => {
       this.setState({user: res });
     });
   }
@@ -28,7 +28,7 @@ class AccountSetup extends Component {
     this.setState({[event.target.id]: event.target.value});
   }
   handleSubmit = async () => {
-    const res = await usernameCreator(this.state.user.pk, {'username': this.state.username});
+    const res = await setupWriterAPI(this.state.user.pk, {'username': this.state.username});
     console.log(res.status)
     if (res.status === 200)
       this.setState({isSuccess: true});

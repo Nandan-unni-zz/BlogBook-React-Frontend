@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { accountCreator } from '../../Services/AccountServices';
+import { createWriterAPI } from '../../Services/WriterServices';
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class CreateAccount extends Component {
     this.setState({errMsg: "Please wait..."})
     if ( this.state.password === this.state.cpassword )
     {
-      res = await accountCreator({'name': this.state.name, 'email': this.state.email, 'username': this.state.email, 'password': this.state.password});
+      res = await createWriterAPI({'name': this.state.name, 'email': this.state.email, 'username': this.state.email, 'password': this.state.password});
       console.log(res.status)
       if (res.status === 201)
         this.setState({isSuccess: true});

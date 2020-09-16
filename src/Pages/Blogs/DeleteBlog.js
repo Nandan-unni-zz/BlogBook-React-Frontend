@@ -4,7 +4,7 @@ import { Form } from 'antd';
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { blogDeleter } from '../../Services/BlogServices';
+import { deleteBlogAPI } from '../../Services/BlogServices';
 
 class DeleteBlog extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class DeleteBlog extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleSubmit = () => {
-    blogDeleter(this.state.password);
+    deleteBlogAPI(this.state.password);
   }
   render() {
     return (

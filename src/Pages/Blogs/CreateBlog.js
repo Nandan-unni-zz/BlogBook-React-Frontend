@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import './Blogs.css';
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
-import { blogCreater } from '../../Services/BlogServices';
+import { createBlogAPI } from '../../Services/BlogServices';
 
 class CreateBlog extends Component {
   constructor(props) {
@@ -30,9 +30,9 @@ class CreateBlog extends Component {
   handleSubmit = async () => {
     let status;
     if (this.state.type === 'save')
-      status = await blogCreater({"title": this.state.title, "content": this.state.content, "is_published": false, "author": this.state.user.pk});
+      status = await createBlogAPI({"title": this.state.title, "content": this.state.content, "is_published": false, "author": this.state.user.pk});
     else
-      status = await blogCreater({"title": this.state.title, "content": this.state.content, "is_published": true, "author": this.state.user.pk});
+      status = await createBlogAPI({"title": this.state.title, "content": this.state.content, "is_published": true, "author": this.state.user.pk});
     if (status === 200)
         this.setState({isSuccess: true});
     else

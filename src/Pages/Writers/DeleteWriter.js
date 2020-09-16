@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../Components/Logo';
 import Portal from '../../Components/Portal';
 import Button from '../../Components/Button';
-import { accountDeleter } from '../../Services/AccountServices';
+import { deleteWriterAPI } from '../../Services/WriterServices';
 
 class DeleteAccount extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class DeleteAccount extends Component {
         user: JSON.parse(localStorage.getItem('user')),
         password: "",
         isSuccess: false,
-        emsg: "",
+        errMsg: "",
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,10 +22,17 @@ class DeleteAccount extends Component {
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value});
   }
-  handleSubmit = () => {
-    accountDeleter(this.state.user.username, {"password": this.state.password,});
-    localStorage.removeItem('user')
-    this.setState({isSuccess: true})
+  handleSubmit = async () => {
+    const response = await deleteWriterAPI(this.state.user.username, {"password": this.state.password,});
+    console.log(response.status)
+    if (response.status === 204)
+    {
+      this.setState({errMsg: ""})
+      localStorage.removeItem('user');
+      this.setState({isSuccess: true});
+    }
+    else
+      this.setState({errMsg: "Wrong password."})
   }
   render() {
     return (
