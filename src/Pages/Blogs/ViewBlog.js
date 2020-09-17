@@ -27,13 +27,13 @@ class ViewBlog extends Component {
   componentDidMount() {
     getBlogAPI(this.props.match.params.pk).then(res => {
       this.setState({ blog: res, loaded: true });
-      console.log(res, this.state.blog)
     });
   }
   render() {
     const blog = this.state.blog;
     return (
       <div className="Feed">
+        { this.state.loaded ? <div>
         <Navbar>
           <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feed</z></a>
@@ -44,7 +44,7 @@ class ViewBlog extends Component {
               <h3>{blog.title}</h3>
               <a href={`/writer/view/${blog.author.username}`}>{blog.author.username}</a><br /><br />
               <p>{blog.content}</p><br/>
-              { blog.author.username === this.state.user.username ?
+              { blog.author.username !== this.state.user.username ?
               <div className="Blog-Nav">
                 <z>{blog.no_of_likes}</z>
                 { blog.likes.some(like => like.username === this.state.user.username ) ?
@@ -64,6 +64,7 @@ class ViewBlog extends Component {
           </div>
         </div>
         <br/><br/><hr/>
+        </div> : <div></div> }
       </div>
     );
   }

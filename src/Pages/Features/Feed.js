@@ -43,6 +43,7 @@ class Feed extends Component {
   componentDidMount() {
     feedAPI().then(result => {
       this.setState({ blogs: result, loaded: true });
+      console.log(this.state.blogs)
     });
 }
   handleLike = async (pk) => {
@@ -67,6 +68,10 @@ class Feed extends Component {
           <a href={`/writer/view/${user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/search/"><i class="material-icons">person_add_alt_1</i><br/><z>Search</z></a>
           <a href="/blog/create/"><i class="material-icons">create</i><br/><z>New Blog</z></a>
+          { user.is_superuser ?
+          <a href="http://keyblogsapi.herokuapp.com"><i class="material-icons">construction</i><br/><z>API</z></a> :
+          <b></b>
+          }
         </Navbar>
         <div className="Blogs">
         {this.state.loaded ?
@@ -89,7 +94,8 @@ class Feed extends Component {
                 </div>
               </div>
             </div>
-          )  : <p><Skltn /><Skltn /></p>}
+          )  : <p>
+          <Skltn /><Skltn /></p>}
         </div>
         <br/><br/><hr/><Footer></Footer>
       </div>

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Form, Input } from 'antd';
+import { Redirect } from "react-router-dom";
 
 import Button from '../../Components/Button';
 import Navbar from '../../Components/Navbar';
-import { updateBlogAPI } from '../../Services/BlogServices';
+import { updateBlogAPI, getBlogAPI } from '../../Services/BlogServices';
 import { logoutWriterAPI } from '../../Services/WriterServices';
 
 class EditBlog extends Component {
@@ -11,9 +12,11 @@ class EditBlog extends Component {
     super(props);
     this.state = {
         user: JSON.parse(localStorage.getItem('user')),
-        title: "Django: The Python Framework",
-        content: "Blog content",
+        blog: {},
+        title: "",
+        content: "",
         type: "",
+        loaded: false,
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,23 +25,41 @@ class EditBlog extends Component {
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value});
   }
-  handleSubmit = () => {
-    updateBlogAPI(this.state.title, this.state.content);
+  handleSubmit = async () => {
+    const response = await updateBlogAPI(this.state.blog.pk, {"title": this.state.title, "content": this.state.content});
+    if (response.status === 200)
+      this.setState({isSuccess: true});
+    else
+      this.setState({errMsg: "Invalid content."})
   }
   handleLogout = () => {
     logoutWriterAPI(this.state.user.pk)
     localStorage.removeItem('user')
   }
+  formRef = React.createRef();
+  componentDidMount = async () => {
+    await getBlogAPI(this.props.match.params.pk).then(res => {
+      this.setState({ blog: res, loaded: true });
+    });
+    this.setState({title: this.state.blog.title, content: this.state.blog.content})
+    console.log(this.state.blog.title)
+    this.formRef.current.setFieldsValue({
+      title: this.state.blog.title,
+      content: this.state.blog.content
+    });
+  }
   render() {
     return (
       <div className="EditBlog">
+        { this.state.loaded ? <div>
+        { this.state.blog.author.username === this.state.user.username ? <div>
         <Navbar>
           <a href="/logout/" onClick={this.handleLogout}><i class="material-icons">power_settings_new</i><br/><z>Logout</z></a>
           <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">account_circle</i><br/><z>Profile</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z>Feeds</z></a>
         </Navbar><br /><br />
         <div className="blog-create">
-          <Form onFinish={this.handleSubmit}>
+          <Form onFinish={this.handleSubmit} ref={this.formRef} >
 
             <center><h2>Edit Blog</h2></center><br />
 
@@ -54,17 +75,20 @@ class EditBlog extends Component {
               name="content"
               rules={[{required: true, message: "Write some blog content"}]}>
               <Input.TextArea onChange={this.handleChange} className="content" rows="15" defaultValue={this.state.content} />
-            </Form.Item><br />
+            </Form.Item>
+
+            <center>{!this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to={`/blog/view/${this.state.blog.pk}`} />}</center>
+            <br />
 
             <Form.Item>
               <div className="blog-create-nav">
                 <Button class="normal">Save</Button>
               </div><br />
-              <center><a href="/account/view/">Cancel</a></center>
+              <center><a href={`/writer/view/${this.state.user.username}`}>Cancel</a></center>
             </Form.Item>
 
           </Form>
-        </div>
+        </div></div> : <Redirect to={`/feed/`} /> } </div> : <div></div> }
       </div>
     );
   }
