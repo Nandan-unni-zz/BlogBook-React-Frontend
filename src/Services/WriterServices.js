@@ -59,7 +59,13 @@ export const deleteWriterAPI = async (pname, data) => {
 };
 
 
-export const searchWriterAPI = async () => {
+export const getWritersAPI = async () => {
     const url = `${API}/writer/search/`;
     return axios.get(url).then(response => response.data);
+};
+
+
+export const searchWriterAPI = async (data) => {
+    const url = `${API}/writer/search/`;
+    return axios.post(url, data).then(response => { return response })
 };

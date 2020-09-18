@@ -29,7 +29,7 @@ class CreateBlog extends Component {
   }
   handleSubmit = async () => {
     let status;
-    if (this.state.type === 'save')
+    if (this.state.type === 'archive')
       status = await createBlogAPI({"title": this.state.title, "content": this.state.content, "is_published": false, "author": this.state.user.pk});
     else
       status = await createBlogAPI({"title": this.state.title, "content": this.state.content, "is_published": true, "author": this.state.user.pk});
@@ -69,7 +69,7 @@ class CreateBlog extends Component {
 
             <Form.Item>
               <div className="blog-create-nav">
-                <Button class="outline" onClick={() => this.selectMethod('save')}>Save</Button> &nbsp; &nbsp; &nbsp;
+                <Button class="outline" onClick={() => this.selectMethod('archive')}>Archive</Button> &nbsp; &nbsp; &nbsp;
                 <Button class="normal" onClick={() => this.selectMethod('publish')}>Publish</Button>
               </div><br />
               <center><a href="/feed/">Discard</a></center>

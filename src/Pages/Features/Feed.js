@@ -85,11 +85,11 @@ class Feed extends Component {
                   <z>{blog.no_of_likes}</z>
                   { blog.likes.some(like => like.username === user.username ) ?
                   <div className="Blog-Nav-left" onClick={() => this.handleLike(blog.pk)}><button><i class="material-icons">favorite</i></button></div> :
-                  <div className="Blog-Nav-left" onClick={() => this.handleLike(blog.pk)}><button><i class="material-icons">favorite_border</i></button></div>
+                  <div className="Blog-Nav-left" onClick={() => this.handleLike(blog.pk)}><button><iu class="material-icons">favorite_border</iu></button></div>
                   }
                   { blog.saves.some(save => save.username === user.username ) ?
                   <div className="Blog-Nav-right" onClick={() => this.handleSave(blog.pk)}><button><i class="material-icons">bookmark</i></button></div> :
-                  <div className="Blog-Nav-right" onClick={() => this.handleSave(blog.pk)}><button><i class="material-icons">bookmark_border</i></button></div>
+                  <div className="Blog-Nav-right" onClick={() => this.handleSave(blog.pk)}><button><iu class="material-icons">bookmark_border</iu></button></div>
                   }
                 </div>
               </div>

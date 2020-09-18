@@ -35,6 +35,7 @@
 }
 .Blog-Content {
     padding: 3vh;
+    padding-bottom: 1vh;
 }
 .Blog-Nav {
     display: flex;
@@ -56,13 +57,13 @@
     margin-left: auto;
     order: 2;
 }
-.Blog-Nav-right i:hover, .Blog-Nav-left i {
+.Blog-Nav i {
     font-size: 3.5vh;
     color: tomato;
 }
-.Blog-Nav-right i, .Blog-Nav-left i:hover {
+.Blog-Nav iu {
     font-size: 3.5vh;
-    color: rgb(0, 128, 255);
+    color: rgb(0, 100, 140);
 }
 
 .Sk {

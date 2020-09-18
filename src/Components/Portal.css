@@ -3,6 +3,8 @@
     border: 0.1vh solid rgb(0, 50, 100);
     border-radius: 0.5vh;
     padding: 3vh 3vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
     margin: auto;
     height: fit-content;
     width: fit-content;
@@ -32,10 +34,18 @@
 }
 
 .Portal input[type="text"] {
-    width: 36vh;
+    width: 20vw;
 }
 .Portal input[type="password"] {
-    width: 28.8vh;
+    width: 16vw;
+}
+@media only screen and (max-width: 600px) {
+    .Portal input[type="text"] {
+        width: 60vw;
+    }
+    .Portal input[type="password"] {
+        width: 48vw;
+    }
 }
 .Portal err {
     font-size: 1.8vh;

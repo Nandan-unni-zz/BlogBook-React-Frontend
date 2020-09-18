@@ -83,13 +83,16 @@
     color: tomato;
     border-bottom: 0.1vh solid rgb(180, 180, 180);
 }
+.nav-three a {
+    width: 33.33vw;
+}
 .Prof-Nav a:hover {
     color: rgb(0, 128, 255);
-    border-bottom: 0.2vh solid dodgerblue;
+    border-bottom: 0.1vh solid dodgerblue;
 }
 .Prof-Nav a:active {
     color: rgb(0, 128, 255);
-    border-bottom: 0.2vh solid dodgerblue;
+    border-bottom: 0.1vh solid dodgerblue;
 }
 .Prof-Nav i {
     font-size: 3.2vh;
@@ -105,4 +108,46 @@
 }
 .item-active a {
     color: rgb(0, 128, 255);
+    border-bottom: 0.1vh solid dodgerblue;
+}
+
+.dtl-content {
+    height: fit-content;
+    width: 60vw;
+    margin-top: 8vh;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    border-top: 0.1vh solid rgb(0, 100, 140);
+    border-bottom: 0.3vh solid rgb(0, 100, 140);
+    background-color: rgb(235, 235, 235);
+    border-radius: 1vh;
+}
+.dtl-content ttl {
+    font-family: 'Open Sans', sans-serif;
+    color: dodgerblue;
+    font-weight: 900;
+    font-size: 2vh;
+    padding: 5vw;
+}
+.content-nav {
+    display: flex;
+}
+.content-nav button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+}
+.content-nav z {
+    color: rgb(0, 128, 255);
+    font-size: 2vh;
+    margin-left: 2vw;
+}
+.content-nav i {
+    font-size: 2.5vh;
+    color: tomato;
+}
+.content-nav iu {
+    font-size: 2.5vh;
+    color: rgb(0, 100, 140);
 }
