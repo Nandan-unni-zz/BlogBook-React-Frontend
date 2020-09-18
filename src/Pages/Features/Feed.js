@@ -43,7 +43,6 @@ class Feed extends Component {
   componentDidMount() {
     feedAPI().then(result => {
       this.setState({ blogs: result, loaded: true });
-      console.log(this.state.blogs)
     });
 }
   handleLike = async (pk) => {
@@ -79,7 +78,7 @@ class Feed extends Component {
             <div className="Blog">
               <div className="Blog-Content">
                 <h3>{blog.title}</h3>
-                <a href={`/account/view/${blog.author.username}`}>{blog.author.username}</a><br /><br />
+                <a href={`/writer/view/${blog.author.username}`}>{blog.author.username}</a><br /><br />
                 <p>{blog.content}</p><br/>
                 <div className="Blog-Nav">
                   <z>{blog.no_of_likes}</z>

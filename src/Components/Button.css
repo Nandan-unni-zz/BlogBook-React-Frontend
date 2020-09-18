@@ -55,3 +55,18 @@
     background-color: rgb(0, 82, 165);
     border: 1px solid dodgerblue;
 }
+.outline-small button {
+    height: 4vh;
+    width: 10vh;
+    font-size: 1.3vh;
+    color: rgb(0, 123, 247);
+    background-color: transparent;
+    border: 0.1vh solid rgb(0, 123, 247);
+}
+.outline-small button:hover {
+    border: 0.2vh solid dodgerblue;
+    color: dodgerblue;
+}
+.outline-small button:active {
+    border: 0.2vh solid rgb(0, 82, 165);
+}

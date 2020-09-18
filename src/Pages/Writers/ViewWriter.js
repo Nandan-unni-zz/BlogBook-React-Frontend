@@ -6,10 +6,11 @@ import Navbar from '../../Components/Navbar';
 import Button from '../../Components/Button';
 import defaultdp from '../../Images/writer.png';
 
-import { logoutWriterAPI, getWriterAPI } from '../../Services/WriterServices';
+import { logoutWriterAPI, getWriterAPI, followWriterAPI } from '../../Services/WriterServices';
 
 function Skltn () {
   return (
+    <span>
     <div className="Profile">
         <center><Skeleton  circle={true} height={"22.5vh"} width={"22.5vh"}/></center>
       <div className="Prof-dtl">
@@ -31,7 +32,16 @@ function Skltn () {
         <div className="ctrl-edit"><Skeleton height={"5vh"} width={"15vh"}/></div>
         <div className="ctrl-delete"><Skeleton height={"5vh"} width={"15vh"}/></div>
       </div>
+    </div><br />
+    <div className="Prof-divider"></div>
+    <div className="Prof-Nav">
+      <div className={`Prof-Nav-item`}><a href="?tab=following"><Skeleton height={"4vh"} width={"8vh"}/></a></div>
+      <div className={`Prof-Nav-item`}><a href="?tab=followers"><Skeleton height={"4vh"} width={"8vh"}/></a></div>
+      <div className={`Prof-Nav-item`}><a href="?tab=published"><Skeleton height={"4vh"} width={"8vh"}/></a></div>
+      <div className={`Prof-Nav-item`}><a href="?tab=archived"><Skeleton height={"4vh"} width={"8vh"}/></a></div>
+      <div className={`Prof-Nav-item`}><a href="?tab=saved"><Skeleton height={"4vh"} width={"8vh"}/></a></div>
     </div>
+    </span>
   );
 }
 
@@ -50,11 +60,19 @@ class ViewAccount extends Component {
       saved: "",
     }
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleFollow = this.handleFollow.bind(this);
   }
   handleLogout = () => {
     logoutWriterAPI(this.state.user.pk)
     localStorage.removeItem('user')
   }
+  handleFollow = async () => {
+    const response = await followWriterAPI(this.state.user.pk, this.state.writer.pk);
+    if (response.status === 200)
+      getWriterAPI(this.props.match.params.username).then(res => {
+        this.setState({ writer: res, loaded: true});
+      });
+  };
   componentDidMount() {
     getWriterAPI(this.props.match.params.username).then(res => {
       const tab = new URLSearchParams(this.props.location.search).get('tab');
@@ -83,7 +101,8 @@ class ViewAccount extends Component {
           <a href={`/writer/view/${this.state.user.username}`}><i class="material-icons">settings</i><br/><z> Settings</z></a>
           <a href="/feed/"><i class="material-icons">home</i><br/><z> Feeds</z></a>
         </Navbar>
-        { this.state.loaded ? <div className="Profile">
+        { this.state.loaded ? <span>
+        <div className="Profile">
           <div className="Prof-img">
             {<center><img src={defaultdp} alt="DP" /></center>}
           </div>
@@ -91,9 +110,9 @@ class ViewAccount extends Component {
             <center>
               <nm>{writer.name}</nm><br />
               <unm>{writer.username} </unm>
-              { user.username === writer.username ? <z>
+              { user.username === writer.username ? <span>
               &nbsp; <b>|</b> &nbsp; <eml>{writer.email}</eml>
-              </z> : <z></z> }
+              </span> : <span></span> }
 
               <div className="Prof-math">
                 <a href="?tab=published"><div className="math-dtl"><n>{writer.no_of_blogs}</n><br/><t>Blogs</t></div></a>
@@ -110,22 +129,26 @@ class ViewAccount extends Component {
               <div className="ctrl-delete"><Button class="danger" href={`/writer/delete/${writer.username}`}>Delete Account</Button></div>
             </div> : 
             <div className="Prof-ctrl">
-              { writer.followers.some(follower => (follower.username !== user.username) ) ?
-              <div className="ctrl-edit"><Button class="normal">Follow</Button></div> :
-              <div className="ctrl-edit"><Button class="outline">Unfollow</Button></div>
-              }
+              <div className="ctrl-edit">
+                { writer.followers.some(follower => (follower.username === this.state.user.username)) ?
+                  <Button class="outline" onClick={this.handleFollow}>Unfollow</Button> :
+                  <Button class="normal" onClick={this.handleFollow}>Follow</Button>
+                }
+              </div>
             </div> }
-        </div> : <Skltn />}<br />
+        </div><br />
         <div className="Prof-divider"></div>
           <div className={user.username === writer.username ? `Prof-Nav` : `Prof-Nav nav-three`}>
             <div className={`Prof-Nav-item${this.state.following}`}><a href="?tab=following"><i class="material-icons">person</i><br/><z>Following</z></a></div>
             <div className={`Prof-Nav-item${this.state.followers}`}><a href="?tab=followers"><i class="material-icons">people</i><br/><z>Followers</z></a></div>
             <div className={`Prof-Nav-item${this.state.published}`}><a href="?tab=published"><i class="material-icons">library_books</i><br/><z>Published</z></a></div>
-            { user.username === writer.username ? <z>
+            { user.username === writer.username ? <span style={{"display": "flex"}}>
             <div className={`Prof-Nav-item${this.state.archived}`}><a href="?tab=archived"><i class="material-icons">archive</i><br/><z>Archived</z></a></div>
             <div className={`Prof-Nav-item${this.state.saved}`}><a href="?tab=saved"><i class="material-icons">bookmarks</i><br/><z>Saved</z></a></div>
-            </z> : <z></z> }
+            </span> : <span></span> }
           </div>
+
+        </span> : <Skltn /> }<br />
 
           { this.state.tab === 'following' ? 
             <div className="wrt-dtl">
@@ -138,7 +161,6 @@ class ViewAccount extends Component {
                         <unm>{avatar.username}</unm><br/>
                         <nm>{avatar.name}</nm>
                       </div>
-                      <div className="result-ctrl"><Button class="normal-small">Follow</Button></div>
                   </div><br/>
                   <div className="result-divider"></div><br/>
                   </div></a> )
@@ -158,7 +180,6 @@ class ViewAccount extends Component {
                         <unm>{avatar.username}</unm><br/>
                         <nm>{avatar.name}</nm>
                       </div>
-                      <div className="result-ctrl"><Button class="normal-small">Follow</Button></div>
                   </div><br/>
                   <div className="result-divider"></div><br/>
                   </div></a> )
@@ -209,7 +230,8 @@ class ViewAccount extends Component {
               <div className="dtl">
               { writer.saved_blogs.map(blog => 
                 <a href={`/blog/view/${blog.pk}/`}><div className="dtl-content">
-                  <br /><ttl>{blog.title}</ttl><br /><br />
+                  <br /><ttl>{blog.title}</ttl><br />
+                  <ath>{blog.author.username}</ath><br /><br />
                   <div className="content-nav">
                     <z>{blog.no_of_likes}</z>
                     { blog.likes.some(like => like.username === user.username ) ?

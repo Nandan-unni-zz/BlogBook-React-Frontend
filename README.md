@@ -8,7 +8,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 **1.** Create, Read, Update and Delete Account. <br />
 **2.** Create, Read, Update and Delete Blogs. <br />
 **3.** Seacrh, find and follow users with unique Pen Name. <br />
-**4.** Message users and reply to their messages. <br />
 **5.** Publish or Archive Blogs according to user's convenience. <br />
 **6.** Like and Bookmark Blogs. <br />
 
@@ -27,4 +26,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Status
 
 **_>** The frontend is hosted on Firebase and is available at [KeyBlogs Website](https://keyblogs.web.app)<br />
-**_>** The backend is hosted on Heroku and is available at [keyBlogs API](http://keyblogs.herokuapp.com/api/)<br />
+**_>** The backend is hosted on Heroku and is available at [keyBlogs API](http://keyblogsapi.herokuapp.com/api/)<br />

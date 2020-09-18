@@ -65,6 +65,12 @@ export const getWritersAPI = async () => {
 };
 
 
+export const followWriterAPI = async (user_pk, writer_pk) => {
+    const url = `${API}/writer/follow/${user_pk}/${writer_pk}/`;
+    return axios.get(url).then(response => {return response;})
+};
+
+
 export const searchWriterAPI = async (data) => {
     const url = `${API}/writer/search/`;
     return axios.post(url, data).then(response => { return response })

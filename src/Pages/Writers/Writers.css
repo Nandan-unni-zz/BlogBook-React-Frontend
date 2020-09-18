@@ -86,6 +86,9 @@
 .nav-three a {
     width: 33.33vw;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 .Prof-Nav a:hover {
     color: rgb(0, 128, 255);
     border-bottom: 0.1vh solid dodgerblue;
@@ -126,7 +129,12 @@
     font-family: 'Open Sans', sans-serif;
     color: dodgerblue;
     font-weight: 900;
-    font-size: 2vh;
+    font-size: 2.4vh;
+    padding: 5vw;
+}
+.dtl-content ath {
+    color: black;
+    font-size: 1.5vh;
     padding: 5vw;
 }
 .content-nav {

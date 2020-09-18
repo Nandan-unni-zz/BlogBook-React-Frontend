@@ -3,9 +3,8 @@ import { Form } from 'antd';
 
 import './Search.css';
 import Navbar from '../../Components/Navbar';
-import Button from '../../Components/Button';
 import image from '../../Images/writer.png';
-import { searchWriterAPI, getWritersAPI } from '../../Services/WriterServices';
+import { searchWriterAPI, getWritersAPI, followWriterAPI } from '../../Services/WriterServices';
 
 class Search extends Component {
   constructor(props) {
@@ -18,6 +17,14 @@ class Search extends Component {
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFollow = this.handleFollow.bind(this);
+  }
+  handleFollow = async (pk) => {
+    const response = await followWriterAPI(this.state.user.pk, pk);
+    if (response.status === 200)
+      getWritersAPI().then(result => {
+        this.setState({ results: result, loaded: true });
+      });
   }
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value, errMsg: ""});
@@ -58,19 +65,17 @@ class Search extends Component {
         </center><br/>
         <div className="search-results">
 
-        {this.state.loaded ? <div> {
-          this.state.results.map(result => 
-          <div>
+        {this.state.loaded ? <span><br/> {
+          this.state.results.map(result => <span>
           <div className="search-result">
             <div className="result-img"><img src={image} alt="dp" /></div>
             <div className="result-names">
               <unm>{result.username}</unm><br/>
               <nm>{result.name}</nm>
             </div>
-            <div className="result-ctrl"><Button class="normal-small">Follow</Button></div>
           </div><br/>
-          <div className="result-divider"></div><br/></div>
-          ) } </div>  : <p></p> }
+          <div className="result-divider"></div><br/></span>
+          ) } </span>  : <span></span> }
 
         </div>
       </div>
