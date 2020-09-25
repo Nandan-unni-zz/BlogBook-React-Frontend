@@ -14,8 +14,8 @@ class InvalidPage extends Component {
           <p>You have recieved an invalid or expired link. Request for a new one to continue</p>
           <br/>
           <div className="multi-button">
-            <Button href="/account/login/" class="outline">Resend Mail</Button> &nbsp;
-            <Button href="/account/login/" class="normal">Login</Button>
+            <Button href="/login/" class="outline">Resend Mail</Button> &nbsp;
+            <Button href="/login/" class="normal">Login</Button>
           </div></center>
         </Portal>
       </div>

@@ -61,7 +61,7 @@ class LoginWriter extends Component {
             <Form.Item>
               <center>
                 <Button class="normal">Log In</Button><br />
-                <a href="/account/create/">Don't have an account ?</a>
+                <a href="/writer/create/">Don't have an account ?</a>
               </center>
             </Form.Item>
 

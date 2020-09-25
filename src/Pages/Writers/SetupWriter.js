@@ -50,7 +50,7 @@ class AccountSetup extends Component {
               rules={[{required: true, message: "Alphabets, numbers and underscores only", pattern: new RegExp("^([a-zA-Z0-9_]){4,50}$")}]}>
               <Input onChange={this.handleChange} />
             </Form.Item>
-            <center>{ !this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/account/login/" />}</center>
+            <center>{ !this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/login/" />}</center>
             <br />
             <Form.Item>
               <center>

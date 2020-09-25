@@ -12,6 +12,7 @@
 /build
 .firebaserc
 .firebase
+.log
 
 # misc
 .DS_Store

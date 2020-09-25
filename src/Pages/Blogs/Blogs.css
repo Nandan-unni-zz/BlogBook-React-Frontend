@@ -17,7 +17,7 @@
     font-size: 1.8vh;
 }
 .blog-create input[type="text"] {
-    width: 60vh;
+    width: 60vw;
     border: none;
     border-bottom: 0.3vh solid rgb(0, 128, 255);
 }

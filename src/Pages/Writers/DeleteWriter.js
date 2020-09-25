@@ -54,7 +54,7 @@ class DeleteAccount extends Component {
             <Form.Item>
               <center>
                 <Button class="danger">Delete Account</Button><br />
-                <a href="/writer/view/">Cancel</a>
+                <a href={`/writer/view/${this.state.user.username}`}>Cancel</a>
               </center>
             </Form.Item>
 

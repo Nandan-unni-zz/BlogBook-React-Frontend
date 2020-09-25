@@ -72,7 +72,7 @@ class EditAccount extends Component {
             <Form.Item>
               <center>
                 <Button class="normal">Save</Button><br />
-                <a href="/writer/view/">Change Profile Pic</a>
+                <a href={`/writer/view/${user.username}`}>Change Profile Pic</a>
               </center>
             </Form.Item>
 

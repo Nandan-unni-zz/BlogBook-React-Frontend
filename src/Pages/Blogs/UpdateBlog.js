@@ -19,14 +19,22 @@ class EditBlog extends Component {
         loaded: false,
     }
     this.handleChange = this.handleChange.bind(this);
+    this.selectMethod = this.selectMethod.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
   }
   handleChange = (event) => {
     this.setState({[event.target.id]: event.target.value});
   }
+  selectMethod = (method) => {
+    this.setState({type: method})
+  }
   handleSubmit = async () => {
-    const response = await updateBlogAPI(this.state.blog.pk, {"title": this.state.title, "content": this.state.content});
+    let response;
+    if (this.state.type === 'archive')
+      response = await updateBlogAPI(this.state.blog.pk, {"title": this.state.title, "content": this.state.content, "is_published": false});
+    else
+      response = await updateBlogAPI(this.state.blog.pk, {"title": this.state.title, "content": this.state.content, "is_published": true});
     if (response.status === 200)
       this.setState({isSuccess: true});
     else
@@ -82,7 +90,8 @@ class EditBlog extends Component {
 
             <Form.Item>
               <div className="blog-create-nav">
-                <Button class="normal">Save</Button>
+                <Button class="outline" onClick={() => this.selectMethod('archive')}>Archive</Button> &nbsp; &nbsp; &nbsp;
+                <Button class="normal" onClick={() => this.selectMethod('publish')}>Publish</Button>
               </div><br />
               <center><a href={`/writer/view/${this.state.user.username}`}>Cancel</a></center>
             </Form.Item>
