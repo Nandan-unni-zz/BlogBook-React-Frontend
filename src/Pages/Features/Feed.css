@@ -32,6 +32,7 @@
     padding-left: 2vw;
     padding-right: 2vw;
     white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
 .Blog-Content {
     padding: 3vh;
