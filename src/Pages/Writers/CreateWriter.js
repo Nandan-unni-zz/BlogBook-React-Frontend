@@ -16,6 +16,7 @@ class CreateAccount extends Component {
         password: "",
         cpassword: "",
         isSuccess: false,
+        isMailed: true,
         errMsg: "",
     }
     this.handleChange = this.handleChange.bind(this);
@@ -29,10 +30,13 @@ class CreateAccount extends Component {
     this.setState({errMsg: "Please wait..."})
     if ( this.state.password === this.state.cpassword )
     {
+      this.setState({errMsg: "Sending verification mail..."})
       res = await createWriterAPI({'name': this.state.name, 'email': this.state.email, 'username': this.state.email, 'password': this.state.password});
       console.log(res.status)
       if (res.status === 201)
         this.setState({isSuccess: true});
+      if (res.status === 204)
+        this.setState({errMsg: "Email sending failed. Server Error", isMailed: false});
       else
         this.setState({errMsg: "Email already in use."})
     }
@@ -76,6 +80,7 @@ class CreateAccount extends Component {
               <Input.Password onChange={this.handleChange} />
             </Form.Item>
             <center>{ !this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/success/" />}</center>
+            <p>{ !this.state.isMailed ? <Redirect to="/login/" /> : <></>}</p>
             <br />
 
             <Form.Item>
