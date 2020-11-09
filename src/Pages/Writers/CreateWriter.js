@@ -80,7 +80,7 @@ class CreateAccount extends Component {
               <Input.Password onChange={this.handleChange} />
             </Form.Item>
             <center>{ !this.state.isSuccess ? <err>{this.state.errMsg}</err> : <Redirect to="/success/" />}</center>
-            <p>{ !this.state.isMailed ? <Redirect to="/login/" /> : <></>}</p>
+            <p>{ !this.state.isMailed ? <Redirect to="/login/" /> : <></> }</p>
             <br />
 
             <Form.Item>
