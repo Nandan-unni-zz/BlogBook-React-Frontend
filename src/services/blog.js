@@ -1,9 +1,10 @@
 import axios from "axios";
-// const API = "http://localhost:8000/api";
-const API = "https://blogbookapi.herokuapp.com/api";
+import { config } from "../config";
+
+const API_URL = config.BASE_API_URL + "/api/blog";
 
 export const createBlogAPI = async (data) => {
-  const url = `${API}/blog/create/`;
+  const url = `${API_URL}/create/`;
   var response;
   try {
     response = await axios.post(url, data);
@@ -15,35 +16,35 @@ export const createBlogAPI = async (data) => {
 };
 
 export const getBlogAPI = async (pk) => {
-  const url = `${API}/blog/manage/${pk}/`;
+  const url = `${API_URL}/manage/${pk}/`;
   return axios.get(url).then((response) => response.data);
 };
 
 export const updateBlogAPI = async (pk, data) => {
-  const url = `${API}/blog/manage/${pk}/`;
+  const url = `${API_URL}/manage/${pk}/`;
   return axios.patch(url, data).then((response) => {
     return response;
   });
 };
 
 export const deleteBlogAPI = async (pk) => {
-  const url = `${API}/blog/manage/${pk}/`;
+  const url = `${API_URL}/manage/${pk}/`;
   return axios.delete(url).then((response) => {
     return response;
   });
 };
 
 export const likeBlogAPI = async (user_pk, blog_pk) => {
-  const url = `${API}/blog/like/${blog_pk}/${user_pk}/`;
+  const url = `${API_URL}/like/${blog_pk}/${user_pk}/`;
   return axios.get(url);
 };
 
 export const saveBlogAPI = async (user_pk, blog_pk) => {
-  const url = `${API}/blog/save/${blog_pk}/${user_pk}/`;
+  const url = `${API_URL}/save/${blog_pk}/${user_pk}/`;
   return axios.get(url);
 };
 
 export const feedAPI = async () => {
-  const url = `${API}/blog/feed/`;
+  const url = `${API_URL}/feed/`;
   return axios.get(url).then((response) => response.data);
 };
