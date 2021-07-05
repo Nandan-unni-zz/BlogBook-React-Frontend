@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { Form, Input } from "antd";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
+import draftjsToHtml from "draftjs-to-html";
 
 import "./Blogs.css";
 import { Button, Navbar } from "../../components";
 import { createBlogAPI } from "../../../services/blog";
+import { routes } from "../../router/routes";
 
 class CreateBlog extends Component {
   constructor(props) {
@@ -17,31 +20,27 @@ class CreateBlog extends Component {
       status: "",
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
     this.selectMethod = this.selectMethod.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
   };
+  handleContentChange = (content) => {
+    this.setState({ content });
+  };
   selectMethod = (method) => {
     this.setState({ type: method });
   };
   handleSubmit = async () => {
     let status;
-    if (this.state.type === "archive")
-      status = await createBlogAPI({
-        title: this.state.title,
-        content: this.state.content,
-        is_published: false,
-        author: this.state.user.pk,
-      });
-    else
-      status = await createBlogAPI({
-        title: this.state.title,
-        content: this.state.content,
-        is_published: true,
-        author: this.state.user.pk,
-      });
+    status = await createBlogAPI({
+      title: this.state.title,
+      content: draftjsToHtml(this.state.content),
+      is_published: this.state.type === "publish",
+      author: this.state.user.pk,
+    });
     if (status === 200) this.setState({ isSuccess: true });
     else this.setState({ errMsg: "Some error occured." });
   };
@@ -49,21 +48,21 @@ class CreateBlog extends Component {
     return (
       <div className="CreateBlog">
         <Navbar>
-          <a href="/logout/">
+          <Link to={routes.LOGOUT}>
             <i class="material-icons">power_settings_new</i>
             <br />
             <z>Logout</z>
-          </a>
-          <a href="/writer/view/">
+          </Link>
+          <Link to={routes.VIEW_WRITER(this.state.user.username)}>
             <i class="material-icons">account_circle</i>
             <br />
             <z>Profile</z>
-          </a>
-          <a href="/feed/">
+          </Link>
+          <Link to={routes.FEED}>
             <i class="material-icons">home</i>
             <br />
             <z>Feeds</z>
-          </a>
+          </Link>
         </Navbar>
         <br />
         <br />
@@ -74,7 +73,7 @@ class CreateBlog extends Component {
             </center>
             <br />
 
-            <label for="title">Title</label>
+            <label htmlFor="title">Title</label>
             <br />
             <Form.Item
               name="title"
@@ -91,18 +90,11 @@ class CreateBlog extends Component {
             </Form.Item>
             <br />
 
-            <label for="content">Content</label>
-            <br />
-            <Form.Item
-              name="content"
-              rules={[{ required: true, message: "Write some blog content" }]}
-            >
-              <Input.TextArea
-                onChange={this.handleChange}
-                className="content"
-                rows="15"
-              />
-            </Form.Item>
+            <label>Content</label>
+            <Editor
+              onChange={this.handleContentChange}
+              editorClassName="richEditor"
+            />
             <center>
               {!this.state.isSuccess ? (
                 <err>{this.state.errMsg}</err>

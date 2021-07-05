@@ -4,7 +4,10 @@ font-family: 'Electrolize', sans-serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Ubuntu', sans-serif;
 */
-
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   overflow-x: hidden;
   margin: 0;

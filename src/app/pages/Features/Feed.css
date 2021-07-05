@@ -11,7 +11,7 @@
   height: fit-content;
   width: 80vw;
   margin: 15px auto;
-  padding: 15px 20px 1px 20px;
+  padding: 15px 20px 5px 20px;
   border-radius: 10px;
   border: 2px solid rgb(230, 230, 230);
 }
@@ -42,11 +42,15 @@
   border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
   margin: 10px 0;
-  padding: 0 10px;
+  padding: 15px 10px;
   font-size: 14px;
   text-align: justify;
   white-space: pre-line;
   overflow: hidden;
+}
+.Blog-Body > * {
+  margin: 0;
+  padding: 0;
 }
 .Blog-Nav {
   display: flex;
@@ -66,6 +70,12 @@
 .Blog-Nav span {
   display: flex;
   align-items: center;
+}
+.Blog-Nav span p {
+  margin: 0;
+  color: rgb(100, 100, 100);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.8vh;
 }
 .Blog-Nav .bookmarked,
 .Blog-Nav .not-bookmarked:hover {

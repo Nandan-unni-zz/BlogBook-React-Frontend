@@ -132,11 +132,14 @@ class Feed extends Component {
                     <FeatherIcon icon="more-vertical" />
                   </div>
                 </div>
-                <div className="Blog-Body">
+                <div
+                  className="Blog-Body"
+                  // dangerouslySetInnerHTML={{ __html: blog.content }}
+                >
                   {window.screen.width > 600 ? (
-                    <p>{ellipsis(blog.content, 600)}</p>
+                    <p>{ellipsis(blog.summary, 600)}</p>
                   ) : (
-                    <p>{ellipsis(blog.content, 300)}</p>
+                    <p>{ellipsis(blog.summary, 300)}</p>
                   )}
                 </div>
                 <div className="Blog-Nav">
