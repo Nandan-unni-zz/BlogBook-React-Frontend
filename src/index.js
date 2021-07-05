@@ -1,12 +1,11 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import Router from "./Services/Router";
+import BlogBook from "./app";
 
 ReactDOM.render(
   <StrictMode>
-    <Router />
+    <BlogBook />
   </StrictMode>,
   document.getElementById("root")
 );
