@@ -1,7 +1,6 @@
-# 💡 [Key Blogs](https://keyblogs.web.app) ✏️
+# 💡 [BlogBook](https://blogbook.web.app) ✏️
 
 This is a website where you can write and publish Blogs. <br />
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Features
 
@@ -21,9 +20,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Backend
 
-**Django 3** serves from the backend for various features including email verifications and uses PostgreSQL as the database. The source code for backend can be found in the repo [KeyBlogs Django Backend](https://github.com/nandan-unni/KeyBlogs-Django-Backend) <br />
+**Django 3** serves from the backend for various features including email verifications and uses PostgreSQL as the database. The source code for backend can be found in the repo [BlogBook Django Backend](https://github.com/nandan-unni/BlogBook-Django-Backend) <br />
 
 ## Status
 
-**_>** The frontend is hosted on Firebase and is available at [KeyBlogs Website](https://keyblogs.web.app)<br />
-**_>** The backend is hosted on Heroku and is available at [keyBlogs API](http://keyblogsapi.herokuapp.com/api/)<br />
+**\_>** The frontend is hosted on Firebase and is available at [BlogBook Website](https://blogbook.web.app)<br />
+**\_>** The backend is hosted on Heroku and is available at [BlogBook API](http://keyblogsapi.herokuapp.com/api/)<br />
