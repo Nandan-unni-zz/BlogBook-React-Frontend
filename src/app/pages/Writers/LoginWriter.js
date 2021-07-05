@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Form, Input } from "antd";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { Button, Logo, Portal } from "../../components";
 import { loginWriterAPI } from "../../../services/writer";
+import { routes } from "../../router/routes";
 
 class LoginWriter extends Component {
   constructor(props) {
@@ -34,52 +35,42 @@ class LoginWriter extends Component {
   render() {
     return (
       <div className="LoginAccount">
-        <Logo></Logo>
-        <br />
-        <br />
-        <br />
+        <Logo />
         <Portal>
-          <Form onFinish={this.handleSubmit}>
-            <center>
-              <h2>Log In</h2>
-            </center>
-            <br />
-
-            <label for="email">Email</label>
-            <br />
+          <Form onFinish={this.handleSubmit} layout="vertical">
+            <h2>Log In</h2>
             <Form.Item
+              label="Email"
               name="email"
               rules={[
-                { required: true, message: "Please enter a verified email" },
+                { required: true, message: "Please enter an email to login" },
+                { type: "email", message: "Please enter a valid email" },
               ]}
             >
-              <Input onChange={this.handleChange} />
+              <Input size="large" onChange={this.handleChange} />
             </Form.Item>
 
-            <label for="password">Password</label>
-            <br />
             <Form.Item
+              label="Password"
               name="password"
               rules={[
                 { required: true, message: "Enter your passoword to login" },
               ]}
             >
-              <Input.Password onChange={this.handleChange} />
+              <Input.Password size="large" onChange={this.handleChange} />
             </Form.Item>
-            <center>
+            <span>
               {!localStorage.getItem("user") ? (
                 <err>{this.state.errMsg}</err>
               ) : (
                 <Redirect to="/feed/" />
               )}
-            </center>
-            <br />
+            </span>
             <Form.Item>
-              <center>
+              <div className="submit">
                 <Button class="normal">Log In</Button>
-                <br />
-                <a href="/writer/create/">Don't have an account ?</a>
-              </center>
+                <Link to={routes.CREATE_WRITER}>Don't have an account ?</Link>
+              </div>
             </Form.Item>
           </Form>
         </Portal>

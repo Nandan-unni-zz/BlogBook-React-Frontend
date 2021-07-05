@@ -1,57 +1,88 @@
+.PortalWrapper {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .Portal {
-    font-family: 'Ubuntu', sans-serif;
-    border: 0.1vh solid rgb(0, 50, 100);
-    border-radius: 0.5vh;
-    padding: 3vh 3vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
-    margin: auto;
-    height: fit-content;
-    width: fit-content;
+  width: 30vw;
+  padding: 1%;
+  margin: auto;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 10px;
 }
-.Portal label {
-    font-size: 1.7vh;
+.Portal .ant-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.Portal h2 {
-    color: rgb(0, 70, 140);
-    font-size: 2.5vh;
-    font-weight: 900;
+.Portal .ant-form .ant-input {
+  width: 100%;
 }
-.Portal a {
-    font-size: 1.8vh;
+.Portal .submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.Portal p {
-    font-size: 1.8vh;
-    color: black;
-}
-.Portal z {
-    font-size: 1.6vh;
-    color: rgb(85, 85, 85);
-}
-.Portal l {
-    font-size: 1.8vh;
-    color: tomato;
-}
-
-.Portal input[type="text"] {
-    width: 20vw;
-}
-.Portal input[type="password"] {
-    width: 16vw;
+.Portal .submit > * {
+  margin: 10px;
 }
 @media only screen and (max-width: 600px) {
-    .Portal input[type="text"] {
-        width: 60vw;
-    }
-    .Portal input[type="password"] {
-        width: 48vw;
-    }
+  .Portal {
+    width: 80vw;
+    padding: 3%;
+  }
+}
+
+/* .Portal {
+  font-family: "Ubuntu", sans-serif;
+  border: 0.1vh solid rgb(0, 50, 100);
+  border-radius: 0.5vh;
+  padding: 3vh 3vw;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  margin: auto;
+  height: fit-content;
+  width: fit-content;
+}
+.Portal label {
+  font-size: 1.7vh;
+}
+.Portal h2 {
+  color: rgb(0, 70, 140);
+  font-size: 2.5vh;
+  font-weight: 900;
+}
+.Portal a {
+  font-size: 1.8vh;
+}
+.Portal p {
+  font-size: 1.8vh;
+  color: black;
+}
+.Portal z {
+  font-size: 1.6vh;
+  color: rgb(85, 85, 85);
+}
+.Portal l {
+  font-size: 1.8vh;
+  color: tomato;
+}
+
+.Portal .ant-input {
+  width: 20vw;
+}
+@media only screen and (max-width: 600px) {
+  .Portal .ant-input {
+    width: 60vw;
+  }
 }
 .Portal err {
-    font-size: 1.8vh;
-    color: rgb(220, 0, 0);
+  font-size: 1.8vh;
+  color: rgb(220, 0, 0);
 }
 .multi-button {
-    display: flex;
-    justify-content: space-between;
-}
+  display: flex;
+  justify-content: space-between;
+} */

@@ -3,7 +3,11 @@ import "./Portal.css";
 
 class Portal extends Component {
   render() {
-    return <div className="Portal">{this.props.children}</div>;
+    return (
+      <div className="PortalWrapper">
+        <div className="Portal">{this.props.children}</div>
+      </div>
+    );
   }
 }
 

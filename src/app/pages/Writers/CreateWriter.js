@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Form, Input } from "antd";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { Button, Logo, Portal } from "../../components";
 import { createWriterAPI } from "../../../services/writer";
+import { routes } from "../../router/routes";
 
 class CreateAccount extends Component {
   constructor(props) {
@@ -48,30 +49,27 @@ class CreateAccount extends Component {
     return (
       <div className="CreateAccount">
         <Logo></Logo>
-        <br />
-        <br />
-        <br />
         <Portal>
-          <Form onFinish={this.handleSubmit}>
-            <center>
-              <h2>Create Account</h2>
-            </center>
-            <br />
-
-            <label for="name">Name</label>
-            <br />
+          <Form onFinish={this.handleSubmit} layout="vertical">
+            <h2>Create Account</h2>
             <Form.Item
+              label="Name"
               name="name"
               rules={[
-                { required: true, min: 4, message: "Please enter a your name" },
+                {
+                  required: true,
+                  message: "Please provide your name",
+                },
+                {
+                  min: 4,
+                  message: "Name must contain min 4 characters",
+                },
               ]}
             >
-              <Input onChange={this.handleChange} />
+              <Input size="large" onChange={this.handleChange} />
             </Form.Item>
-
-            <label for="email">Email</label>
-            <br />
             <Form.Item
+              label="Email"
               name="email"
               rules={[
                 {
@@ -82,23 +80,25 @@ class CreateAccount extends Component {
                 },
               ]}
             >
-              <Input onChange={this.handleChange} />
+              <Input size="large" onChange={this.handleChange} />
             </Form.Item>
 
-            <label for="password">Password</label>
-            <br />
             <Form.Item
+              label="Paswword"
               name="password"
               rules={[
-                { required: true, min: 4, message: "Enter a strong password" },
+                { required: true, message: "Please type a password" },
+                {
+                  min: 4,
+                  message: "Enter a strong password (min 4 characters)",
+                },
               ]}
             >
-              <Input.Password onChange={this.handleChange} />
+              <Input.Password size="large" onChange={this.handleChange} />
             </Form.Item>
 
-            <label for="cpassword">Confirm Password</label>
-            <br />
             <Form.Item
+              label="Confirm Password"
               name="cpassword"
               rules={[
                 {
@@ -108,24 +108,23 @@ class CreateAccount extends Component {
                 },
               ]}
             >
-              <Input.Password onChange={this.handleChange} />
+              <Input.Password size="large" onChange={this.handleChange} />
             </Form.Item>
-            <center>
+            <span>
               {!this.state.isSuccess ? (
                 <err>{this.state.errMsg}</err>
               ) : (
-                <Redirect to="/success/" />
+                <Redirect to={routes.SUCCESS} />
               )}
-            </center>
-            <p>{!this.state.isMailed ? <Redirect to="/login/" /> : <></>}</p>
+            </span>
+            <p>{!this.state.isMailed && <Redirect to={routes.LOGIN} />}</p>
             <br />
 
             <Form.Item>
-              <center>
+              <div className="submit">
                 <Button class="normal">Create Account</Button>
-                <br />
-                <a href="/login/">Already have an account ?</a>
-              </center>
+                <Link to={routes.LOGIN}>Already have an account ?</Link>
+              </div>
             </Form.Item>
           </Form>
         </Portal>
