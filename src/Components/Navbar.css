@@ -1,0 +1,46 @@
+.Navbar {
+    background-color: rgb(0, 30, 70);
+    border-top: 0.1vh solid rgb(0, 20, 60);
+    float: right;
+    width: 100vw;
+    line-height: 1.8vh;
+    font-family: 'Ubuntu', sans-serif;
+}
+.Navfixbar {
+    position: fixed;
+}
+.Navbar a {
+    color: tomato;
+    text-decoration: none;
+    float: right;
+    display: block;
+    text-align: center;
+    padding: 0.5vw;
+    margin-right: 0vw;
+    width: 8vw;
+}
+.Navbar a:hover {
+    color: dodgerblue;
+}
+.Navbar a:active {
+    color: rgb(0, 102, 204);
+}
+.Navbar z {
+    font-size: 1.5vh;
+    color: white;
+}
+.Navbar i {
+    font-size: 3.2vh;
+}
+@media only screen and (max-width: 600px) {
+    .Navbar {
+        line-height: 1.6vh;
+    }
+    .Navbar a {
+        width: 15vw;
+    }
+    .Navbar z {
+        font-size: 1.2vh;
+        color: white;
+    }
+}

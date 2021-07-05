@@ -1,0 +1,57 @@
+.Portal {
+    font-family: 'Ubuntu', sans-serif;
+    border: 0.1vh solid rgb(0, 50, 100);
+    border-radius: 0.5vh;
+    padding: 3vh 3vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin: auto;
+    height: fit-content;
+    width: fit-content;
+}
+.Portal label {
+    font-size: 1.7vh;
+}
+.Portal h2 {
+    color: rgb(0, 70, 140);
+    font-size: 2.5vh;
+    font-weight: 900;
+}
+.Portal a {
+    font-size: 1.8vh;
+}
+.Portal p {
+    font-size: 1.8vh;
+    color: black;
+}
+.Portal z {
+    font-size: 1.6vh;
+    color: rgb(85, 85, 85);
+}
+.Portal l {
+    font-size: 1.8vh;
+    color: tomato;
+}
+
+.Portal input[type="text"] {
+    width: 20vw;
+}
+.Portal input[type="password"] {
+    width: 16vw;
+}
+@media only screen and (max-width: 600px) {
+    .Portal input[type="text"] {
+        width: 60vw;
+    }
+    .Portal input[type="password"] {
+        width: 48vw;
+    }
+}
+.Portal err {
+    font-size: 1.8vh;
+    color: rgb(220, 0, 0);
+}
+.multi-button {
+    display: flex;
+    justify-content: space-between;
+}
