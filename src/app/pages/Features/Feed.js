@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import Skeleton from "react-loading-skeleton";
+import { Link } from "react-router-dom";
+import FeatherIcon from "feather-icons-react";
 
 import "./Feed.css";
 import { Logo, Navbar, Footer } from "../../components";
 import { logoutWriterAPI } from "../../../services/writer";
 import { likeBlogAPI, saveBlogAPI, feedAPI } from "../../../services/blog";
+import { ellipsis } from "../../../utils";
+import { routes } from "../../router/routes";
+import { writerImg } from "../../../static";
 
 function Skltn() {
   return (
@@ -77,108 +82,115 @@ class Feed extends Component {
       <div className="Feed">
         <Logo></Logo>
         <Navbar>
-          <a href="/logout/" onClick={this.handleLogout}>
+          <Link to={routes.LOGOUT} onClick={this.handleLogout}>
             <i class="material-icons">power_settings_new</i>
             <br />
             <z>Logout</z>
-          </a>
-          <a href={`/writer/view/${user.username}`}>
+          </Link>
+          <Link to={routes.VIEW_WRITER(user.username)}>
             <i class="material-icons">account_circle</i>
             <br />
             <z>Profile</z>
-          </a>
-          <a href="/search/">
+          </Link>
+          <Link to={routes.SEARCH}>
             <i class="material-icons">person_add_alt_1</i>
             <br />
             <z>Search</z>
-          </a>
-          <a href="/blog/create/">
+          </Link>
+          <Link to={routes.CREATE_BLOG}>
             <i class="material-icons">create</i>
             <br />
             <z>New Blog</z>
-          </a>
-          {user.is_superuser ? (
-            <a href="http://keyblogsapi.herokuapp.com">
+          </Link>
+          {user.is_superuser && (
+            <Link to="https://blogbookapi.herokuapp.com">
               <i class="material-icons">construction</i>
               <br />
               <z>API</z>
-            </a>
-          ) : (
-            <b></b>
+            </Link>
           )}
         </Navbar>
         <div className="Blogs">
           {this.state.loaded ? (
             this.state.blogs.map((blog) => (
-              <div className="Blog">
-                <div className="Blog-Content">
-                  <h3>{blog.title}</h3>
-                  <a href={`/writer/view/${blog.author.username}`}>
-                    {blog.author.username}
-                  </a>
-                  <br />
-                  <br />
-                  <p>{blog.content}</p>
-                  <br />
-                  <div className="Blog-Nav">
-                    <z>{blog.no_of_likes}</z>
+              <div className="Blog" key={blog.pk}>
+                <div className="Blog-Head">
+                  <div className="Blog-Head-left">
+                    <img
+                      src={writerImg}
+                      onError={(e) => (e.target.src = writerImg)}
+                      alt="dp"
+                    />
+                    <span>
+                      <h3>{blog.title}</h3>
+                      <Link to={routes.VIEW_WRITER(blog.author.username)}>
+                        {blog.author.username}
+                      </Link>
+                    </span>
+                  </div>
+                  <div className="Blog-Head-right">
+                    <FeatherIcon icon="more-vertical" />
+                  </div>
+                </div>
+                <div className="Blog-Body">
+                  {window.screen.width > 600 ? (
+                    <p>{ellipsis(blog.content, 600)}</p>
+                  ) : (
+                    <p>{ellipsis(blog.content, 300)}</p>
+                  )}
+                </div>
+                <div className="Blog-Nav">
+                  <span>
+                    <p>{blog.no_of_likes}</p>
                     {blog.likes.some(
                       (like) => like.username === user.username
                     ) ? (
-                      <div
-                        className="Blog-Nav-left"
+                      <button
+                        class="material-icons liked"
                         onClick={() => this.handleLike(blog.pk)}
                       >
-                        <button>
-                          <i class="material-icons">favorite</i>
-                        </button>
-                      </div>
+                        favorite
+                      </button>
                     ) : (
-                      <div
-                        className="Blog-Nav-left"
+                      <button
+                        class="material-icons not-liked"
                         onClick={() => this.handleLike(blog.pk)}
                       >
-                        <button>
-                          <iu class="material-icons">favorite_border</iu>
-                        </button>
-                      </div>
+                        favorite_border
+                      </button>
                     )}
-                    {blog.saves.some(
-                      (save) => save.username === user.username
-                    ) ? (
-                      <div
-                        className="Blog-Nav-right"
-                        onClick={() => this.handleSave(blog.pk)}
-                      >
-                        <button>
-                          <i class="material-icons">bookmark</i>
-                        </button>
-                      </div>
-                    ) : (
-                      <div
-                        className="Blog-Nav-right"
-                        onClick={() => this.handleSave(blog.pk)}
-                      >
-                        <button>
-                          <iu class="material-icons">bookmark_border</iu>
-                        </button>
-                      </div>
-                    )}
-                  </div>
+                  </span>
+                  {blog.saves.some(
+                    (save) => save.username === user.username
+                  ) ? (
+                    <button
+                      className="material-icons bookmarked"
+                      onClick={() => this.handleSave(blog.pk)}
+                    >
+                      bookmark
+                    </button>
+                  ) : (
+                    <button
+                      class="material-icons not-bookmarked"
+                      onClick={() => this.handleSave(blog.pk)}
+                    >
+                      bookmark_border
+                    </button>
+                  )}
                 </div>
               </div>
             ))
           ) : (
-            <p>
+            <>
               <Skltn />
               <Skltn />
-            </p>
+            </>
           )}
         </div>
         <br />
         <br />
         <hr />
-        <Footer></Footer>
+        <Footer />
       </div>
     );
   }
