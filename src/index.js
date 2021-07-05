@@ -1,15 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import 'antd/dist/antd.css';
-import Router from './Services/Router';
-import * as serviceWorker from './serviceWorker';
+import { StrictMode } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <StrictMode>
+    <br />
+    <br />
+    <br />
+    <p>KeyBlogs is currently under maintanance ! Please visit again later</p>
+  </StrictMode>,
+  document.getElementById("root")
 );
 
-serviceWorker.unregister();
+reportWebVitals();
