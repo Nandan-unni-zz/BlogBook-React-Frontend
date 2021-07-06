@@ -286,15 +286,7 @@ class ViewAccount extends Component {
                 </div>
               )}
             </div>
-            <br />
-            <div className="Prof-divider"></div>
-            <div
-              className={
-                user.username === writer.username
-                  ? `Prof-Nav`
-                  : `Prof-Nav nav-three`
-              }
-            >
+            <div className="Prof-Nav">
               <div className={`Prof-Nav-item${this.state.following}`}>
                 <Link to="?tab=following" onClick={this.handleTabChange}>
                   <i class="material-icons">person</i>
@@ -317,7 +309,7 @@ class ViewAccount extends Component {
                 </Link>
               </div>
               {user.username === writer.username && (
-                <span style={{ display: "flex" }}>
+                <>
                   <div className={`Prof-Nav-item${this.state.archived}`}>
                     <Link to="?tab=archived" onClick={this.handleTabChange}>
                       <i class="material-icons">archive</i>
@@ -332,7 +324,7 @@ class ViewAccount extends Component {
                       <z>Saved</z>
                     </Link>
                   </div>
-                </span>
+                </>
               )}
             </div>
           </span>
@@ -342,164 +334,126 @@ class ViewAccount extends Component {
         <br />
 
         {this.state.tab === "following" && (
-          <div className="wrt-dtl">
-            <div className="dtl">
-              {writer.following.map((avatar) => (
-                <Link to={routes.VIEW_WRITER(avatar.username)}>
-                  <div className="wrt-content">
-                    <div className="search-result">
-                      <div className="result-img">
-                        <img src={writerImg} alt="dp" />
-                      </div>
-                      <div className="result-names">
-                        <unm>{avatar.username}</unm>
-                        <br />
-                        <nm>{avatar.name}</nm>
-                      </div>
-                    </div>
-                    <br />
-                    <div className="result-divider"></div>
-                    <br />
+          <div className="prof-tab-cards">
+            {writer.following.map((avatar) => (
+              <a href={routes.VIEW_WRITER(avatar.username)}>
+                <div className="prof-tab-card">
+                  <img src={writerImg} alt="authorDP" />
+                  <div className="prof-tab-card-content">
+                    <h3>{avatar.username}</h3>
+                    <time>{avatar.name}</time>
                   </div>
-                </Link>
-              ))}
-              <br />
-              <br />
-            </div>
+                </div>
+              </a>
+            ))}
           </div>
         )}
 
         {this.state.tab === "followers" && (
-          <div className="wrt-dtl">
-            <div className="dtl">
-              {writer.followers.map((avatar) => (
-                <Link to={routes.VIEW_WRITER(avatar.username)}>
-                  <div className="wrt-content">
-                    <div className="search-result">
-                      <div className="result-img">
-                        <img src={writerImg} alt="dp" />
-                      </div>
-                      <div className="result-names">
-                        <unm>{avatar.username}</unm>
-                        <br />
-                        <nm>{avatar.name}</nm>
-                      </div>
-                    </div>
-                    <br />
-                    <div className="result-divider"></div>
-                    <br />
+          <div className="prof-tab-cards">
+            {writer.followers.map((avatar) => (
+              <a href={routes.VIEW_WRITER(avatar.username)}>
+                <div className="prof-tab-card">
+                  <img src={writerImg} alt="authorDP" />
+                  <div className="prof-tab-card-content">
+                    <h3>{avatar.username}</h3>
+                    <time>{avatar.name}</time>
                   </div>
-                </Link>
-              ))}
-              <br />
-              <br />
-            </div>
+                </div>
+              </a>
+            ))}
           </div>
         )}
 
         {this.state.tab === "published" && (
-          <div className="item-dtl">
-            <div className="dtl">
-              {writer.pub_blogs.map((blog) => (
-                <Link to={routes.VIEW_BLOG(blog.pk)}>
-                  <div className="dtl-content">
-                    <br />
-                    <ttl>{blog.title}</ttl>
-                    <br />
-                    <br />
-                    <div className="content-nav">
-                      <z>{blog.no_of_likes}</z>
+          <div className="prof-tab-cards">
+            {writer.pub_blogs.map((blog) => (
+              <Link to={routes.VIEW_BLOG(blog.pk)}>
+                <div className="prof-tab-card">
+                  <img src={writerImg} alt="authorDP" />
+                  <div className="prof-tab-card-content">
+                    <h3>{blog.title}</h3>
+                    <time>
                       {blog.likes.some(
                         (like) => like.username === user.username
                       ) ? (
-                        <button>
-                          <i class="material-icons">favorite</i>
+                        <button className="material-icons liked">
+                          favorite
                         </button>
                       ) : (
-                        <button>
-                          <iu class="material-icons">favorite_border</iu>
+                        <button className="material-icons not-liked">
+                          favorite_border
                         </button>
                       )}
-                    </div>
+                      {blog.no_of_likes} Likes
+                    </time>
                   </div>
-                </Link>
-              ))}
-              <br />
-              <br />
-            </div>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
 
         {user.username === writer.username && (
-          <div>
+          <>
             {this.state.tab === "archived" && (
-              <div className="item-dtl">
-                <div className="dtl">
-                  {writer.arch_blogs.map((blog) => (
-                    <Link to={routes.VIEW_BLOG(blog.pk)}>
-                      <div className="dtl-content">
-                        <br />
-                        <ttl>{blog.title}</ttl>
-                        <br />
-                        <br />
-                        <div className="content-nav">
-                          <z>{blog.no_of_likes}</z>
+              <div className="prof-tab-cards">
+                {writer.arch_blogs.map((blog) => (
+                  <Link to={routes.VIEW_BLOG(blog.pk)}>
+                    <div className="prof-tab-card">
+                      <img src={writerImg} alt="authorDP" />
+                      <div className="prof-tab-card-content">
+                        <h3>{blog.title}</h3>
+                        <time>
                           {blog.likes.some(
                             (like) => like.username === user.username
                           ) ? (
-                            <button>
-                              <i class="material-icons">favorite</i>
+                            <button className="material-icons liked">
+                              favorite
                             </button>
                           ) : (
-                            <button>
-                              <iu class="material-icons">favorite_border</iu>
+                            <button className="material-icons not-liked">
+                              favorite_border
                             </button>
                           )}
-                        </div>
+                          {blog.no_of_likes} Likes
+                        </time>
                       </div>
-                    </Link>
-                  ))}
-                  <br />
-                  <br />
-                </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
             )}
 
             {this.state.tab === "saved" && (
-              <div className="item-dtl">
-                <div className="dtl">
-                  {writer.saved_blogs.map((blog) => (
-                    <Link to={routes.VIEW_BLOG(blog.pk)}>
-                      <div className="dtl-content">
-                        <br />
-                        <ttl>{blog.title}</ttl>
-                        <br />
-                        <ath>{blog.author.username}</ath>
-                        <br />
-                        <br />
-                        <div className="content-nav">
-                          <z>{blog.no_of_likes}</z>
+              <div className="prof-tab-cards">
+                {writer.saved_blogs.map((blog) => (
+                  <Link to={routes.VIEW_BLOG(blog.pk)}>
+                    <div className="prof-tab-card">
+                      <img src={writerImg} alt="authorDP" />
+                      <div className="prof-tab-card-content">
+                        <h3>{blog.title}</h3>
+                        <time>
                           {blog.likes.some(
                             (like) => like.username === user.username
                           ) ? (
-                            <button>
-                              <i class="material-icons">favorite</i>
+                            <button className="material-icons liked">
+                              favorite
                             </button>
                           ) : (
-                            <button>
-                              <iu class="material-icons">favorite_border</iu>
+                            <button className="material-icons not-liked">
+                              favorite_border
                             </button>
                           )}
-                        </div>
+                          {blog.no_of_likes} Likes
+                        </time>
                       </div>
-                    </Link>
-                  ))}
-                  <br />
-                  <br />
-                </div>
+                    </div>
+                  </Link>
+                ))}
               </div>
             )}
-          </div>
+          </>
         )}
       </div>
     );

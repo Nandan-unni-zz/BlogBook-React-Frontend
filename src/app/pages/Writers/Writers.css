@@ -1,161 +1,171 @@
 .ViewAccount {
-    font-family: 'Ubuntu', sans-serif;
-    color: dodgerblue;
+  font-family: "Ubuntu", sans-serif;
+  color: dodgerblue;
 }
 .Profile {
-    padding-top: 10vh;
+  padding-top: 10vh;
 }
 .Prof-img img {
-    border-radius: 100%;
-    height: 22.5vh;
-    width: 22.5vh;
+  border-radius: 100%;
+  height: 22.5vh;
+  width: 22.5vh;
 }
 .Prof-dtl {
-    padding-top: 2vh;
+  padding-top: 2vh;
 }
 .Prof-dtl nm {
-    color: tomato;
-    font-size: 2.7vh;
-    font-weight: 900;
+  color: tomato;
+  font-size: 2.7vh;
+  font-weight: 900;
 }
-.Prof-dtl unm, .Prof-dtl eml {
-    font-size: 1.6vh;
-    color: rgb(85, 85, 85);
+.Prof-dtl unm,
+.Prof-dtl eml {
+  font-size: 1.6vh;
+  color: rgb(85, 85, 85);
 }
 .Prof-dtl bio {
-    color: rgb(0, 128, 255);
-    font-size: 1.8vh;
+  color: rgb(0, 128, 255);
+  font-size: 1.8vh;
 }
 .Prof-dtl b {
-    font-size: 1.8vh;
+  font-size: 1.8vh;
 }
 .Prof-math {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .math-dtl {
-    padding: 2vh;
+  padding: 2vh;
 }
 .math-dtl n {
-    font-size: 2.1vh;
-    font-weight: 900;
-    color: dodgerblue;
+  font-size: 2.1vh;
+  font-weight: 900;
+  color: dodgerblue;
 }
 .math-dtl t {
-    font-size: 1.8vh;
-    color: rgb(65, 65, 65);
+  font-size: 1.8vh;
+  color: rgb(65, 65, 65);
 }
 .Prof-ctrl {
-    display: flex;
+  display: flex;
 }
 .ctrl-edit {
-    margin-left: 5vw;
-    margin-right: auto;
+  margin-left: 5vw;
+  margin-right: auto;
 }
 .ctrl-delete {
-    margin-right: 5vw;
-    margin-left: auto;
-    order: 2;
-}
-.Prof-divider {
-    background-color: rgb(0, 30, 70);
-    height: 0.1vh;
+  margin-right: 5vw;
+  margin-left: auto;
+  order: 2;
 }
 .Prof-Nav {
-    width: 100vw;
+  width: 100vw;
+  border-top: 1px solid rgb(0, 30, 70);
+  margin-top: 20px;
 }
 .Prof-Nav {
-    width: 100vw;
-    display: flex;
-    line-height: 1.8vh;
+  width: 100vw;
+  display: flex;
+  line-height: 1.8vh;
 }
 .Prof-Nav a {
-    height: 8vh;
-    width: 20vw;
-    padding: 2vh;
-    font-size: 2vh;
-    float: left;
-    display: block;
-    text-align: center;
-    text-decoration: none;
-    background-color: transparent;
-    color: tomato;
-    border-bottom: 0.1vh solid rgb(180, 180, 180);
-}
-.nav-three a {
-    width: 33.33vw;
+  height: 8vh;
+  width: 100%;
+  padding: 2vh;
+  font-size: 2vh;
+  float: left;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: tomato;
+  border-bottom: 0.1vh solid rgb(180, 180, 180);
 }
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 .Prof-Nav a:hover {
-    color: rgb(0, 128, 255);
-    border-bottom: 0.1vh solid dodgerblue;
+  color: rgb(0, 128, 255);
+  border-bottom: 0.1vh solid dodgerblue;
 }
 .Prof-Nav a:active {
-    color: rgb(0, 128, 255);
-    border-bottom: 0.1vh solid dodgerblue;
+  color: rgb(0, 128, 255);
+  border-bottom: 0.1vh solid dodgerblue;
 }
 .Prof-Nav i {
-    font-size: 3.2vh;
+  font-size: 3.2vh;
+}
+.Prof-Nav-item {
+  width: 100%;
 }
 .Prof-Nav-item z {
-    font-size: 1.2vh;
-    font-weight: 900;
-    color: rgb(65, 65, 65);
+  font-size: 1.2vh;
+  font-weight: 900;
+  color: rgb(65, 65, 65);
 }
 .item-active {
-    color: rgb(0, 128, 255);
-    border-bottom: 0.2vh solid dodgerblue;
+  color: rgb(0, 128, 255);
+  border-bottom: 0.2vh solid dodgerblue;
 }
 .item-active a {
-    color: rgb(0, 128, 255);
-    border-bottom: 0.1vh solid dodgerblue;
+  color: rgb(0, 128, 255);
+  border-bottom: 0.1vh solid dodgerblue;
+}
+.prof-tab-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.prof-tab-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(230, 230, 230);
+  width: 40vw;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 10px;
+}
+.prof-tab-card img {
+  height: 50px;
+  width: 50px;
+  border-radius: 1000px;
 }
 
-.dtl-content {
-    height: fit-content;
-    width: 60vw;
-    margin-top: 8vh;
-    margin-left: 20vw;
-    margin-right: 20vw;
-    border-top: 0.1vh solid rgb(0, 100, 140);
-    border-bottom: 0.3vh solid rgb(0, 100, 140);
-    background-color: rgb(235, 235, 235);
-    border-radius: 1vh;
+.prof-tab-card-content {
+  margin-left: 20px;
 }
-.dtl-content ttl {
-    font-family: 'Open Sans', sans-serif;
-    color: dodgerblue;
-    font-weight: 900;
-    font-size: 2.4vh;
-    padding: 5vw;
+.prof-tab-card time {
+  display: flex;
+  align-items: center;
+  color: gray;
 }
-.dtl-content ath {
-    color: black;
-    font-size: 1.5vh;
-    padding: 5vw;
+.prof-tab-card .liked {
+  color: tomato;
 }
-.content-nav {
-    display: flex;
+.prof-tab-card h3 {
+  margin: 0;
+  color: black;
 }
-.content-nav button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
+.prof-tab-card .not-liked {
+  color: darkgray;
 }
-.content-nav z {
-    color: rgb(0, 128, 255);
-    font-size: 2vh;
-    margin-left: 2vw;
+.prof-tab-card button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-size: 18px;
 }
-.content-nav i {
-    font-size: 2.5vh;
-    color: tomato;
-}
-.content-nav iu {
-    font-size: 2.5vh;
-    color: rgb(0, 100, 140);
+@media only screen and (max-width: 600px) {
+  .prof-tab-card {
+    width: 80vw;
+    margin: 10px;
+  }
+  .prof-tab-card img {
+    height: 35px;
+    width: 35px;
+  }
+  .prof-tab-card-content {
+    margin-left: 10px;
+  }
 }
