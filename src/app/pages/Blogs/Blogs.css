@@ -1,6 +1,6 @@
 .richEditor {
   border: 1px solid rgb(230, 230, 230);
-  padding: 0 10px;
+  padding: 15px;
   min-height: 400px;
   cursor: text;
   border-radius: 5px;
@@ -9,7 +9,9 @@
 .richEditor > * {
   margin: 0;
 }
-
+.public-DraftStyleDefault-block {
+  margin: 0;
+}
 .blog-create {
   font-family: "Ubuntu", sans-serif;
   width: 90vw;

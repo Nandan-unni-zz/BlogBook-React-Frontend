@@ -3,6 +3,8 @@ import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
 
+import { Menu, Dropdown, Row } from "antd";
+
 import "./Feed.css";
 import { Logo, Navbar, Footer } from "../../components";
 import { logoutWriterAPI } from "../../../services/writer";
@@ -129,7 +131,56 @@ class Feed extends Component {
                     </span>
                   </div>
                   <div className="Blog-Head-right">
-                    <FeatherIcon icon="more-vertical" />
+                    {blog.author.username === user.username ? (
+                      <Dropdown
+                        overlay={
+                          <Menu>
+                            <Menu.Item>
+                              <Link to={routes.VIEW_BLOG(blog.pk)}>
+                                <Row align="middle">
+                                  <FeatherIcon
+                                    icon="eye"
+                                    size={15}
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                  View Blog
+                                </Row>
+                              </Link>
+                            </Menu.Item>
+                            <Menu.Item>
+                              <Link to={routes.EDIT_BLOG(blog.pk)}>
+                                <Row align="middle">
+                                  <FeatherIcon
+                                    icon="edit-2"
+                                    size={15}
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                  Edit Blog
+                                </Row>
+                              </Link>
+                            </Menu.Item>
+                            <Menu.Item>
+                              <Link to={routes.DELETE_BLOG(blog.pk)}>
+                                <Row align="middle">
+                                  <FeatherIcon
+                                    icon="trash-2"
+                                    size={15}
+                                    style={{ marginRight: "5px" }}
+                                  />
+                                  Delete Blog
+                                </Row>
+                              </Link>
+                            </Menu.Item>
+                          </Menu>
+                        }
+                      >
+                        <FeatherIcon icon="more-vertical" />
+                      </Dropdown>
+                    ) : (
+                      <Link to={routes.VIEW_BLOG(blog.pk)}>
+                        <button className="Blog-Read">Read</button>
+                      </Link>
+                    )}
                   </div>
                 </div>
                 <div

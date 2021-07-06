@@ -38,6 +38,20 @@
   height: 50px;
   width: 50px;
 }
+.Blog-Read {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+  background-color: white;
+}
+.Blog-Read:hover {
+  border: 1px solid rgb(0, 128, 255);
+  background-color: dodgerblue;
+  color: white;
+}
 .Blog-Body {
   border-top: 1px solid whitesmoke;
   border-bottom: 1px solid whitesmoke;
@@ -52,11 +66,15 @@
   margin: 0;
   padding: 0;
 }
-.Blog-Nav {
+.Blog-Nav,
+.Blog-View-Nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: fit-content;
+}
+.Blog-View-Nav {
+  padding: 10px;
 }
 .Blog-Nav button {
   height: fit-content;
