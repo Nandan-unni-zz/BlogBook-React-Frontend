@@ -22,10 +22,16 @@ class ViewBlog extends Component {
   handleLike = async (pk) => {
     const res = await likeBlogAPI(pk, this.state.user.pk);
     this.setState({ blogs: res.data });
+    getBlogAPI(this.props.match.params.pk).then((res) => {
+      this.setState({ blog: res });
+    });
   };
   handleSave = async (pk) => {
     const res = await saveBlogAPI(pk, this.state.user.pk);
     this.setState({ blogs: res.data });
+    getBlogAPI(this.props.match.params.pk).then((res) => {
+      this.setState({ blog: res });
+    });
   };
   componentDidMount() {
     getBlogAPI(this.props.match.params.pk).then((res) => {
@@ -64,9 +70,6 @@ class ViewBlog extends Component {
                       {blog.author.username}
                     </Link>
                   </span>
-                </div>
-                <div className="Blog-Head-right">
-                  <FeatherIcon icon="more-vertical" />
                 </div>
               </div>
               <div
@@ -115,10 +118,10 @@ class ViewBlog extends Component {
                 </div>
               ) : (
                 <div className="Blog-View-Nav">
-                  <Button class="normal" href={`/blog/edit/${blog.pk}`}>
+                  <Button class="normal" href={routes.EDIT_BLOG(blog.pk)}>
                     Edit Blog
                   </Button>
-                  <Button class="danger" href={`/blog/delete/${blog.pk}`}>
+                  <Button class="danger" href={routes.DELETE_BLOG(blog.pk)}>
                     Delete Blog
                   </Button>
                   <Button
