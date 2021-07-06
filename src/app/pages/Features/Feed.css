@@ -52,11 +52,15 @@
   margin: 0;
   padding: 0;
 }
-.Blog-Nav {
+.Blog-Nav,
+.Blog-View-Nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: fit-content;
+}
+.Blog-View-Nav {
+  padding: 10px;
 }
 .Blog-Nav button {
   height: fit-content;
