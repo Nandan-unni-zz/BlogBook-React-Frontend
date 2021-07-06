@@ -48,7 +48,7 @@ class CreateAccount extends Component {
   render() {
     return (
       <div className="CreateAccount">
-        <Logo></Logo>
+        <Logo />
         <Portal>
           <Form onFinish={this.handleSubmit} layout="vertical">
             <h2>Create Account</h2>

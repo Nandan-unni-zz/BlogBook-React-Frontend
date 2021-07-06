@@ -34,7 +34,7 @@ class DeleteAccount extends Component {
   render() {
     return (
       <div className="DeleteAccount">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

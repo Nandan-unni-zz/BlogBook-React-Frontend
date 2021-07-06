@@ -49,18 +49,7 @@ class Search extends Component {
   render() {
     return (
       <div className="Search">
-        <Navbar>
-          <a href={`/writer/view/${this.state.user.username}`}>
-            <i class="material-icons">account_circle</i>
-            <br />
-            <z>Profile</z>
-          </a>
-          <a href="/feed/">
-            <i class="material-icons">home</i>
-            <br />
-            <z>Feed</z>
-          </a>
-        </Navbar>
+        <Navbar feed profile />
         <br />
         <br />
         <center>

@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 
 import { Button, Navbar } from "../../components";
 import { updateBlogAPI, getBlogAPI } from "../../../services/blog";
-import { logoutWriterAPI } from "../../../services/writer";
 
 class EditBlog extends Component {
   constructor(props) {
@@ -20,7 +19,6 @@ class EditBlog extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.selectMethod = this.selectMethod.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
   }
   handleChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
@@ -45,10 +43,6 @@ class EditBlog extends Component {
     if (response.status === 200) this.setState({ isSuccess: true });
     else this.setState({ errMsg: "Invalid content." });
   };
-  handleLogout = () => {
-    logoutWriterAPI(this.state.user.pk);
-    localStorage.removeItem("user");
-  };
   formRef = React.createRef();
   componentDidMount = async () => {
     await getBlogAPI(this.props.match.params.pk).then((res) => {
@@ -71,23 +65,7 @@ class EditBlog extends Component {
           <div>
             {this.state.blog.author.username === this.state.user.username ? (
               <div>
-                <Navbar>
-                  <a href="/logout/" onClick={this.handleLogout}>
-                    <i class="material-icons">power_settings_new</i>
-                    <br />
-                    <z>Logout</z>
-                  </a>
-                  <a href={`/writer/view/${this.state.user.username}`}>
-                    <i class="material-icons">account_circle</i>
-                    <br />
-                    <z>Profile</z>
-                  </a>
-                  <a href="/feed/">
-                    <i class="material-icons">home</i>
-                    <br />
-                    <z>Feeds</z>
-                  </a>
-                </Navbar>
+                <Navbar feed profile logout />
                 <br />
                 <br />
                 <div className="blog-create">

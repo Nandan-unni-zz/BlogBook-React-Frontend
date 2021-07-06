@@ -179,23 +179,7 @@ class ViewAccount extends Component {
     const user = this.state.user;
     return (
       <div className="ViewAccount">
-        <Navbar>
-          <Link to={routes.LOGOUT} onClick={this.handleLogout}>
-            <i class="material-icons">power_settings_new</i>
-            <br />
-            <z>Logout</z>
-          </Link>
-          <Link to={routes.VIEW_WRITER(this.state.user.username)}>
-            <i class="material-icons">settings</i>
-            <br />
-            <z> Settings</z>
-          </Link>
-          <Link to={routes.FEED}>
-            <i class="material-icons">home</i>
-            <br />
-            <z> Feeds</z>
-          </Link>
-        </Navbar>
+        <Navbar createBlog feed logout />
         {this.state.loaded ? (
           <span>
             <div className="Profile">

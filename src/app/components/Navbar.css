@@ -1,46 +1,52 @@
 .Navbar {
-    background-color: rgb(0, 30, 70);
-    border-top: 0.1vh solid rgb(0, 20, 60);
-    float: right;
-    width: 100vw;
-    line-height: 1.8vh;
-    font-family: 'Ubuntu', sans-serif;
+  display: flex;
+  width: 100vw;
+  background-color: rgb(30, 30, 30);
+  align-items: center;
+  transition: 0.3s ease-in-out;
 }
-.Navfixbar {
-    position: fixed;
+.Navbar-fixed {
+  top: 0;
+  position: fixed;
 }
-.Navbar a {
-    color: tomato;
-    text-decoration: none;
-    float: right;
-    display: block;
-    text-align: center;
-    padding: 0.5vw;
-    margin-right: 0vw;
-    width: 8vw;
+.Navbar-btw {
+  justify-content: space-between;
 }
-.Navbar a:hover {
-    color: dodgerblue;
+.Navbar-end {
+  justify-content: flex-end;
 }
-.Navbar a:active {
-    color: rgb(0, 102, 204);
+.Navbar-left {
+  display: flex;
 }
-.Navbar z {
-    font-size: 1.5vh;
-    color: white;
+.Navbar nav {
+  width: 8vw;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  /* background-color: white; */
 }
-.Navbar i {
-    font-size: 3.2vh;
+.Navbar nav p {
+  margin: 0;
+  font-size: 1.5vh;
+  font-family: "Ubuntu", sans-serif;
+  color: white;
 }
+.Navbar nav span {
+  color: tomato;
+}
+.Navbar nav:hover span,
+.Navbar nav:active span {
+  color: dodgerblue;
+}
+
 @media only screen and (max-width: 600px) {
-    .Navbar {
-        line-height: 1.6vh;
-    }
-    .Navbar a {
-        width: 15vw;
-    }
-    .Navbar z {
-        font-size: 1.2vh;
-        color: white;
-    }
+  .Navbar nav {
+    width: 18vw;
+  }
+  .Navbar nav p {
+    font-size: 1.2vh;
+  }
 }

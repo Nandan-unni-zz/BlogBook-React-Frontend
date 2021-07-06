@@ -36,7 +36,7 @@ class AccountSetup extends Component {
   render() {
     return (
       <div className="CreatePenName">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

@@ -43,7 +43,7 @@ class EditAccount extends Component {
     const user = this.state.user;
     return (
       <div className="EditAccount">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

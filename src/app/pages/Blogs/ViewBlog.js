@@ -41,18 +41,7 @@ class ViewBlog extends Component {
     const blog = this.state.blog;
     return (
       <div className="Feed">
-        <Navbar>
-          <a href={`/writer/view/${this.state.user.username}`}>
-            <i class="material-icons">account_circle</i>
-            <br />
-            <z>Profile</z>
-          </a>
-          <a href="/feed/">
-            <i class="material-icons">home</i>
-            <br />
-            <z>Feed</z>
-          </a>
-        </Navbar>
+        <Navbar feed profile logout />
         <div className="Blogs">
           {this.state.loaded ? (
             <div className="Blog">

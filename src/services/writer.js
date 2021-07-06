@@ -18,6 +18,7 @@ export const loginWriterAPI = async (data) => {
 export const logoutWriterAPI = async (pk) => {
   const url = `${API_URL}/logout/${pk}/`;
   axios.get(url);
+  localStorage.removeItem("user");
 };
 
 export const createWriterAPI = async (data) => {

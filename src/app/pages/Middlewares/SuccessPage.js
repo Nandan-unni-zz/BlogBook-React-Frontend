@@ -6,7 +6,7 @@ class SuccessPage extends Component {
   render() {
     return (
       <div className="SuccessPage">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

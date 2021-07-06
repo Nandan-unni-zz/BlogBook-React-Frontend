@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Form, Input } from "antd";
-import { Redirect, Link } from "react-router-dom";
+import { Form, Input, message } from "antd";
+import { Redirect } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import draftjsToHtml from "draftjs-to-html";
 
@@ -41,29 +41,15 @@ class CreateBlog extends Component {
       is_published: this.state.type === "publish",
       author: this.state.user.pk,
     });
-    if (status === 200) this.setState({ isSuccess: true });
-    else this.setState({ errMsg: "Some error occured." });
+    if (status === 200) {
+      message.success("New blog ", this.state.type, " !");
+      this.setState({ isSuccess: true });
+    } else this.setState({ errMsg: "Some error occured." });
   };
   render() {
     return (
       <div className="CreateBlog">
-        <Navbar>
-          <Link to={routes.LOGOUT}>
-            <i class="material-icons">power_settings_new</i>
-            <br />
-            <z>Logout</z>
-          </Link>
-          <Link to={routes.VIEW_WRITER(this.state.user.username)}>
-            <i class="material-icons">account_circle</i>
-            <br />
-            <z>Profile</z>
-          </Link>
-          <Link to={routes.FEED}>
-            <i class="material-icons">home</i>
-            <br />
-            <z>Feeds</z>
-          </Link>
-        </Navbar>
+        <Navbar feed profile logout />
         <br />
         <br />
         <div className="blog-create">
@@ -99,7 +85,7 @@ class CreateBlog extends Component {
               {!this.state.isSuccess ? (
                 <err>{this.state.errMsg}</err>
               ) : (
-                <Redirect to="/feed/" />
+                <Redirect to={routes.FEED} />
               )}
             </center>
             <br />
@@ -122,7 +108,7 @@ class CreateBlog extends Component {
               </div>
               <br />
               <center>
-                <a href="/feed/">Discard</a>
+                <a href={routes.FEED}>Discard</a>
               </center>
             </Form.Item>
           </Form>

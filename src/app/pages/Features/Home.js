@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Logo></Logo>
+        <Logo />
         <div className="auth-content">
           <img src={ideaPen} align="left" class="auth-img" alt="Idea pen" />
           <br />

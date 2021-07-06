@@ -6,7 +6,7 @@ class InvalidPage extends Component {
   render() {
     return (
       <div className="InvalidPage">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

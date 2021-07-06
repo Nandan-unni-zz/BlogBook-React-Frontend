@@ -36,7 +36,7 @@ class DeleteBlog extends Component {
           <div>
             {this.state.user.username === blog.author.username ? (
               <div>
-                <Logo></Logo>
+                <Logo />
                 <br />
                 <br />
                 <br />

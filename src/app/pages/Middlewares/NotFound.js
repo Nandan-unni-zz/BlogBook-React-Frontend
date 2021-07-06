@@ -6,7 +6,7 @@ class NotFound extends Component {
   render() {
     return (
       <div className="Error">
-        <Logo></Logo>
+        <Logo />
         <br />
         <br />
         <br />

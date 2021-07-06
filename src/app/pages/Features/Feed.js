@@ -7,7 +7,6 @@ import { Menu, Dropdown, Row } from "antd";
 
 import "./Feed.css";
 import { Logo, Navbar, Footer } from "../../components";
-import { logoutWriterAPI } from "../../../services/writer";
 import { likeBlogAPI, saveBlogAPI, feedAPI } from "../../../services/blog";
 import { ellipsis } from "../../../utils";
 import { routes } from "../../router/routes";
@@ -52,20 +51,28 @@ class Feed extends Component {
     super(props);
     this.state = {
       user: JSON.parse(localStorage.getItem("user")),
-      a: 91,
-      b: 92,
       blogs: [],
       loaded: false,
     };
     this.handleLike = this.handleLike.bind(this);
     this.handleSave = this.handleSave.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
   }
+
   componentDidMount() {
     feedAPI().then((result) => {
       this.setState({ blogs: result, loaded: true });
     });
+    document.addEventListener("scroll", () => {
+      var navbar = document.getElementById("Navbar");
+      var sticky = navbar.offsetTop;
+      if (window.pageYOffset > sticky) {
+        navbar.classList.add("Navbar-fixed");
+      } else {
+        navbar.classList.remove("Navbar-fixed");
+      }
+    });
   }
+
   handleLike = async (pk) => {
     const res = await likeBlogAPI(pk, this.state.user.pk);
     this.setState({ blogs: res.data });
@@ -74,44 +81,17 @@ class Feed extends Component {
     const res = await saveBlogAPI(pk, this.state.user.pk);
     this.setState({ blogs: res.data });
   };
-  handleLogout = () => {
-    logoutWriterAPI(this.state.user.pk);
-    localStorage.removeItem("user");
-  };
   render() {
     const user = this.state.user;
     return (
-      <div className="Feed">
-        <Logo></Logo>
-        <Navbar>
-          <Link to={routes.LOGOUT} onClick={this.handleLogout}>
-            <i class="material-icons">power_settings_new</i>
-            <br />
-            <z>Logout</z>
-          </Link>
-          <Link to={routes.VIEW_WRITER(user.username)}>
-            <i class="material-icons">account_circle</i>
-            <br />
-            <z>Profile</z>
-          </Link>
-          <Link to={routes.SEARCH}>
-            <i class="material-icons">person_add_alt_1</i>
-            <br />
-            <z>Search</z>
-          </Link>
-          <Link to={routes.CREATE_BLOG}>
-            <i class="material-icons">create</i>
-            <br />
-            <z>New Blog</z>
-          </Link>
-          {user.is_superuser && (
-            <Link to="https://blogbookapi.herokuapp.com">
-              <i class="material-icons">construction</i>
-              <br />
-              <z>API</z>
-            </Link>
-          )}
-        </Navbar>
+      <div
+        className="Feed"
+        onScroll={() => {
+          console.log("scrolling");
+        }}
+      >
+        <Logo />
+        <Navbar api createBlog search profile logout />
         <div className="Blogs">
           {this.state.loaded ? (
             this.state.blogs.map((blog) => (

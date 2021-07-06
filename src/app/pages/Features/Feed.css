@@ -27,12 +27,24 @@
   display: flex;
   align-items: center;
 }
+
 .Blog-Head span {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
   margin-left: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Blog-Head-left a {
+    width: 100px;
+    overflow: hidden;
+  }
+
+  .Blog-Head span {
+    margin-left: 8px;
+  }
 }
 .Blog-Head img {
   height: 50px;
@@ -47,7 +59,8 @@
   border-radius: 5px;
   background-color: white;
 }
-.Blog-Read:hover {
+.Blog-Read:hover,
+.Blog-Read:active {
   border: 1px solid rgb(0, 128, 255);
   background-color: dodgerblue;
   color: white;
