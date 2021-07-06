@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { message, Skeleton } from "antd";
 import { Button, Navbar } from "../../components";
 import { Link } from "react-router-dom";
-import FeatherIcon from "feather-icons-react";
 
 import { likeBlogAPI, saveBlogAPI, getBlogAPI } from "../../../services/blog";
 import { writerImg } from "../../../static";
