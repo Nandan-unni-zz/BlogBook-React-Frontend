@@ -25,10 +25,10 @@ class Navbar extends Component {
         id="Navbar"
       >
         {this.props.backBtn && (
-          <div>
+          <div onClick={() => window.history.back()}>
             <nav>
-              <span class="material-icons">construction</span>
-              <p>API</p>
+              <span class="material-icons">arrow_back</span>
+              <p>Back</p>
             </nav>
           </div>
         )}

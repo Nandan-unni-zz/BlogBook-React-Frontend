@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { Form, Input } from "antd";
+import { Form, Input, message } from "antd";
 import { Redirect } from "react-router-dom";
+import { Editor } from "react-draft-wysiwyg";
+import { ContentState, EditorState, convertToRaw } from "draft-js";
+
+import draftjsToHtml from "draftjs-to-html";
+import htmlToDraftjs from "html-to-draftjs";
 
 import { Button, Navbar } from "../../components";
 import { updateBlogAPI, getBlogAPI } from "../../../services/blog";
@@ -12,50 +17,54 @@ class EditBlog extends Component {
       user: JSON.parse(localStorage.getItem("user")),
       blog: {},
       title: "",
-      content: "",
+      content: EditorState.createEmpty(),
       type: "",
       loaded: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.selectMethod = this.selectMethod.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleContentChange = this.handleContentChange.bind(this);
   }
   handleChange = (event) => {
     this.setState({ [event.target.id]: event.target.value });
+  };
+  handleContentChange = (content) => {
+    this.setState({ content });
   };
   selectMethod = (method) => {
     this.setState({ type: method });
   };
   handleSubmit = async () => {
     let response;
-    if (this.state.type === "archive")
-      response = await updateBlogAPI(this.state.blog.pk, {
-        title: this.state.title,
-        content: this.state.content,
-        is_published: false,
-      });
-    else
-      response = await updateBlogAPI(this.state.blog.pk, {
-        title: this.state.title,
-        content: this.state.content,
-        is_published: true,
-      });
-    if (response.status === 200) this.setState({ isSuccess: true });
-    else this.setState({ errMsg: "Invalid content." });
+    response = await updateBlogAPI(this.props.match.params.pk, {
+      title: this.state.title,
+      content: draftjsToHtml(
+        convertToRaw(this.state.content.getCurrentContent())
+      ),
+      is_published: this.state.type === "publish",
+    });
+    if (response.status === 200) {
+      message.success("Blog updated !");
+      this.setState({ isSuccess: true });
+    } else message.error("Some error occured !");
   };
   formRef = React.createRef();
-  componentDidMount = async () => {
-    await getBlogAPI(this.props.match.params.pk).then((res) => {
+  componentDidMount = () => {
+    getBlogAPI(this.props.match.params.pk).then((res) => {
       this.setState({ blog: res, loaded: true });
-    });
-    this.setState({
-      title: this.state.blog.title,
-      content: this.state.blog.content,
-    });
-    console.log(this.state.blog.title);
-    this.formRef.current.setFieldsValue({
-      title: this.state.blog.title,
-      content: this.state.blog.content,
+      this.setState({
+        title: this.state.blog.title,
+        content: EditorState.createWithContent(
+          ContentState.createFromBlockArray(
+            htmlToDraftjs(this.state.blog.content)
+          )
+        ),
+      });
+      console.log(this.state.content);
+      this.formRef?.current?.setFieldsValue({
+        title: this.state.blog.title,
+      });
     });
   };
   render() {
@@ -97,19 +106,11 @@ class EditBlog extends Component {
 
                     <label for="content">Content</label>
                     <br />
-                    <Form.Item
-                      name="content"
-                      rules={[
-                        { required: true, message: "Write some blog content" },
-                      ]}
-                    >
-                      <Input.TextArea
-                        onChange={this.handleChange}
-                        className="content"
-                        rows="15"
-                        defaultValue={this.state.content}
-                      />
-                    </Form.Item>
+                    <Editor
+                      editorState={this.state.content}
+                      onEditorStateChange={this.handleContentChange}
+                      editorClassName="richEditor"
+                    />
 
                     <center>
                       {!this.state.isSuccess ? (
@@ -126,14 +127,14 @@ class EditBlog extends Component {
                           class="outline"
                           onClick={() => this.selectMethod("archive")}
                         >
-                          Archive
-                        </Button>{" "}
+                          Save & Archive
+                        </Button>
                         &nbsp; &nbsp; &nbsp;
                         <Button
                           class="normal"
                           onClick={() => this.selectMethod("publish")}
                         >
-                          Publish
+                          Save & Publish
                         </Button>
                       </div>
                       <br />
@@ -148,7 +149,7 @@ class EditBlog extends Component {
               </div>
             ) : (
               <Redirect to={`/feed/`} />
-            )}{" "}
+            )}
           </div>
         ) : (
           <div></div>

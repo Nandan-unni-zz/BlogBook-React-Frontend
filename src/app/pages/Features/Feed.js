@@ -6,7 +6,7 @@ import FeatherIcon from "feather-icons-react";
 import { Menu, Dropdown, Row } from "antd";
 
 import "./Feed.css";
-import { Logo, Navbar, Footer } from "../../components";
+import { Logo, Navbar, Footer, Stud } from "../../components";
 import { likeBlogAPI, saveBlogAPI, feedAPI } from "../../../services/blog";
 import { ellipsis } from "../../../utils";
 import { routes } from "../../router/routes";
@@ -174,43 +174,27 @@ class Feed extends Component {
                   )}
                 </div>
                 <div className="Blog-Nav">
-                  <span>
-                    <p>{blog.no_of_likes}</p>
-                    {blog.likes.some(
-                      (like) => like.username === user.username
-                    ) ? (
-                      <button
-                        class="material-icons liked"
-                        onClick={() => this.handleLike(blog.pk)}
-                      >
-                        favorite
-                      </button>
-                    ) : (
-                      <button
-                        class="material-icons not-liked"
-                        onClick={() => this.handleLike(blog.pk)}
-                      >
-                        favorite_border
-                      </button>
-                    )}
-                  </span>
-                  {blog.saves.some(
-                    (save) => save.username === user.username
-                  ) ? (
-                    <button
-                      className="material-icons bookmarked"
-                      onClick={() => this.handleSave(blog.pk)}
-                    >
-                      bookmark
-                    </button>
-                  ) : (
-                    <button
-                      class="material-icons not-bookmarked"
-                      onClick={() => this.handleSave(blog.pk)}
-                    >
-                      bookmark_border
-                    </button>
-                  )}
+                  <div onClick={() => this.handleLike(blog.pk)}>
+                    <Stud
+                      type="Like"
+                      icon="favorite"
+                      theme="#ff6347"
+                      count={blog.no_of_likes}
+                      active={blog.likes.some(
+                        (like) => like.username === user.username
+                      )}
+                    />
+                  </div>
+                  <div onClick={() => this.handleSave(blog.pk)}>
+                    <Stud
+                      type="Save"
+                      icon="bookmark"
+                      theme="#1e90ff"
+                      active={blog.saves.some(
+                        (like) => like.username === user.username
+                      )}
+                    />
+                  </div>
                 </div>
               </div>
             ))
