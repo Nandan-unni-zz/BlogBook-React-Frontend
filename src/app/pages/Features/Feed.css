@@ -4,7 +4,7 @@
 }
 
 .Blogs {
-  padding-top: 10vh;
+  padding-top: 5vh;
 }
 .Blog {
   font-family: "Montserrat", sans-serif;
@@ -50,6 +50,9 @@
   height: 50px;
   width: 50px;
 }
+.Blog-Head-right {
+  cursor: pointer;
+}
 .Blog-Read {
   outline: none;
   border: none;
@@ -79,50 +82,11 @@
   margin: 0;
   padding: 0;
 }
-.Blog-Nav,
-.Blog-View-Nav {
+.Blog-Nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: fit-content;
-}
-.Blog-View-Nav {
-  padding: 10px;
-}
-.Blog-Nav button {
-  height: fit-content;
-  width: fit-content;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 3vh;
-}
-.Blog-Nav span {
-  display: flex;
-  align-items: center;
-}
-.Blog-Nav span p {
-  margin: 0;
-  color: rgb(100, 100, 100);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.8vh;
-}
-.Blog-Nav .bookmarked,
-.Blog-Nav .not-bookmarked:hover {
-  color: dodgerblue;
-}
-.Blog-Nav .not-bookmarked,
-.Blog-Nav .not-liked {
-  color: rgb(160, 160, 160);
-}
-.Blog-Nav .liked,
-.Blog-Nav .not-liked:hover {
-  color: tomato;
-}
-.Blog svg {
-  color: gray;
-  cursor: pointer;
 }
 
 .Sk {

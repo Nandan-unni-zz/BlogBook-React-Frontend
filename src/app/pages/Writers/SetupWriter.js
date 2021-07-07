@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input } from "antd";
 import { Redirect } from "react-router-dom";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 import { getWriterAPI, setupWriterAPI } from "../../../services/writer";
 
 class AccountSetup extends Component {
@@ -37,6 +37,7 @@ class AccountSetup extends Component {
     return (
       <div className="CreatePenName">
         <Logo />
+        <Navbar />
         <br />
         <br />
         <br />

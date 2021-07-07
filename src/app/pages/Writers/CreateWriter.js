@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input } from "antd";
 import { Redirect, Link } from "react-router-dom";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 import { createWriterAPI } from "../../../services/writer";
 import { routes } from "../../router/routes";
 
@@ -49,6 +49,7 @@ class CreateAccount extends Component {
     return (
       <div className="CreateAccount">
         <Logo />
+        <Navbar />
         <Portal>
           <Form onFinish={this.handleSubmit} layout="vertical">
             <h2>Create Account</h2>

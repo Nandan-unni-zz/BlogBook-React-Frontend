@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./Home.css";
 
-import { Logo, Button } from "../../components";
+import { Logo, Button, Navbar } from "../../components";
 import { ideaPen } from "../../../static";
 
 class Home extends Component {
@@ -9,6 +9,7 @@ class Home extends Component {
     return (
       <div className="Home">
         <Logo />
+        <Navbar />
         <div className="auth-content">
           <img src={ideaPen} align="left" class="auth-img" alt="Idea pen" />
           <br />

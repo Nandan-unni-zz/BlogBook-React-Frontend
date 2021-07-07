@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input } from "antd";
 import { Redirect } from "react-router-dom";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 import { updateWriterAPI } from "../../../services/writer";
 
 class EditAccount extends Component {
@@ -44,6 +44,7 @@ class EditAccount extends Component {
     return (
       <div className="EditAccount">
         <Logo />
+        <Navbar />
         <br />
         <br />
         <br />

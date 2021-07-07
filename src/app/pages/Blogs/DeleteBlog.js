@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form } from "antd";
 import { Redirect } from "react-router-dom";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 import { deleteBlogAPI, getBlogAPI } from "../../../services/blog";
 
 class DeleteBlog extends Component {
@@ -37,6 +37,7 @@ class DeleteBlog extends Component {
             {this.state.user.username === blog.author.username ? (
               <div>
                 <Logo />
+                <Navbar />
                 <br />
                 <br />
                 <br />

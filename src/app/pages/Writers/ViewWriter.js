@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Tooltip } from "antd";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import "./Writers.css";
@@ -184,20 +185,27 @@ class ViewAccount extends Component {
           <span>
             <div className="Profile">
               <div className="Prof-img">
-                {
-                  <center>
-                    <img src={writerImg} alt="DP" />
-                  </center>
-                }
+                <center>
+                  <img
+                    src={writerImg}
+                    onError={({ target }) => (target.src = writerImg)}
+                    alt="DP"
+                  />
+                </center>
               </div>
               <div className="Prof-dtl">
                 <center>
                   <nm>{writer.name}</nm>
                   <br />
-                  <unm>{writer.username} </unm>
+                  <Tooltip overlay="Username">
+                    <unm>{writer.username} </unm>
+                  </Tooltip>
                   {user.username === writer.username ? (
                     <span>
-                      &nbsp; <b>|</b> &nbsp; <eml>{writer.email}</eml>
+                      &nbsp; <b>|</b> &nbsp;
+                      <Tooltip overlay="Email">
+                        <eml>{writer.email}</eml>
+                      </Tooltip>
                     </span>
                   ) : (
                     <span></span>
@@ -227,7 +235,9 @@ class ViewAccount extends Component {
                     </Link>
                   </div>
 
-                  <bio>{writer.bio}</bio>
+                  <Tooltip overlay="Bio">
+                    <bio>{writer.bio}</bio>
+                  </Tooltip>
                   <br />
                 </center>
                 <br />
@@ -235,20 +245,14 @@ class ViewAccount extends Component {
               {user.username === writer.username ? (
                 <div className="Prof-ctrl">
                   <div className="ctrl-edit">
-                    <Button
-                      class="normal"
-                      href={`/writer/edit/${writer.username}`}
-                    >
-                      Edit Account
-                    </Button>
+                    <Link to={routes.EDIT_WRITER(writer.username)}>
+                      Edit <span>Account</span>
+                    </Link>
                   </div>
                   <div className="ctrl-delete">
-                    <Button
-                      class="danger"
-                      href={`/writer/delete/${writer.username}`}
-                    >
-                      Delete Account
-                    </Button>
+                    <Link to={routes.DELETE_WRITER(writer.username)}>
+                      Delete <span>Account</span>
+                    </Link>
                   </div>
                 </div>
               ) : (

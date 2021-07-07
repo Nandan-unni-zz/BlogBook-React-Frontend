@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input } from "antd";
 import { Redirect } from "react-router-dom";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 import { deleteWriterAPI } from "../../../services/writer";
 
 class DeleteAccount extends Component {
@@ -35,6 +35,7 @@ class DeleteAccount extends Component {
     return (
       <div className="DeleteAccount">
         <Logo />
+        <Navbar />
         <br />
         <br />
         <br />
