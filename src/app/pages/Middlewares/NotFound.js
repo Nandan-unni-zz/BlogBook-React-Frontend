@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 
 class NotFound extends Component {
   render() {
     return (
       <div className="Error">
         <Logo />
+        <Navbar />
         <br />
         <br />
         <br />

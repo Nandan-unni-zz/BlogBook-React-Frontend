@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { message, Skeleton } from "antd";
-import { Button, Navbar, Stud } from "../../components";
+import { Navbar, Stud } from "../../components";
 import { Link } from "react-router-dom";
 
 import { likeBlogAPI, saveBlogAPI, getBlogAPI } from "../../../services/blog";

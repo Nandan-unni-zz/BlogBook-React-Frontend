@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
-import { Button, Logo, Portal } from "../../components";
+import { Button, Logo, Portal, Navbar } from "../../components";
 
 class SuccessPage extends Component {
   render() {
     return (
       <div className="SuccessPage">
         <Logo />
+        <Navbar />
         <br />
         <br />
         <br />
@@ -24,11 +25,11 @@ class SuccessPage extends Component {
                 class="normal"
               >
                 Gmail
-              </Button>{" "}
+              </Button>
               &nbsp;
               <Button href="/login/" class="outline">
                 Resend Mail
-              </Button>{" "}
+              </Button>
               &nbsp;
               <Button href="/login/" class="normal">
                 Login
