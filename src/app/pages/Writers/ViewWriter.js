@@ -262,11 +262,11 @@ class ViewAccount extends Component {
                       (follower) =>
                         follower.username === this.state.user.username
                     ) ? (
-                      <Button class="outline" onClick={this.handleFollow}>
+                      <Button className="outline" onClick={this.handleFollow}>
                         Unfollow
                       </Button>
                     ) : (
-                      <Button class="normal" onClick={this.handleFollow}>
+                      <Button className="normal" onClick={this.handleFollow}>
                         Follow
                       </Button>
                     )}

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Form, Input } from "antd";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { Button, Logo, Portal, Navbar } from "../../components";
 import { updateWriterAPI } from "../../../services/writer";
+import { routes } from "../../router/routes";
 
 class EditAccount extends Component {
   constructor(props) {
@@ -93,14 +94,16 @@ class EditAccount extends Component {
 
             <Form.Item>
               <center>
-                <Button class="normal">Save</Button>
+                <Button className="normal">Save</Button>
                 <br />
-                <a href={`/writer/view/${user.username}`}>Change Profile Pic</a>
+                <Link to={routes.VIEW_WRITER(user.username)}>
+                  Change Profile Pic
+                </Link>
               </center>
             </Form.Item>
           </Form>
           <center>
-            <a href={`/writer/view/${user.username}`}>Cancel</a>
+            <Link to={routes.VIEW_WRITER(user.username)}>Cancel</Link>
           </center>
         </Portal>
       </div>

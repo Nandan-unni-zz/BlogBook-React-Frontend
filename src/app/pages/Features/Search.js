@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Form } from "antd";
 
 import "./Search.css";
 import { Navbar } from "../../components";
+import { Spin, Button } from "antd";
 
 import {
   searchWriterAPI,
@@ -18,93 +18,95 @@ class Search extends Component {
       user: JSON.parse(localStorage.getItem("user")),
       results: [],
       username: "",
-      loaded: false,
+      loading: true,
+      msg: "Start typing to search ...",
+      followingUser: -1,
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFollow = this.handleFollow.bind(this);
   }
+
   handleFollow = async (pk) => {
+    this.setState({ followingUser: pk });
     const response = await followWriterAPI(this.state.user.pk, pk);
-    if (response.status === 200)
-      getWritersAPI().then((result) => {
-        this.setState({ results: result, loaded: true });
-      });
+    if (response.status === 200) {
+      this.handleSearch(this.state.username);
+      this.setState({ followingUser: -1 });
+    }
   };
-  handleChange = (event) => {
-    this.setState({ [event.target.id]: event.target.value, errMsg: "" });
-    console.log(this.state.username);
-  };
-  handleSubmit = async () => {
+
+  handleSearch = async (val) => {
+    this.setState({ loading: true, msg: "", username: val });
     const response = await searchWriterAPI({ username: this.state.username });
     if (response.status === 200)
-      this.setState({ results: response.data, loaded: true });
-    else this.setState({ errMsg: "Invalid email or password." });
+      this.setState({
+        results: response.data,
+        loading: false,
+        msg: `${response.data.length} results found`,
+      });
+    else this.setState({ loading: false, msg: "Error in fetching results" });
   };
+
+  handleSubmit = async () => {};
+
   componentDidMount() {
     getWritersAPI().then((result) => {
-      this.setState({ results: result, loaded: true });
+      this.setState({ results: result, loading: false });
     });
   }
+
   render() {
     return (
-      <div className="Search">
-        <Navbar feed profile />
-        <br />
-        <br />
-        <center>
-          <div className="search-bar">
-            <Form onFinish={this.handleSubmit}>
-              <div className="search-box">
-                <div className="search-in">
-                  <Form.Item>
-                    <input
-                      id="username"
-                      name="username"
-                      type="sear"
-                      placeholder="Search with pen name"
-                      onChange={this.handleChange}
-                    />{" "}
-                    &nbsp;
-                  </Form.Item>
-                </div>
-                <div className="search-out">
-                  <Form.Item>
-                    <button type="submit">
-                      <i class="material-icons">search</i>
-                    </button>
-                  </Form.Item>
-                </div>
-              </div>
-            </Form>
+      <div className="SearchWrapper">
+        <Navbar backBtn feed profile />
+        <div className="search">
+          <div className="search-input">
+            <input onChange={({ target }) => this.handleSearch(target.value)} />
+            <span className="material-icons">search</span>
           </div>
-        </center>
-        <br />
-        <div className="search-results">
-          {this.state.loaded ? (
-            <span>
-              <br />{" "}
-              {this.state.results.map((result) => (
-                <span>
-                  <div className="search-result">
-                    <div className="result-img">
-                      <img src={writerImg} alt="dp" />
+          <div className="search-msg">
+            {this.state.loading ? <Spin /> : this.state.msg}
+          </div>
+          <div className="search-output">
+            {this.state.results.map(
+              (result) =>
+                result.username !== this.state.user.username && (
+                  <div className="search-card">
+                    <div className="search-card-left">
+                      <img
+                        src={result.dp}
+                        onError={({ target }) => (target.src = writerImg)}
+                        alt={"test"}
+                      />
+                      <div className="search-card-dtl">
+                        <h4>{result.username}</h4>
+                        <p>{result.name}</p>
+                      </div>
                     </div>
-                    <div className="result-names">
-                      <unm>{result.username}</unm>
-                      <br />
-                      <nm>{result.name}</nm>
-                    </div>
+                    {result.followers.some(
+                      (follower) =>
+                        follower.username === this.state.user.username
+                    ) ? (
+                      <Button
+                        type="ghost"
+                        size="middle"
+                        onClick={() => this.handleFollow(result.pk)}
+                        loading={this.state.followingUser === result.pk}
+                      >
+                        Unfollow
+                      </Button>
+                    ) : (
+                      <Button
+                        type="primary"
+                        size="middle"
+                        onClick={() => this.handleFollow(result.pk)}
+                        loading={this.state.followingUser === result.pk}
+                      >
+                        Follow
+                      </Button>
+                    )}
                   </div>
-                  <br />
-                  <div className="result-divider"></div>
-                  <br />
-                </span>
-              ))}{" "}
-            </span>
-          ) : (
-            <span></span>
-          )}
+                )
+            )}
+          </div>
         </div>
       </div>
     );

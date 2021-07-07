@@ -13,8 +13,38 @@
   justify-content: center;
   width: 100%;
 }
+.portal-login {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.portal-notif {
+  border: 2px solid #ebebeb;
+  background-color: whitesmoke;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+.portal-notif li {
+  color: black;
+  display: flex;
+}
+.portal-notif span {
+  font-weight: 900;
+  min-width: 80px;
+}
+.portal-notif h3 {
+  font-weight: 900;
+  font-size: 20px;
+}
+
 .portal {
-  border: 1px solid #ebebeb;
+  border: 2px solid #ebebeb;
   padding: 20px;
   border-radius: 10px;
   width: 50%;
@@ -50,7 +80,14 @@
   .auth-layout .auth-right {
     min-height: 50vh;
   }
-  .portal {
+  .portal-notif h3 {
+    font-size: 17px;
+  }
+  .portal-notif li {
+    font-size: 14px;
+  }
+  .portal,
+  .portal-notif {
     width: 80%;
   }
 }

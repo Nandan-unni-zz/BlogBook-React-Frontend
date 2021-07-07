@@ -72,7 +72,7 @@ class AccountSetup extends Component {
             <br />
             <Form.Item>
               <center>
-                <Button class="normal">Save & Continue</Button>
+                <Button className="normal">Save & Continue</Button>
                 <br />
               </center>
             </Form.Item>

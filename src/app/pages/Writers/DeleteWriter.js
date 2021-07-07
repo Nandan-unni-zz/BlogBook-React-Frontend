@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Form, Input } from "antd";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 import { Button, Logo, Portal, Navbar } from "../../components";
 import { deleteWriterAPI } from "../../../services/writer";
+import { routes } from "../../router/routes";
 
 class DeleteAccount extends Component {
   constructor(props) {
@@ -69,9 +70,11 @@ class DeleteAccount extends Component {
 
             <Form.Item>
               <center>
-                <Button class="danger">Delete Account</Button>
+                <Button className="danger">Delete Account</Button>
                 <br />
-                <a href={`/writer/view/${this.state.user.username}`}>Cancel</a>
+                <Link to={routes.VIEW_WRITER(this.state.user.username)}>
+                  Cancel
+                </Link>
               </center>
             </Form.Item>
           </Form>

@@ -3,10 +3,10 @@ import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";
 
-import { Menu, Dropdown, Row } from "antd";
+import { Menu, Dropdown, Row, Popover } from "antd";
 
 import "./Feed.css";
-import { Logo, Navbar, Footer, Stud } from "../../components";
+import { Logo, Navbar, Footer, Stud, AccountCard } from "../../components";
 import { likeBlogAPI, saveBlogAPI, feedAPI } from "../../../services/blog";
 import { ellipsis } from "../../../utils";
 import { routes } from "../../router/routes";
@@ -92,6 +92,7 @@ class Feed extends Component {
       >
         <Logo />
         <Navbar api createBlog search profile logout />
+
         <div className="Blogs">
           {this.state.loaded ? (
             this.state.blogs.map((blog) => (
@@ -99,15 +100,26 @@ class Feed extends Component {
                 <div className="Blog-Head">
                   <div className="Blog-Head-left">
                     <img
-                      src={writerImg}
+                      src={blog.author.dp}
                       onError={(e) => (e.target.src = writerImg)}
                       alt="dp"
                     />
                     <span>
                       <h3>{blog.title}</h3>
-                      <Link to={routes.VIEW_WRITER(blog.author.username)}>
-                        {blog.author.username}
-                      </Link>
+                      <Popover
+                        content={
+                          <AccountCard
+                            img={blog.author.dp}
+                            username={blog.author.username}
+                            name={blog.author.name}
+                          />
+                        }
+                        style={{ padding: 0 }}
+                      >
+                        <Link to={routes.VIEW_WRITER(blog.author.username)}>
+                          {blog.author.username}
+                        </Link>
+                      </Popover>
                     </span>
                   </div>
                   <div className="Blog-Head-right">

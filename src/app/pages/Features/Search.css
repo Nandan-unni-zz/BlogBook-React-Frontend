@@ -1,101 +1,96 @@
-.search-in input, .search-out button {
-    background-color: white;
-    color: rgb(0, 128, 255);
-    border: none;
-    outline: none;
-    font-size: 2vh;
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vh;
+  font-family: "Ubuntu", sans-serif;
 }
-.search-in input {
-    width: 30vw;
+.search-input {
+  width: 50%;
+  height: 5vh;
+  border-radius: 20px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ebebeb;
 }
-.search-out button {
-    background-color: transparent;
+.search-input input {
+  width: 100%;
+  height: 100%;
+  margin: 0 10px;
+  border: none;
+  outline: none;
+  font-size: 15px;
 }
-.search-out i {
-    font-size: 4vh;
-    cursor: pointer;
-    color: tomato;
+.search-input span {
+  cursor: pointer;
 }
-.search-in {
-    margin-left: 2vw;
-    margin-right: auto;
+
+.search-msg {
+  margin: 20px 0;
+  min-height: 30px;
+  color: darkgray;
 }
-.search-out {
-    margin-right: 1.5vw;
-    margin-left: auto;
-    order: 2;
-    background-color: transparent;
+
+.search-output {
+  width: 50%;
 }
-.search-box {
-    display: flex;
-    margin-top: 0.5vh;
+.search-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 20px;
+  width: 80%;
+  margin: auto;
+  border-bottom: 2px solid #ebebeb;
 }
-.search-bar {
-    margin-top: 4vh;
-    height: 5.5vh;
-    width: 40vw;
-    border: 0.1vh solid rgb(0, 30, 70);
-    border-radius: 5vh;
+.search-card img {
+  width: 50px;
+  height: 50px;
 }
-.search-results {
-    font-family: 'Ubuntu', sans-serif;
+.search-card-left {
+  display: flex;
 }
-.search-result {
-    display: flex;
-    margin-right: 35vw;
-    margin-left: 35vw;
+.search-card-dtl {
+  margin-left: 10px;
 }
-.result-img img {
-    border-radius: 100%;
-    height: 7vh;
-    width: 7vh;
+.search-card-dtl h4 {
+  font-size: 18px;
+  font-weight: 900;
+  margin: 0;
+  width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.result-names {
-    margin-left: 3vw;
+.search-card-dtl p {
+  color: gray;
+  margin: 0;
+  width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.result-names unm {
-    font-size: 1.8vh;
-    font-weight: 900;
-    color: rgb(45, 45, 45);
+.search-card .ant-btn {
+  border-radius: 5px;
 }
-.result-names nm {
-    font-size: 1.5vh;
-    color: rgb(85, 85, 85);
-}
-.result-ctrl {
-    margin-left: 5vw;
-}
-.result-divider {
-    background-color: rgb(110, 150, 200);
-    height: 0.1vh;
-    margin-right: 25vw;
-    margin-left: 25vw;
-}
+
 @media only screen and (max-width: 600px) {
-    .search-bar {
-        margin-top: 3vh;
-        height: 5vh;
-        width: 70vw;
-        border: 0.1vh solid rgb(0, 30, 70);
-        border-radius: 5vh;
-        overflow: hidden;
-    }
-    .search-in input {
-        width: 55vw;
-    }
-    .search-box {
-        display: flex;
-        margin-top: 0.6vh;
-    }
-    .result-divider {
-        background-color: rgb(110, 150, 200);
-        height: 0.1vh;
-        margin-right: 10vw;
-        margin-left: 10vw;
-    }
-    .search-result {
-        display: flex;
-        margin-right: 20vw;
-        margin-left: 20vw;
-    }
+  .search-input,
+  .search-output {
+    width: 90%;
+  }
+  .search-card {
+    width: 100%;
+    padding: 15px 15px;
+  }
+
+  .search-card-dtl h4 {
+    font-size: 15px;
+    width: 140px;
+  }
+  .search-card-dtl p {
+    font-size: 13px;
+    width: 140px;
+  }
 }
