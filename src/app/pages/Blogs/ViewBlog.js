@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { message, Skeleton } from "antd";
-import { Button, Navbar } from "../../components";
+import { Button, Navbar, Stud } from "../../components";
 import { Link } from "react-router-dom";
 
 import { likeBlogAPI, saveBlogAPI, getBlogAPI } from "../../../services/blog";
@@ -41,7 +41,7 @@ class ViewBlog extends Component {
     const blog = this.state.blog;
     return (
       <div className="Feed">
-        <Navbar feed profile logout />
+        <Navbar backBtn feed profile logout />
         <div className="Blogs">
           {this.state.loaded ? (
             <div className="Blog">
@@ -66,60 +66,59 @@ class ViewBlog extends Component {
               ></div>
               {blog.author.username !== this.state.user.username ? (
                 <div className="Blog-Nav">
-                  <span>
-                    <p>{blog.no_of_likes}</p>
-                    {blog.likes.some(
-                      (like) => like.username === this.state.user.username
-                    ) ? (
-                      <button
-                        class="material-icons liked"
-                        onClick={() => this.handleLike(blog.pk)}
-                      >
-                        favorite
-                      </button>
-                    ) : (
-                      <button
-                        class="material-icons not-liked"
-                        onClick={() => this.handleLike(blog.pk)}
-                      >
-                        favorite_border
-                      </button>
-                    )}
-                  </span>
-                  {blog.saves.some(
-                    (save) => save.username === this.state.user.username
-                  ) ? (
-                    <button
-                      className="material-icons bookmarked"
-                      onClick={() => this.handleSave(blog.pk)}
-                    >
-                      bookmark
-                    </button>
-                  ) : (
-                    <button
-                      class="material-icons not-bookmarked"
-                      onClick={() => this.handleSave(blog.pk)}
-                    >
-                      bookmark_border
-                    </button>
-                  )}
+                  <div onClick={() => this.handleLike(blog.pk)}>
+                    <Stud
+                      type="Like"
+                      icon="favorite"
+                      theme="#ff6347"
+                      count={blog.no_of_likes}
+                      active={blog.likes.some(
+                        (like) => like.username === this.state.user.username
+                      )}
+                    />
+                  </div>
+                  <div onClick={() => this.handleSave(blog.pk)}>
+                    <Stud
+                      type="Save"
+                      icon="bookmark"
+                      theme="#1e90ff"
+                      active={blog.saves.some(
+                        (like) => like.username === this.state.user.username
+                      )}
+                    />
+                  </div>
                 </div>
               ) : (
-                <div className="Blog-View-Nav">
-                  <Button class="normal" href={routes.EDIT_BLOG(blog.pk)}>
-                    Edit Blog
-                  </Button>
-                  <Button class="danger" href={routes.DELETE_BLOG(blog.pk)}>
-                    Delete Blog
-                  </Button>
-                  <Button
-                    class="normal"
+                <div className="Blog-Nav">
+                  <div onClick={() => this.handleLike(blog.pk)}>
+                    <Stud
+                      type="Like"
+                      icon="favorite"
+                      theme="#ff6347"
+                      count={blog.no_of_likes}
+                      active={blog.likes.some(
+                        (like) => like.username === this.state.user.username
+                      )}
+                    />
+                  </div>
+                  <Link to={routes.EDIT_BLOG(blog.pk)}>
+                    <Stud type="Edit" icon="edit" theme="#1e90ff" active />
+                  </Link>
+                  <div
                     onClick={() =>
-                      message.warning("This button is currently unavailable !")
+                      message.warn("This button is currently unavailable !")
                     }
                   >
-                    {blog.is_published ? "Archive Blog" : "Publish Blog"}
-                  </Button>
+                    <Stud
+                      type={blog.is_published ? "Archive" : "Publish"}
+                      icon={blog.is_published ? "archive" : "library_books"}
+                      theme="#008000"
+                      active
+                    />
+                  </div>
+                  <Link to={routes.DELETE_BLOG(blog.pk)}>
+                    <Stud type="Delete" icon="delete" theme="#ff6347" active />
+                  </Link>
                 </div>
               )}
             </div>
