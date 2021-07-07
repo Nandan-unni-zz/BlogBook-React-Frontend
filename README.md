@@ -25,4 +25,4 @@ This is a website where you can write and publish Blogs. <br />
 ## Status
 
 **\_>** The frontend is hosted on Firebase and is available at [BlogBook Website](https://blogbook.web.app)<br />
-**\_>** The backend is hosted on Heroku and is available at [BlogBook API](http://keyblogsapi.herokuapp.com/api/)<br />
+**\_>** The backend is hosted on Heroku and is available at [BlogBook API](http://blogbookapi.herokuapp.com/api/)<br />

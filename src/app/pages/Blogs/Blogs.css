@@ -52,3 +52,11 @@
   display: flex;
   justify-content: center;
 }
+.blog-create-nav .ant-btn {
+  font-family: "Montserrat", sans-serif;
+  border-radius: 5px;
+  font-size: 1.5vh;
+  font-weight: 900;
+  width: 15vh;
+  height: 5vh;
+}

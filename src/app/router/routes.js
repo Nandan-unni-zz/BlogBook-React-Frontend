@@ -1,10 +1,11 @@
 export const routes = {
-  HOME: "/",
   FEED: "/feed/",
   SEARCH: "/search/",
-
-  LOGIN: "/login/",
+  LOGIN: "/",
+  HOME: "/",
+  SIGNUP: "/signup",
   LOGOUT: "/logout/",
+
   CREATE_WRITER: "/writer/create/",
   SETUP_WRITER: (username) => `/writer/setup/${username}`,
   VIEW_WRITER: (username) => `/writer/view/${username}`,

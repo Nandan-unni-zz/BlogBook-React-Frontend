@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Form, Input, message } from "antd";
+import { Form, Input, message, Button } from "antd";
 import { Redirect } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import draftjsToHtml from "draftjs-to-html";
 
 import "./Blogs.css";
-import { Button, Navbar } from "../../components";
+import { Navbar } from "../../components";
 import { createBlogAPI } from "../../../services/blog";
 import { routes } from "../../router/routes";
 
@@ -18,6 +18,8 @@ class CreateBlog extends Component {
       content: "",
       type: "",
       status: "",
+      isPublishing: false,
+      isArchiving: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleContentChange = this.handleContentChange.bind(this);
@@ -35,6 +37,10 @@ class CreateBlog extends Component {
   };
   handleSubmit = async () => {
     let status;
+    this.setState({
+      isPublishing: this.state.type === "publish",
+      isArchiving: this.state.type === "archive",
+    });
     status = await createBlogAPI({
       title: this.state.title,
       content: draftjsToHtml(this.state.content),
@@ -93,14 +99,20 @@ class CreateBlog extends Component {
             <Form.Item>
               <div className="blog-create-nav">
                 <Button
-                  class="outline"
+                  type="ghost"
+                  htmlType="submit"
+                  disabled={this.state.isPublishing}
+                  loading={this.state.isArchiving}
                   onClick={() => this.selectMethod("archive")}
                 >
                   Archive
-                </Button>{" "}
+                </Button>
                 &nbsp; &nbsp; &nbsp;
                 <Button
-                  class="normal"
+                  type="primary"
+                  htmlType="submit"
+                  loading={this.state.isPublishing}
+                  disabled={this.state.isArchiving}
                   onClick={() => this.selectMethod("publish")}
                 >
                   Publish

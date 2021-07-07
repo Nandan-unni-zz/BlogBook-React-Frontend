@@ -27,7 +27,7 @@ class Navbar extends Component {
         {this.props.backBtn && (
           <div onClick={() => window.history.back()}>
             <nav>
-              <span class="material-icons">arrow_back</span>
+              <span className="material-icons">arrow_back</span>
               <p>Back</p>
             </nav>
           </div>
@@ -36,7 +36,7 @@ class Navbar extends Component {
           {this.props.api && this.state.user.is_superuser && (
             <Link to="https://blogbookapi.herokuapp.com">
               <nav>
-                <span class="material-icons">construction</span>
+                <span className="material-icons">construction</span>
                 <p>API</p>
               </nav>
             </Link>
@@ -44,7 +44,7 @@ class Navbar extends Component {
           {this.props.createBlog && (
             <Link to={routes.CREATE_BLOG}>
               <nav>
-                <span class="material-icons">create</span>
+                <span className="material-icons">create</span>
                 <p>New Blog</p>
               </nav>
             </Link>
@@ -52,7 +52,7 @@ class Navbar extends Component {
           {this.props.search && (
             <Link to={routes.SEARCH}>
               <nav>
-                <span class="material-icons">person_add_alt_1</span>
+                <span className="material-icons">person_add_alt_1</span>
                 <p>Search</p>
               </nav>
             </Link>
@@ -60,7 +60,7 @@ class Navbar extends Component {
           {this.props.feed && (
             <Link to={routes.FEED}>
               <nav>
-                <span class="material-icons">home</span>
+                <span className="material-icons">home</span>
                 <p>Feed</p>
               </nav>
             </Link>
@@ -68,7 +68,7 @@ class Navbar extends Component {
           {this.props.profile && (
             <Link to={routes.VIEW_WRITER(this.state.user.username)}>
               <nav>
-                <span class="material-icons">account_circle</span>
+                <span className="material-icons">account_circle</span>
                 <p>Profile</p>
               </nav>
             </Link>
@@ -76,7 +76,7 @@ class Navbar extends Component {
           {this.props.logout && (
             <div to={routes.LOGOUT} onClick={this.handleLogout}>
               <nav>
-                <span class="material-icons">power_settings_new</span>
+                <span className="material-icons">power_settings_new</span>
                 <p>Logout</p>
               </nav>
             </div>

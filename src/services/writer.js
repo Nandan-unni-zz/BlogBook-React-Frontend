@@ -1,4 +1,5 @@
 import axios from "axios";
+import { routes } from "../app/router/routes";
 import { config } from "../config";
 
 const API_URL = config.BASE_API_URL + "/api/writer";
@@ -19,6 +20,7 @@ export const logoutWriterAPI = async (pk) => {
   const url = `${API_URL}/logout/${pk}/`;
   axios.get(url);
   localStorage.removeItem("user");
+  window.location.href = routes.HOME;
 };
 
 export const createWriterAPI = async (data) => {

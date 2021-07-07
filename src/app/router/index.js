@@ -1,14 +1,16 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+// Auth
+import Login from "../pages/Auth/Login";
+import Signup from "../pages/Auth/Signup";
+
 // Features
 import Home from "../pages/Features/Home";
 import Feed from "../pages/Features/Feed";
 import Search from "../pages/Features/Search";
 
 // Writers
-import CreateWriter from "../pages/Writers/CreateWriter";
-import LoginWriter from "../pages/Writers/LoginWriter";
 import SetupWriter from "../pages/Writers/SetupWriter";
 import ViewWriter from "../pages/Writers/ViewWriter";
 import UpdateWriter from "../pages/Writers/UpdateWriter";
@@ -32,13 +34,12 @@ function Router() {
     <div className="Keyblogs">
       <BrowserRouter>
         <Switch>
-          <Route exact path={routes.HOME} component={Home} />
+          <Route exact path={routes.HOME} component={Login} />
+          <Route exact path={routes.SIGNUP} component={Signup} />
+          <Route exact path={routes.LOGOUT} component={Home} />
+
           <Route exact path={routes.FEED} component={Feed} />
           <Route exact path={routes.SEARCH} component={Search} />
-
-          <Route exact path={routes.LOGIN} component={LoginWriter} />
-          <Route exact path={routes.LOGOUT} component={Home} />
-          <Route exact path={routes.CREATE_WRITER} component={CreateWriter} />
           <Route
             exact
             path={routes.SETUP_WRITER(":username")}

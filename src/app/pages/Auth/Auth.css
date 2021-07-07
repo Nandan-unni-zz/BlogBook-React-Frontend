@@ -1,0 +1,56 @@
+.auth-layout {
+  margin: 5% 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.auth-layout .auth-left {
+  width: 100%;
+}
+.auth-layout .auth-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.portal {
+  border: 1px solid #ebebeb;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  text-align: center;
+}
+.portal h2 {
+  font-weight: 900;
+  font-size: 25px;
+}
+.portal-err {
+  color: tomato;
+}
+.portal-msg {
+  color: dodgerblue;
+}
+.portal-submit {
+  font-family: "Montserrat", sans-serif;
+  border-radius: 5px;
+  font-size: 1.5vh;
+  font-weight: 900;
+  width: 12vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .auth-layout {
+    flex-direction: column-reverse;
+    margin: 4% 0;
+  }
+  .auth-layout .auth-left {
+    height: 30vh;
+    margin-top: 20px;
+  }
+  .auth-layout .auth-right {
+    min-height: 50vh;
+  }
+  .portal {
+    width: 80%;
+  }
+}

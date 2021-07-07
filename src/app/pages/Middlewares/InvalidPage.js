@@ -21,7 +21,7 @@ class InvalidPage extends Component {
             </p>
             <br />
             <div className="multi-button">
-              <Button href="/login/" class="outline">
+              <Button href="/login/" type="outline">
                 Resend Mail
               </Button>{" "}
               &nbsp;
