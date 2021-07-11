@@ -21,49 +21,49 @@ function Skltn() {
         </center>
         <div className="Prof-dtl">
           <center>
-            <nm>
+            <p>
               <Skeleton width={"20vw"} />
-            </nm>
+            </p>
             <br />
-            <unm>
+            <p>
               <Skeleton width={"5vw"} />
-            </unm>
+            </p>
             &nbsp; <b>|</b> &nbsp;
-            <eml>
+            <p>
               <Skeleton width={"6vw"} />
-            </eml>
+            </p>
             <div className="Prof-math">
               <a href="?tab=published">
                 <div className="math-dtl">
-                  <n>
+                  <p>
                     <Skeleton width={"3vw"} />
-                  </n>
+                  </p>
                   <br />
-                  <t>Blogs</t>
+                  <p>Blogs</p>
                 </div>
               </a>
               <a href="?tab=following">
                 <div className="math-dtl">
-                  <n>
+                  <p>
                     <Skeleton width={"3vw"} />
-                  </n>
+                  </p>
                   <br />
-                  <t>Following</t>
+                  <p>Following</p>
                 </div>
               </a>
               <a href="?tab=followers">
                 <div className="math-dtl">
-                  <n>
+                  <p>
                     <Skeleton width={"3vw"} />
-                  </n>
+                  </p>
                   <br />
-                  <t>Followers</t>
+                  <p>Followers</p>
                 </div>
               </a>
             </div>
-            <bio>
+            <p className="bio">
               <Skeleton width={"30vw"} />
-            </bio>
+            </p>
             <br />
           </center>
           <br />
@@ -195,16 +195,16 @@ class ViewAccount extends Component {
               </div>
               <div className="Prof-dtl">
                 <center>
-                  <nm>{writer.name}</nm>
+                  <p className="nm">{writer?.name}</p>
                   <br />
                   <Tooltip overlay="Username">
-                    <unm>{writer.username} </unm>
+                    <span className="unm">{writer?.username} </span>
                   </Tooltip>
-                  {user.username === writer.username ? (
+                  {user.username === writer?.username ? (
                     <span>
                       &nbsp; <b>|</b> &nbsp;
                       <Tooltip overlay="Email">
-                        <eml>{writer.email}</eml>
+                        <span className="eml">{writer?.email}</span>
                       </Tooltip>
                     </span>
                   ) : (
@@ -214,29 +214,26 @@ class ViewAccount extends Component {
                   <div className="Prof-math">
                     <Link to="?tab=published" onClick={this.handleTabChange}>
                       <div className="math-dtl">
-                        <n>{writer.no_of_blogs}</n>
-                        <br />
-                        <t>Blogs</t>
+                        <p className="no">{writer?.no_of_blogs}</p>
+                        <p className="tg">Blogs</p>
                       </div>
                     </Link>
                     <Link to="?tab=following" onClick={this.handleTabChange}>
                       <div className="math-dtl">
-                        <n>{writer.no_of_following}</n>
-                        <br />
-                        <t>Following</t>
+                        <p className="no">{writer?.no_of_following}</p>
+                        <p className="tg">Following</p>
                       </div>
                     </Link>
                     <Link to="?tab=followers" onClick={this.handleTabChange}>
                       <div className="math-dtl">
-                        <n>{writer.no_of_followers}</n>
-                        <br />
-                        <t>Followers</t>
+                        <p className="no">{writer?.no_of_followers}</p>
+                        <p className="tg">Followers</p>
                       </div>
                     </Link>
                   </div>
 
                   <Tooltip overlay="Bio">
-                    <bio>{writer.bio}</bio>
+                    <p className="bio">{writer.bio}</p>
                   </Tooltip>
                   <br />
                 </center>
@@ -277,39 +274,38 @@ class ViewAccount extends Component {
             <div className="Prof-Nav">
               <div className={`Prof-Nav-item${this.state.following}`}>
                 <Link to="?tab=following" onClick={this.handleTabChange}>
-                  <i class="material-icons">person</i>
-                  <br />
-                  <z>Following</z>
+                  <i className="material-icons">person</i>
+                  <p className="tbz">Following</p>
                 </Link>
               </div>
               <div className={`Prof-Nav-item${this.state.followers}`}>
                 <Link to="?tab=followers" onClick={this.handleTabChange}>
-                  <i class="material-icons">people</i>
+                  <i className="material-icons">people</i>
                   <br />
-                  <z>Followers</z>
+                  <p className="tbz">Followers</p>
                 </Link>
               </div>
               <div className={`Prof-Nav-item${this.state.published}`}>
                 <Link to="?tab=published" onClick={this.handleTabChange}>
-                  <i class="material-icons">library_books</i>
+                  <i className="material-icons">library_books</i>
                   <br />
-                  <z>Published</z>
+                  <p className="tbz">Published</p>
                 </Link>
               </div>
               {user.username === writer.username && (
                 <>
                   <div className={`Prof-Nav-item${this.state.archived}`}>
                     <Link to="?tab=archived" onClick={this.handleTabChange}>
-                      <i class="material-icons">archive</i>
+                      <i className="material-icons">archive</i>
                       <br />
-                      <z>Archived</z>
+                      <p className="tbz">Archived</p>
                     </Link>
                   </div>
                   <div className={`Prof-Nav-item${this.state.saved}`}>
                     <Link to="?tab=saved" onClick={this.handleTabChange}>
-                      <i class="material-icons">bookmarks</i>
+                      <i className="material-icons">bookmarks</i>
                       <br />
-                      <z>Saved</z>
+                      <p className="tbz">Saved</p>
                     </Link>
                   </div>
                 </>
@@ -324,7 +320,10 @@ class ViewAccount extends Component {
         {this.state.tab === "following" && (
           <div className="prof-tab-cards">
             {writer.following.map((avatar) => (
-              <a href={routes.VIEW_WRITER(avatar.username)}>
+              <a
+                href={routes.VIEW_WRITER(avatar.username)}
+                key={avatar.username}
+              >
                 <div className="prof-tab-card">
                   <img src={writerImg} alt="authorDP" />
                   <div className="prof-tab-card-content">
@@ -340,7 +339,10 @@ class ViewAccount extends Component {
         {this.state.tab === "followers" && (
           <div className="prof-tab-cards">
             {writer.followers.map((avatar) => (
-              <a href={routes.VIEW_WRITER(avatar.username)}>
+              <a
+                href={routes.VIEW_WRITER(avatar.username)}
+                key={avatar.username}
+              >
                 <div className="prof-tab-card">
                   <img src={writerImg} alt="authorDP" />
                   <div className="prof-tab-card-content">
@@ -356,7 +358,7 @@ class ViewAccount extends Component {
         {this.state.tab === "published" && (
           <div className="prof-tab-cards">
             {writer.pub_blogs.map((blog) => (
-              <Link to={routes.VIEW_BLOG(blog.pk)}>
+              <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
                 <div className="prof-tab-card">
                   <img src={writerImg} alt="authorDP" />
                   <div className="prof-tab-card-content">
@@ -387,7 +389,7 @@ class ViewAccount extends Component {
             {this.state.tab === "archived" && (
               <div className="prof-tab-cards">
                 {writer.arch_blogs.map((blog) => (
-                  <Link to={routes.VIEW_BLOG(blog.pk)}>
+                  <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
                     <div className="prof-tab-card">
                       <img src={writerImg} alt="authorDP" />
                       <div className="prof-tab-card-content">
@@ -416,7 +418,7 @@ class ViewAccount extends Component {
             {this.state.tab === "saved" && (
               <div className="prof-tab-cards">
                 {writer.saved_blogs.map((blog) => (
-                  <Link to={routes.VIEW_BLOG(blog.pk)}>
+                  <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
                     <div className="prof-tab-card">
                       <img src={writerImg} alt="authorDP" />
                       <div className="prof-tab-card-content">

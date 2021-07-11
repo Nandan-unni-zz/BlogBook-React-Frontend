@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, Input, message, Button } from "antd";
-import { Redirect } from "react-router-dom";
 import { Editor } from "react-draft-wysiwyg";
 import draftjsToHtml from "draftjs-to-html";
 
@@ -17,7 +16,6 @@ class CreateBlog extends Component {
       title: "",
       content: "",
       type: "",
-      status: "",
       isPublishing: false,
       isArchiving: false,
     };
@@ -36,21 +34,29 @@ class CreateBlog extends Component {
     this.setState({ type: method });
   };
   handleSubmit = async () => {
-    let status;
-    this.setState({
-      isPublishing: this.state.type === "publish",
-      isArchiving: this.state.type === "archive",
-    });
-    status = await createBlogAPI({
-      title: this.state.title,
-      content: draftjsToHtml(this.state.content),
-      is_published: this.state.type === "publish",
-      author: this.state.user.pk,
-    });
-    if (status === 200) {
-      message.success("New blog ", this.state.type, " !");
-      this.setState({ isSuccess: true });
-    } else this.setState({ errMsg: "Some error occured." });
+    if (this.state.content !== "") {
+      let status;
+      this.setState({
+        isPublishing: this.state.type === "publish",
+        isArchiving: this.state.type === "archive",
+      });
+      status = await createBlogAPI({
+        title: this.state.title,
+        content: draftjsToHtml(this.state.content),
+        is_published: this.state.type === "publish",
+        author: this.state.user.pk,
+      });
+      if (status === 200) {
+        message.success("New blog ", this.state.type, " !");
+        window.location.href = routes.FEED;
+      } else this.setState({ errMsg: "Some error occured." });
+      this.setState({
+        isPublishing: false,
+        isArchiving: false,
+      });
+    } else {
+      message.error("Please add some content !");
+    }
   };
   render() {
     return (
@@ -87,13 +93,6 @@ class CreateBlog extends Component {
               onChange={this.handleContentChange}
               editorClassName="richEditor"
             />
-            <center>
-              {!this.state.isSuccess ? (
-                <err>{this.state.errMsg}</err>
-              ) : (
-                <Redirect to={routes.FEED} />
-              )}
-            </center>
             <br />
 
             <Form.Item>

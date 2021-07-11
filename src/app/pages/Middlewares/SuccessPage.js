@@ -22,16 +22,16 @@ class SuccessPage extends Component {
             <div className="multi-button">
               <Button
                 href="https://mail.google.com/mail/u/0/#inbox"
-                class="normal"
+                className="normal"
               >
                 Gmail
               </Button>
               &nbsp;
-              <Button href="/login/" class="outline">
+              <Button href="/login/" className="outline">
                 Resend Mail
               </Button>
               &nbsp;
-              <Button href="/login/" class="normal">
+              <Button href="/login/" className="normal">
                 Login
               </Button>
             </div>

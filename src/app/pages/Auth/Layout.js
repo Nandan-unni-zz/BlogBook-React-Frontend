@@ -11,7 +11,7 @@ class Layout extends Component {
         <Logo />
         <div className="auth-layout">
           <div className="auth-left">
-            <img src={ideaPen} class="auth-img" alt="Idea pen" />
+            <img src={ideaPen} className="auth-img" alt="Idea pen" />
           </div>
           <div className="auth-right">{this.props.children}</div>
         </div>

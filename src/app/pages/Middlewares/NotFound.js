@@ -20,7 +20,7 @@ class NotFound extends Component {
               found on this server. <z>That's all we know.</z>
             </p>
             <br />
-            <Button href="/feed/" class="normal">
+            <Button href="/feed/" className="normal">
               Back to Feeds
             </Button>
           </center>

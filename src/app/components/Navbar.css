@@ -4,6 +4,7 @@
   background-color: rgb(30, 30, 30);
   align-items: center;
   transition: 0.3s ease-in-out;
+  z-index: 10;
 }
 .Navbar-fixed {
   top: 0;

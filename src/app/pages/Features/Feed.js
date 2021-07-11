@@ -65,10 +65,14 @@ class Feed extends Component {
     document.addEventListener("scroll", () => {
       var navbar = document.getElementById("Navbar");
       var sticky = navbar.offsetTop;
-      if (window.pageYOffset > sticky) {
-        navbar.classList.add("Navbar-fixed");
-      } else {
-        navbar.classList.remove("Navbar-fixed");
+      try {
+        if (window.pageYOffset > sticky) {
+          navbar.classList.add("Navbar-fixed");
+        } else {
+          navbar.classList.remove("Navbar-fixed");
+        }
+      } catch (err) {
+        console.log(err);
       }
     });
   }

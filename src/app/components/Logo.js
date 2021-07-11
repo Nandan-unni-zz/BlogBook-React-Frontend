@@ -9,7 +9,7 @@ class Logo extends Component {
       <div className="Logo">
         <div className="logo-text">
           <img src={favicon} alt="Logo" style={{ height: "3vh" }} /> &nbsp;
-          <kb>BlogBook</kb>
+          <strong>BlogBook</strong>
         </div>
       </div>
     );

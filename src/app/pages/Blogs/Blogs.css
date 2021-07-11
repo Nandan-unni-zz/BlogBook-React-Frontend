@@ -16,6 +16,7 @@
   font-family: "Ubuntu", sans-serif;
   width: 90vw;
   margin: auto;
+  margin-bottom: 100px;
 }
 .blog-create label {
   font-size: 1.7vh;
