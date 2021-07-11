@@ -5,6 +5,7 @@ const API_URL = config.BASE_API_URL + "/api/blog";
 
 export const createBlogAPI = async (data) => {
   const url = `${API_URL}/create/`;
+  console.log(data);
   var response;
   try {
     response = await axios.post(url, data);

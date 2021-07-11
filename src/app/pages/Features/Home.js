@@ -11,22 +11,22 @@ class Home extends Component {
         <Logo />
         <Navbar />
         <div className="auth-content">
-          <img src={ideaPen} align="left" class="auth-img" alt="Idea pen" />
+          <img src={ideaPen} align="left" className="auth-img" alt="Idea pen" />
           <br />
           <br />
           <p>
             <br />
             You're at the right place ! Create and publish your ideas as blogs.
-            Start blogging in <kb>Key Blogs</kb> by creating account or Log in
-            if you already have one.
+            Start blogging in <strong>Key Blogs</strong> by creating account or
+            Log in if you already have one.
           </p>
           <br />
           <div className="auth-nav">
             &nbsp;
-            <Button href="/writer/create/" class="normal">
+            <Button href="/writer/create/" className="normal">
               Create Account
             </Button>
-            <Button href="/login/" class="normal">
+            <Button href="/login/" className="normal">
               Log In
             </Button>
             &nbsp;

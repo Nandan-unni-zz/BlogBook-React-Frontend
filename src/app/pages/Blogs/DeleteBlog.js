@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import { Button, Logo, Portal, Navbar } from "../../components";
 import { deleteBlogAPI, getBlogAPI } from "../../../services/blog";
+import { routes } from "../../router/routes";
 
 class DeleteBlog extends Component {
   constructor(props) {
@@ -58,15 +59,15 @@ class DeleteBlog extends Component {
                           <err>{this.state.errMsg}</err>
                         ) : (
                           <Redirect
-                            to={`/writer/view/${this.state.user.username}`}
+                            to={routes.VIEW_WRITER(this.state.user.username)}
                           />
                         )}
                       </center>
                       <br />
                       <center>
-                        <Button class="danger">Delete Blog</Button>
+                        <Button className="danger">Delete Blog</Button>
                         <br />
-                        <a href={`/writer/view/${this.state.user.username}`}>
+                        <a href={routes.VIEW_WRITER(this.state.user.username)}>
                           Cancel
                         </a>
                       </center>
