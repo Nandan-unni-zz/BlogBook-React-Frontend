@@ -4,17 +4,16 @@ font-family: 'Electrolize', sans-serif;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Ubuntu', sans-serif;
 */
-
 * {
   margin: 0;
-  font-family: "Ubuntu", sans-serif;
   box-sizing: border-box;
-  text-decoration: none;
 }
-
 body {
   overflow-x: hidden;
-  font-size: 14px;
+  margin: 0;
+  color: rgb(25, 25, 25);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.8vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,8 +22,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+a {
+  text-decoration: none;
+}
 
-strong {
+kb {
   font-family: "Electrolize", sans-serif;
   color: tomato;
   font-weight: 900;

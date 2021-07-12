@@ -1,5 +1,6 @@
-import React, { Component } from "react";
 import "./Auth.css";
+
+import { Component } from "react";
 
 import { Logo } from "../../components";
 import { ideaPen } from "../../../static";

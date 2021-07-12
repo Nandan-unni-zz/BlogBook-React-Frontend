@@ -14,7 +14,8 @@
   background-color: rgb(0, 123, 247);
 }
 .normal button:hover {
-  background-color: dodgerblue;
+  background-color: #1e90ff;
+  background-color: #ff6347;
 }
 .normal button:active {
   background-color: rgb(0, 82, 165);

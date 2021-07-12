@@ -1,0 +1,13 @@
+.ant-btn {
+  font-family: "Montserrat", sans-serif;
+  background-color: dodgerblue;
+  border-color: dodgerblue;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 0 40px;
+}
+.ant-input,
+.ant-input-affix-wrapper {
+  border-radius: 6px;
+}
