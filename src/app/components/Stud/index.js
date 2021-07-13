@@ -4,12 +4,10 @@ import { Component } from "react";
 import { Tooltip } from "antd";
 
 class Stud extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hover: false,
-    };
-  }
+  state = {
+    hover: false,
+  };
+
   render() {
     return (
       <Tooltip overlay={this.props.type} placement="top">

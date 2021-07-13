@@ -1,23 +1,42 @@
 import "./index.css";
 
 import { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { routes } from "../../router/routes";
-import { logoutWriterAPI } from "../../../services/writer";
+import actions from "../../../store/actions";
+import { localUserStorage } from "../../../utils";
+
+const { logout } = actions;
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: JSON.parse(localStorage.getItem("user")),
-    };
-    this.handleLogout = this.handleLogout.bind(this);
-  }
+  state = {
+    user: localUserStorage.getUser(),
+  };
 
   handleLogout = () => {
-    logoutWriterAPI(this.state.user.pk);
+    this.props.logout(this.props.history);
   };
+
+  componentDidMount() {
+    document.addEventListener("scroll", () => {
+      let navbar = document.getElementById("Navbar");
+      let sticky = navbar.offsetTop;
+      if (window.pageYOffset > sticky) {
+        navbar.classList.add("Navbar-fixed");
+      } else {
+        navbar.classList.remove("Navbar-fixed");
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("scroll", () => {
+      let navbar = document.getElementById("Navbar");
+      navbar.classList.remove("Navbar-fixed");
+    });
+  }
 
   render() {
     return (
@@ -88,4 +107,8 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+export default connect(mapStateToProps, { logout })(withRouter(Navbar));

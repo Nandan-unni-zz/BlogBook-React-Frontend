@@ -43,9 +43,11 @@
 }
 .portal-err {
   color: tomato;
+  text-align: center;
 }
 .portal-msg {
   color: dodgerblue;
+  text-align: center;
 }
 .portal-notif {
   border: 2px solid #ebebeb;

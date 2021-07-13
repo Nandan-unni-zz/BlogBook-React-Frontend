@@ -1,20 +1,26 @@
 import "./index.css";
 
 import { Component } from "react";
-import { Form, Input, Button, Tag } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Form, Input, Button } from "antd";
 
 import Layout from "./Layout";
 import { routes } from "../../router/routes";
 import { icon } from "../../../static";
+import actions from "../../../store/actions";
+
+const { login } = actions;
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allowTrial: true,
-    };
-  }
+  state = {
+    allowTrial: true,
+  };
+
+  handleLogin = (values) => {
+    this.props.login(values.email, values.password, this.props.history);
+  };
+
   render() {
     return (
       <Layout>
@@ -64,7 +70,7 @@ class Login extends Component {
                   size="large"
                   htmlType="submit"
                   className="portal-submit"
-                  loading={false}
+                  loading={this.props.state.isSubmitting}
                 >
                   Login
                 </Button>
@@ -80,4 +86,8 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+export default connect(mapStateToProps, { login })(Login);

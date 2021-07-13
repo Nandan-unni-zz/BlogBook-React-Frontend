@@ -1,21 +1,32 @@
 import "./index.css";
 
 import { Component } from "react";
-import { Form, Input, message, Button } from "antd";
+import { connect } from "react-redux";
+import { Form, Input, Button } from "antd";
 import { Link } from "react-router-dom";
 
 import Layout from "./Layout";
 import { routes } from "../../router/routes";
-import { createWriterAPI } from "../../../services/writer";
 import { icon } from "../../../static";
+import actions from "../../../store/actions";
+
+const { signup } = actions;
 
 class Signup extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      allowTrial: true,
-    };
-  }
+  state = {
+    allowTrial: true,
+  };
+
+  handleSignup = (values) => {
+    this.props.signup(
+      values.name,
+      values.email,
+      values.password,
+      values.cpassword,
+      this.props.history
+    );
+  };
+
   render() {
     return (
       <Layout>
@@ -98,4 +109,8 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return { state };
+};
+
+export default connect(mapStateToProps, { signup })(Signup);
