@@ -2,19 +2,37 @@ import "./index.css";
 
 import { Component } from "react";
 import { connect } from "react-redux";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { Link } from "react-router-dom";
+import FeatherIcon from "feather-icons-react";
 
 import Layout from "./Layout";
 import { routes } from "../../router/routes";
 import { icon } from "../../../static";
 import actions from "../../../store/actions";
+import { getUsernamesAndEmailsService } from "../../../services/api/writer.api";
 
 const { signup } = actions;
 
 class Signup extends Component {
   state = {
     allowTrial: true,
+    emails: [],
+    loading: true,
+    isAvailable: false,
+  };
+
+  handleLiveCheck = (_, val) => {
+    if (val === "") {
+      this.setState({ isAvailable: false });
+      return Promise.reject(new Error("Please provide an email"));
+    } else if (this.state.emails.some((item) => item.email === val)) {
+      this.setState({ isAvailable: false });
+      return Promise.reject(new Error("Email already in use"));
+    } else {
+      this.setState({ isAvailable: true });
+      return Promise.resolve();
+    }
   };
 
   handleSignup = (values) => {
@@ -26,6 +44,16 @@ class Signup extends Component {
       this.props.history
     );
   };
+
+  componentDidMount() {
+    getUsernamesAndEmailsService().then((res) => {
+      if (res.status === 200) {
+        this.setState({ emails: res?.data?.emails, loading: false });
+      } else {
+        message.error("Live email checking not available !");
+      }
+    });
+  }
 
   render() {
     return (
@@ -53,10 +81,36 @@ class Signup extends Component {
               name="email"
               rules={[
                 { type: "email", message: "Please enter a valid email" },
-                { required: true, message: "Email is required" },
+                { validator: this.handleLiveCheck },
               ]}
             >
-              <Input size="large" placeholder="Enter your email" />
+              <Input
+                size="large"
+                placeholder="Enter your email"
+                onChange={this.handleLiveCheck}
+                disabled={this.props.state.isSubmitting}
+                addonAfter={
+                  this.state.loading ? (
+                    <FeatherIcon
+                      icon="loader"
+                      size={18}
+                      className="portal-livecheck portal-livecheck-load"
+                    />
+                  ) : this.state.isAvailable ? (
+                    <FeatherIcon
+                      icon="check-circle"
+                      size={18}
+                      className="portal-livecheck portal-livecheck-tick"
+                    />
+                  ) : (
+                    <FeatherIcon
+                      icon="x-circle"
+                      size={18}
+                      className="portal-livecheck portal-livecheck-x"
+                    />
+                  )
+                }
+              />
             </Form.Item>
             <Form.Item
               label="Password"
@@ -94,7 +148,7 @@ class Signup extends Component {
                 size="large"
                 htmlType="submit"
                 className="portal-submit"
-                loading={false}
+                loading={this.props.state.isSubmitting}
               >
                 Signup
               </Button>

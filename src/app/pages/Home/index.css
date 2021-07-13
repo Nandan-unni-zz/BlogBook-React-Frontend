@@ -41,6 +41,18 @@
   height: 30px;
   margin-right: 10px;
 }
+.portal-livecheck {
+  margin-top: 6px;
+}
+.portal-livecheck-tick {
+  color: green;
+}
+.portal-livecheck-x {
+  color: tomato;
+}
+.portal-livecheck-load {
+  color: darkgray;
+}
 .portal-err {
   color: tomato;
   text-align: center;

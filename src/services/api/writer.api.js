@@ -5,6 +5,17 @@ import { logger } from "../../utils";
 
 const API_URL = `${config.BASE_API_URL}/api/writer`;
 
+export const getUsernamesAndEmailsService = async () => {
+  const url = `${API_URL}/usernamesandemails/`;
+  let res = {};
+  try {
+    res = await axios.get(url);
+  } catch (err) {
+    logger.err(err, "Server Down. Please try again later.");
+  }
+  return res;
+};
+
 export const setupWriterService = async (userId, data) => {
   const url = `${API_URL}/setup/${userId}/`;
   let res = {};

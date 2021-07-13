@@ -11,3 +11,6 @@
 .ant-input-affix-wrapper {
   border-radius: 6px;
 }
+.ant-input-group-addon {
+  align-self: center;
+}

@@ -13,6 +13,7 @@ import {
 } from "../../../static";
 
 const images = [blueBook, blueBulb, blueRead, redBook, redBulb, redRead];
+const image = images[Math.floor(Math.random() * images.length)];
 
 class Layout extends Component {
   render() {
@@ -21,11 +22,7 @@ class Layout extends Component {
         <Banner />
         <div className="auth-layout">
           <div className="auth-left">
-            <img
-              src={images[Math.floor(Math.random() * images.length)]}
-              class="auth-img"
-              alt="Idea pen"
-            />
+            <img src={image} class="auth-img" alt="Idea pen" />
           </div>
           <div className="auth-right">{this.props.children}</div>
         </div>
