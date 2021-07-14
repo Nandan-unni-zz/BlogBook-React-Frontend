@@ -5,14 +5,14 @@ import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { routes } from "../../router/routes";
-import actions from "../../../store/actions";
-import { localUserStorage } from "../../../utils";
+import actions from "../../../store/auth/actions";
+import { userStorage } from "../../../utils";
 
 const { logout } = actions;
 
 class Navbar extends Component {
   state = {
-    user: localUserStorage.getUser(),
+    user: userStorage.getUser(),
   };
 
   handleLogout = () => {
@@ -54,12 +54,12 @@ class Navbar extends Component {
         )}
         <div className="Navbar-left">
           {this.props.api && this.state.user.is_superuser && (
-            <Link to="https://blogbookapi.herokuapp.com">
+            <a href="https://blogbookapi.herokuapp.com" rel="noopener">
               <nav>
                 <span className="material-icons">construction</span>
                 <p>API</p>
               </nav>
-            </Link>
+            </a>
           )}
           {this.props.createBlog && (
             <Link to={routes.CREATE_BLOG}>
@@ -86,10 +86,18 @@ class Navbar extends Component {
             </Link>
           )}
           {this.props.profile && (
-            <Link to={routes.VIEW_WRITER(this.state.user.username)}>
+            <Link to={routes.PROFILE(this.state.user.pk)}>
               <nav>
                 <span className="material-icons">account_circle</span>
                 <p>Profile</p>
+              </nav>
+            </Link>
+          )}
+          {this.props.settings && (
+            <Link to={routes.SETTINGS}>
+              <nav>
+                <span className="material-icons">settings</span>
+                <p>Settings</p>
               </nav>
             </Link>
           )}
@@ -108,7 +116,7 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { state };
+  return { state: state.auth };
 };
 
 export default connect(mapStateToProps, { logout })(withRouter(Navbar));

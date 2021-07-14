@@ -24,7 +24,9 @@ class Layout extends Component {
           <div className="auth-left">
             <img src={image} class="auth-img" alt="Idea pen" />
           </div>
-          <div className="auth-right">{this.props.children}</div>
+          <div className={`auth-right ${this.props.className}`}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     );

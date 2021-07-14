@@ -47,7 +47,7 @@ function Router() {
           />
           <Route
             exact
-            path={routes.VIEW_WRITER(":username")}
+            path={routes.PROFILE(":username")}
             component={ViewWriter}
           />
           <Route

@@ -9,7 +9,7 @@ import FeatherIcon from "feather-icons-react";
 import Layout from "./Layout";
 import { routes } from "../../router/routes";
 import { icon } from "../../../static";
-import actions from "../../../store/actions";
+import actions from "../../../store/auth/actions";
 import { getUsernamesAndEmailsService } from "../../../services/api/writer.api";
 
 const { signup } = actions;
@@ -48,7 +48,7 @@ class Signup extends Component {
   componentDidMount() {
     getUsernamesAndEmailsService().then((res) => {
       if (res.status === 200) {
-        this.setState({ emails: res?.data?.emails, loading: false });
+        this.setState({ emails: res?.data, loading: false });
       } else {
         message.error("Live email checking not available !");
       }
@@ -57,7 +57,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout className="Auth-right-signup">
         {this.state.allowTrial && (
           <div className="portal-notif">
             <span>Trial Login available at Login Portal</span>
@@ -164,7 +164,7 @@ class Signup extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { state };
+  return { state: state.auth };
 };
 
 export default connect(mapStateToProps, { signup })(Signup);

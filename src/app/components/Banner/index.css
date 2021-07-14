@@ -4,6 +4,7 @@
   align-items: center;
   height: 8vh;
   padding: 0 80px;
+  transition: height 0.3s ease-in-out;
 }
 .banner img {
   height: 45px;

@@ -8,7 +8,7 @@ export const routes = {
 
   CREATE_WRITER: "/writer/create/",
   SETUP_WRITER: (username) => `/writer/setup/${username}`,
-  VIEW_WRITER: (username) => `/writer/view/${username}`,
+  PROFILE: (username) => `/writer/view/${username}`,
   EDIT_WRITER: (username) => `/writer/edit/${username}`,
   DELETE_WRITER: (username) => `/writer/delete/${username}`,
 

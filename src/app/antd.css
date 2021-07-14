@@ -1,16 +1,30 @@
 .ant-btn {
   font-family: "Montserrat", sans-serif;
-  background-color: dodgerblue;
-  border-color: dodgerblue;
   border-radius: 5px;
   font-size: 15px;
   font-weight: 900;
-  padding: 0 40px;
+  min-width: 80px;
+}
+.ant-btn-lg {
+  min-width: 100px;
+}
+.ant-btn-sm {
+  min-width: 70px;
+  font-size: 13px;
+}
+.ant-btn-primary {
+  background-color: dodgerblue;
+  border-color: dodgerblue;
 }
 .ant-input,
-.ant-input-affix-wrapper {
+.ant-input-affix-wrapper,
+.ant-input-group-addon,
+.ant-dropdown-menu {
   border-radius: 6px;
 }
-.ant-input-group-addon {
-  align-self: center;
+
+@media only screen and (max-width: 600px) {
+  .ant-btn {
+    min-width: 80px;
+  }
 }

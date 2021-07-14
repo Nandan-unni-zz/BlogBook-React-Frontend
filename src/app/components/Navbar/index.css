@@ -3,7 +3,8 @@
   width: 100vw;
   background-color: rgb(30, 30, 30);
   align-items: center;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
+  z-index: 1;
 }
 .Navbar-fixed {
   top: 0;

@@ -324,7 +324,7 @@ class ViewAccount extends Component {
         {this.state.tab === "following" && (
           <div className="prof-tab-cards">
             {writer.following.map((avatar) => (
-              <a href={routes.VIEW_WRITER(avatar.username)}>
+              <a href={routes.PROFILE(avatar.username)}>
                 <div className="prof-tab-card">
                   <img src={writerImg} alt="authorDP" />
                   <div className="prof-tab-card-content">
@@ -340,7 +340,7 @@ class ViewAccount extends Component {
         {this.state.tab === "followers" && (
           <div className="prof-tab-cards">
             {writer.followers.map((avatar) => (
-              <a href={routes.VIEW_WRITER(avatar.username)}>
+              <a href={routes.PROFILE(avatar.username)}>
                 <div className="prof-tab-card">
                   <img src={writerImg} alt="authorDP" />
                   <div className="prof-tab-card-content">

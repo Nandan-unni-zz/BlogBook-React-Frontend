@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 90vh;
+  min-height: 80vh;
 }
 .auth-left,
 .auth-right {
@@ -21,6 +21,9 @@
   border-radius: 10px;
   width: 80%;
   margin: auto;
+}
+.Auth-right-signup {
+  margin-top: 40px;
 }
 .portal-head,
 .portal-submit,

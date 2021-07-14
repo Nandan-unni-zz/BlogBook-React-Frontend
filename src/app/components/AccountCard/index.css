@@ -1,0 +1,25 @@
+.aCard {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+  width: fit-content;
+}
+.aCard img {
+  height: 40px;
+  width: 40px;
+}
+.aCard-dtl {
+  margin-left: 10px;
+}
+.aCard h4,
+.aCard p {
+  margin: 0;
+}
+.aCard h4 {
+  font-size: 15px;
+  font-weight: 900;
+}
+.aCard p {
+  font-size: 13px;
+}

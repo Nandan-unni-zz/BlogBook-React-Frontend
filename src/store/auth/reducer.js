@@ -1,7 +1,7 @@
 import { actionTypes } from "./actions/types";
 import { initialState } from "./state";
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SIGNUP_BEGIN:
       return {
@@ -48,7 +48,15 @@ export const reducer = (state = initialState, action) => {
         isLoggedIn: false,
       };
 
+    case actionTypes.SET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload.userId,
+      };
+
     default:
       return state;
   }
 };
+
+export default reducer;

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import reduxThunk from "redux-thunk";
 
-import { reducer } from "./reducer";
+import rootReducer from "./rootReducer";
 // import { getTokens, setTokens } from "./utils";
 
 export const store = configureStore(
-  { reducer, middleware: [reduxThunk] },
+  { reducer: rootReducer, middleware: [reduxThunk] },
   { ...window.__PRELOADED_STATE__ }
 );

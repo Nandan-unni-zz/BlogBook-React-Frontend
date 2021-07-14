@@ -54,7 +54,7 @@ class ViewBlog extends Component {
                   />
                   <span>
                     <h3>{blog.title}</h3>
-                    <Link to={routes.VIEW_WRITER(blog.author.username)}>
+                    <Link to={routes.PROFILE(blog.author.username)}>
                       {blog.author.username}
                     </Link>
                   </span>

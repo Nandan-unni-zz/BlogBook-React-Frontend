@@ -8,7 +8,7 @@ import { Form, Input, Button } from "antd";
 import Layout from "./Layout";
 import { routes } from "../../router/routes";
 import { icon } from "../../../static";
-import actions from "../../../store/actions";
+import actions from "../../../store/auth/actions";
 
 const { login } = actions;
 
@@ -87,7 +87,7 @@ class Login extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { state };
+  return { state: state.auth };
 };
 
 export default connect(mapStateToProps, { login })(Login);

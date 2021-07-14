@@ -72,7 +72,7 @@ class DeleteAccount extends Component {
               <center>
                 <Button className="danger">Delete Account</Button>
                 <br />
-                <Link to={routes.VIEW_WRITER(this.state.user.username)}>
+                <Link to={routes.PROFILE(this.state.user.username)}>
                   Cancel
                 </Link>
               </center>

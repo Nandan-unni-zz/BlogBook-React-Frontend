@@ -1,6 +1,7 @@
-import Button from "./Button";
+import AccountCard from "./AccountCard";
 import Banner from "./Banner";
+import Button from "./Button";
 import Navbar from "./Navbar";
 import Stud from "./Stud";
 
-export { Banner, Button, Navbar, Stud };
+export { AccountCard, Banner, Button, Navbar, Stud };

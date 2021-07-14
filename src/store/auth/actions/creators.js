@@ -31,4 +31,8 @@ export const actionCreators = {
   logout: () => {
     return { type: actionTypes.LOGOUT };
   },
+
+  setUserId: (userId) => {
+    return { type: actionTypes.SET_USER_ID, payload: { userId } };
+  },
 };

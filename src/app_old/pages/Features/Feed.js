@@ -116,7 +116,7 @@ class Feed extends Component {
                         }
                         style={{ padding: 0 }}
                       >
-                        <Link to={routes.VIEW_WRITER(blog.author.username)}>
+                        <Link to={routes.PROFILE(blog.author.username)}>
                           {blog.author.username}
                         </Link>
                       </Popover>

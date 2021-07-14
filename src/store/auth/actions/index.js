@@ -1,12 +1,13 @@
+import { message, notification } from "antd";
+
 import { actionCreators } from "./creators";
+import { userStorage, logger } from "../../../utils";
+import { routes } from "../../../app/router/routes";
 import {
   loginService,
   logoutService,
   signupService,
-} from "../../services/api/auth.api";
-import { message, notification } from "antd";
-import { localUserStorage, logger } from "../../utils";
-import { routes } from "../../app/router/routes";
+} from "../../../services/api/auth.api";
 
 const actions = {
   signup: (name, email, password, cpassword, history) => (dispatch) => {
@@ -24,7 +25,6 @@ const actions = {
             history.push(routes.LOGIN);
           } else {
             dispatch(actionCreators.signupError());
-            logger.msg(res?.data);
             message.error("Some error occured");
           }
         })
@@ -44,7 +44,8 @@ const actions = {
       .then((res) => {
         if (res?.status === 200) {
           dispatch(actionCreators.loginSuccess(res?.data));
-          localUserStorage.setUser(res?.data);
+          userStorage.setUser(res?.data);
+          dispatch(actionCreators.setUserId(res?.data?.pk));
           notification.info({ message: `Welcome back, ${res?.data?.name}` });
           history.push(routes.FEED);
         } else {
@@ -59,13 +60,14 @@ const actions = {
   },
 
   logout: (history) => (dispatch) => {
-    const user = localUserStorage.getUser();
+    const user = userStorage.getUser();
     console.log(user);
     logoutService(user?.pk)
       .then(() => {
         history.push(routes.LOGIN);
         dispatch(actionCreators.logout());
-        localUserStorage.setUser({});
+        dispatch(actionCreators.setUserId(-1));
+        userStorage.setUser({});
       })
       .catch((err) => {
         logger.err(err, "Some error occured");

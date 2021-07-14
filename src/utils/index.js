@@ -1,5 +1,5 @@
 import ellipsis from "./ellipsis";
-import localUserStorage from "./localUserStorage";
+import userStorage from "./userStorage";
 import logger from "./logger";
 
-export { ellipsis, localUserStorage, logger };
+export { ellipsis, userStorage, logger };

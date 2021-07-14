@@ -96,14 +96,14 @@ class EditAccount extends Component {
               <center>
                 <Button className="normal">Save</Button>
                 <br />
-                <Link to={routes.VIEW_WRITER(user.username)}>
+                <Link to={routes.PROFILE(user.username)}>
                   Change Profile Pic
                 </Link>
               </center>
             </Form.Item>
           </Form>
           <center>
-            <Link to={routes.VIEW_WRITER(user.username)}>Cancel</Link>
+            <Link to={routes.PROFILE(user.username)}>Cancel</Link>
           </center>
         </Portal>
       </div>

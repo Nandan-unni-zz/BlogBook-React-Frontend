@@ -66,7 +66,7 @@ class Navbar extends Component {
             </Link>
           )}
           {this.props.profile && (
-            <Link to={routes.VIEW_WRITER(this.state.user.username)}>
+            <Link to={routes.PROFILE(this.state.user.username)}>
               <nav>
                 <span className="material-icons">account_circle</span>
                 <p>Profile</p>
