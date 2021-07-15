@@ -1,6 +1,5 @@
 import { message } from "antd";
-import { ContentState, convertToRaw } from "draft-js";
-import { EditorState } from "react-draft-wysiwyg";
+import { EditorState, ContentState, convertToRaw } from "draft-js";
 import draftjsToHtml from "draftjs-to-html";
 import htmlToDraftjs from "html-to-draftjs";
 
@@ -10,7 +9,7 @@ import {
   getBlogService,
   updateBlogService,
 } from "../../../services/api/blog.api";
-import { logger, userStorage } from "../../../utils";
+import { userStorage } from "../../../utils";
 
 import { routes } from "../../../app/router/routes";
 import { store } from "../../index";
@@ -57,7 +56,7 @@ export const handleBlog =
       }
       dispatch(actionCreators.setSubmitType(""));
       dispatch(actionCreators.setTitle(""));
-      dispatch(actionCreators.setContent(""));
+      dispatch(actionCreators.setContent(EditorState.createEmpty()));
     } else {
       message.error("Please add some content !");
     }
@@ -65,6 +64,8 @@ export const handleBlog =
 
 export const getBlogData = (pk) => (dispatch) => {
   dispatch(actionCreators.setLoading(true));
+  dispatch(actionCreators.setTitle(""));
+  dispatch(actionCreators.setContent(EditorState.createEmpty()));
   getBlogService(pk).then((res) => {
     if (res?.status === 200) {
       dispatch(actionCreators.setTitle(res?.data?.title));

@@ -64,6 +64,7 @@ class CreateBlog extends Component {
                 wrapperClassName="richWrapper"
                 editorClassName="richEditor"
                 toolbarClassName="richToolbar"
+                placeholder="Type your content here..."
               />
             </Form.Item>
 

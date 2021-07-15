@@ -12,6 +12,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_SUBMIT_TYPE:
       return { ...state, submitType: action.payload.submitType };
 
+    case actionTypes.SET_LOADING:
+      return { ...state, loading: action.payload.loading };
+
     default:
       return state;
   }

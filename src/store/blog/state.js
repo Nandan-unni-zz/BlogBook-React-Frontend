@@ -1,5 +1,4 @@
-import { ContentState, EditorState } from "draft-js";
-import htmlToDraftjs from "html-to-draftjs";
+import { EditorState } from "draft-js";
 
 export const initialState = {
   title: "",
