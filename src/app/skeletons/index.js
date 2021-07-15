@@ -1,3 +1,4 @@
 import FeedSkeleton from "./Feed";
+import ProfileSkeleton from "./Profile";
 
-export { FeedSkeleton };
+export { FeedSkeleton, ProfileSkeleton };

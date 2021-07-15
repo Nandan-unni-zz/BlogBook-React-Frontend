@@ -1,11 +1,13 @@
 import authReducer from "./auth/reducer";
 import blogReducer from "./blog/reducer";
-import writerReducer from "./writer/reducer";
+import feedReducer from "./feed/reducer";
+import profileReducer from "./profile/reducer";
 
 const rootReducer = {
   auth: authReducer,
   blog: blogReducer,
-  writer: writerReducer,
+  feed: feedReducer,
+  profile: profileReducer,
 };
 
 export default rootReducer;

@@ -1,10 +1,9 @@
 export const initialState = {
-  settings: {},
   loading: true,
   isUser: false,
-  isFollowing: false,
   selectedTab: 3,
-  profile: {},
+  followingUserPk: -1,
+  data: {},
   followers: [],
   following: [],
   publishedBlogs: [],

@@ -4,7 +4,7 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 
-import actions from "../../../store/writer/actions";
+import actions from "../../../store/profile/actions";
 import { writerPlaceholder } from "../../../static";
 import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
@@ -16,62 +16,62 @@ class ProfileTab extends Component {
     user: userStorage.getUser(),
   };
   render() {
-    const writer = this.props.writer;
+    const profile = this.props.profile;
     return (
       <div className="profile-nav">
         <menu>
           <nav
             onClick={() => this.props.setTab(1)}
-            className={writer.selectedTab === 1 ? `active` : ``}
+            className={profile.selectedTab === 1 ? `active` : ``}
           >
             <span className="material-icons">people</span>
             <div className="profile-nav-text">
               <p>Following &nbsp; </p>
-              <small>({writer.following.length})</small>
+              <small>({profile.following.length})</small>
             </div>
           </nav>
           <nav
             onClick={() => this.props.setTab(2)}
-            className={writer.selectedTab === 2 ? `active` : ``}
+            className={profile.selectedTab === 2 ? `active` : ``}
           >
             <span className="material-icons">person</span>
             <div className="profile-nav-text">
               <p>Followers &nbsp; </p>
-              <small>({writer.followers.length})</small>
+              <small>({profile.followers.length})</small>
             </div>
           </nav>
           <nav
             onClick={() => this.props.setTab(3)}
-            className={writer.selectedTab === 3 ? `active` : ``}
+            className={profile.selectedTab === 3 ? `active` : ``}
           >
             <span className="material-icons">library_books</span>
 
             <div className="profile-nav-text">
               <p>Published &nbsp; </p>
-              <small>({writer.publishedBlogs.length})</small>
+              <small>({profile.publishedBlogs.length})</small>
             </div>
           </nav>
-          {writer.isUser && (
+          {profile.isUser && (
             <>
               <nav
                 onClick={() => this.props.setTab(4)}
-                className={writer.selectedTab === 4 ? `active` : ``}
+                className={profile.selectedTab === 4 ? `active` : ``}
               >
                 <span className="material-icons">archive</span>
                 <div className="profile-nav-text">
                   <p>Archived &nbsp; </p>
-                  <small>({writer.archivedBlogs.length})</small>
+                  <small>({profile.archivedBlogs.length})</small>
                 </div>
               </nav>
               <nav
                 onClick={() => this.props.setTab(5)}
-                className={writer.selectedTab === 5 ? `active` : ``}
+                className={profile.selectedTab === 5 ? `active` : ``}
               >
                 <span className="material-icons">bookmarks</span>
 
                 <div className="profile-nav-text">
                   <p>Saved &nbsp; </p>
-                  <small>({writer.savedBlogs.length})</small>
+                  <small>({profile.savedBlogs.length})</small>
                 </div>
               </nav>
             </>
@@ -81,10 +81,10 @@ class ProfileTab extends Component {
           <div className="prof-tab-cards">
             {
               // START: Following Tab
-              writer.selectedTab === 1
-                ? writer.following.map((avatar) => (
-                    <a href={routes.PROFILE(avatar.pk)} key={avatar.pk}>
-                      <div className="prof-tab-card">
+              profile.selectedTab === 1
+                ? profile.following.map((avatar) => (
+                    <div className="prof-tab-card" key={avatar.pk}>
+                      <Link to={routes.PROFILE(avatar.pk)}>
                         <div className="prof-tab-card-left">
                           <img
                             src={avatar.dp}
@@ -98,30 +98,30 @@ class ProfileTab extends Component {
                             <time>{avatar.name}</time>
                           </div>
                         </div>
-                        {avatar.pk !== this.props.userId &&
-                          (writer.followers.some(
-                            (follower) => follower.pk === avatar.pk
-                          ) ? (
-                            <Button type="ghost" size="middle">
-                              Unfollow
-                            </Button>
-                          ) : (
-                            <Button type="primary" size="middle">
-                              Follow
-                            </Button>
-                          ))}
-                      </div>
-                    </a>
+                      </Link>
+                      {avatar.pk !== this.props.userId &&
+                        (profile.followers.some(
+                          (follower) => follower.pk === avatar.pk
+                        ) ? (
+                          <Button type="ghost" size="middle">
+                            Unfollow
+                          </Button>
+                        ) : (
+                          <Button type="primary" size="middle">
+                            Follow
+                          </Button>
+                        ))}
+                    </div>
                   ))
                 : // END: Following Tab
 
                 /* -------------------- */
 
                 //   START: Followers Tab
-                writer.selectedTab === 2
-                ? writer.followers.map((avatar) => (
-                    <div className="prof-tab-card">
-                      <a href={routes.PROFILE(avatar.pk)} key={avatar.pk}>
+                profile.selectedTab === 2
+                ? profile.followers.map((avatar) => (
+                    <div className="prof-tab-card" key={avatar.pk}>
+                      <Link to={routes.PROFILE(avatar.pk)}>
                         <div className="prof-tab-card-left">
                           <img
                             src={avatar.dp}
@@ -135,7 +135,7 @@ class ProfileTab extends Component {
                             <time>{avatar.name}</time>
                           </div>
                         </div>
-                      </a>
+                      </Link>
                       {avatar.pk !== this.state.user.pk ? (
                         this.state.user.followers.some(
                           (follower) => follower.pk === avatar.pk
@@ -164,10 +164,10 @@ class ProfileTab extends Component {
                 /* -------------------- */
 
                 //   START: Published Blogs Tab
-                writer.selectedTab === 3
-                ? writer.publishedBlogs.map((blog) => (
-                    <div className="prof-tab-card" key={blog.pk}>
-                      <Link to={routes.VIEW_BLOG(blog.pk)}>
+                profile.selectedTab === 3
+                ? profile.publishedBlogs.map((blog) => (
+                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                      <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img
                             src={blog.author.dp}
@@ -181,27 +181,25 @@ class ProfileTab extends Component {
                             <time>{"Few days ago"}</time>
                           </div>
                         </div>
-                      </Link>
-                      <Stud
-                        type="Like"
-                        icon="favorite"
-                        theme="#ff6347"
-                        count={blog.no_of_likes}
-                        active={blog.likes.some(
-                          (like) => like.pk === this.props.userId
-                        )}
-                      />
-                    </div>
+                        <Stud
+                          type="Like"
+                          icon="favorite"
+                          theme="#ff6347"
+                          count={blog.noOfLikes}
+                          active={blog.isLiked}
+                        />
+                      </div>
+                    </Link>
                   ))
                 : // END: Published Blogs Tab
 
                 /* -------------------- */
 
                 //   START: Archived Blogs Tab
-                writer.selectedTab === 4
-                ? writer.archivedBlogs.map((blog) => (
-                    <div className="prof-tab-card" key={blog.pk}>
-                      <Link to={routes.VIEW_BLOG(blog.pk)}>
+                profile.selectedTab === 4
+                ? profile.archivedBlogs.map((blog) => (
+                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                      <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img
                             src={blog.author.dp}
@@ -215,27 +213,25 @@ class ProfileTab extends Component {
                             <time>{"Few days ago"}</time>
                           </div>
                         </div>
-                      </Link>
-                      <Stud
-                        type="Like"
-                        icon="favorite"
-                        theme="#ff6347"
-                        count={blog.no_of_likes}
-                        active={blog.likes.some(
-                          (like) => like.pk === this.props.userId
-                        )}
-                      />
-                    </div>
+                        <Stud
+                          type="Like"
+                          icon="favorite"
+                          theme="#ff6347"
+                          count={blog.noOfLikes}
+                          active={blog.isLiked}
+                        />
+                      </div>
+                    </Link>
                   ))
                 : // END: Archived Blogs Tab
 
                 /* -------------------- */
 
                 //   START: Saved Blogs Tab
-                writer.selectedTab === 5
-                ? writer.savedBlogs.map((blog) => (
-                    <div className="prof-tab-card" key={blog.pk}>
-                      <Link to={routes.VIEW_BLOG(blog.pk)}>
+                profile.selectedTab === 5
+                ? profile.savedBlogs.map((blog) => (
+                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                      <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img
                             src={blog.author.dp}
@@ -249,17 +245,15 @@ class ProfileTab extends Component {
                             <time>{"Few days ago"}</time>
                           </div>
                         </div>
-                      </Link>
-                      <Stud
-                        type="Like"
-                        icon="favorite"
-                        theme="#ff6347"
-                        count={blog.no_of_likes}
-                        active={blog.likes.some(
-                          (like) => like.pk === this.props.userId
-                        )}
-                      />
-                    </div>
+                        <Stud
+                          type="Like"
+                          icon="favorite"
+                          theme="#ff6347"
+                          count={blog.noOfLikes}
+                          active={blog.isLiked}
+                        />
+                      </div>
+                    </Link>
                   ))
                 : // END: Archived Blogs Tab
 
@@ -276,7 +270,7 @@ class ProfileTab extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { writer: state.writer, userId: state.auth.userId };
+  return { profile: state.profile, userId: state.auth.userId };
 };
 
 export default connect(mapStateToProps, {

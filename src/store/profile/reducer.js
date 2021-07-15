@@ -3,12 +3,11 @@ import { initialState } from "./state";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.SET_PROFILE:
+    case actionTypes.SET_DATA:
       return {
         ...state,
-        profile: action.payload.profile,
+        data: action.payload.data,
         isUser: action.payload.isUser,
-        isFollowing: action.payload.isFollowing,
       };
 
     case actionTypes.SET_FOLLOWERS:

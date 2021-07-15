@@ -9,10 +9,10 @@ export const actionCreators = {
     return { type: actionTypes.SET_TAB, payload: { tab } };
   },
 
-  setProfile: (profile, isUser, isFollowing) => {
+  setData: (data, isUser) => {
     return {
-      type: actionTypes.SET_PROFILE,
-      payload: { profile, isUser, isFollowing },
+      type: actionTypes.SET_DATA,
+      payload: { data, isUser },
     };
   },
 

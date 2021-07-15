@@ -7,8 +7,15 @@ import Signup from "../pages/Home/Signup";
 
 // General
 import Feed from "../pages/Feed";
-import Profile from "../pages/Profile";
 import Search from "../pages/Search";
+
+// Writer
+import Profile from "../pages/Profile";
+import Settings from "../pages/Settings";
+
+// Blog
+import CreateBlog from "../pages/CreateBlog";
+import EditBlog from "../pages/EditBlog";
 
 import { routes } from "./routes";
 
@@ -24,9 +31,22 @@ function Router() {
 
           {/* START: General */}
           <Route exact path={routes.FEED} component={Feed} />
-          <Route exact path={routes.PROFILE(":userId")} component={Profile} />
           <Route exact path={routes.SEARCH} component={Search} />
           {/* END: General */}
+
+          {/* START: Writer */}
+          <Route exact path={routes.PROFILE(":userId")} component={Profile} />
+          <Route exact path={routes.SETTINGS} component={Settings} />
+          {/* END: Writer */}
+
+          {/* START: Blog */}
+          <Route exact path={routes.CREATE_BLOG} component={CreateBlog} />
+          <Route
+            exact
+            path={routes.EDIT_BLOG(":blogId")}
+            component={EditBlog}
+          />
+          {/* END: Blog */}
         </Switch>
       </BrowserRouter>
     </div>

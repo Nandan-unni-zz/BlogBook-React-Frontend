@@ -1,4 +1,11 @@
+import { ContentState, EditorState } from "draft-js";
+import htmlToDraftjs from "html-to-draftjs";
+
 export const initialState = {
-  blogs: [],
-  loadingFeed: true,
+  title: "",
+  content: EditorState.createEmpty(),
+  submitType: "",
+  loading: true,
+  isPublishing: false,
+  isArchiving: false,
 };
