@@ -4,9 +4,10 @@ import { Component } from "react";
 import { Form, Input, Button } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { EditorState } from "draft-js";
 
 import { Navbar } from "../../components";
-import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
 import {
   setTitle,
@@ -19,6 +20,12 @@ class CreateBlog extends Component {
   state = {
     submitType: "",
   };
+
+  componentDidMount() {
+    this.props.setTitle("");
+    this.props.setContent(EditorState.createEmpty());
+  }
+
   render() {
     return (
       <div className="blog-portal-wrapper">

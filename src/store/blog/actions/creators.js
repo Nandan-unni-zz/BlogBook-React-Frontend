@@ -1,9 +1,14 @@
 import { actionTypes } from "./types";
 
 export const actionCreators = {
+  setBlog: (blog) => {
+    return { type: actionTypes.SET_BLOG, payload: { blog } };
+  },
+
   setLoading: (loading) => {
     return { type: actionTypes.SET_LOADING, payload: { loading } };
   },
+
   setTitle: (title) => {
     return { type: actionTypes.SET_TITLE, payload: { title } };
   },

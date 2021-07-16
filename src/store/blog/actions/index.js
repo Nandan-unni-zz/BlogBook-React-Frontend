@@ -7,9 +7,10 @@ import { actionCreators } from "./creators";
 import {
   createBlogService,
   getBlogService,
+  likeBlogService,
   updateBlogService,
 } from "../../../services/api/blog.api";
-import { userStorage } from "../../../utils";
+import { blogMapper, userStorage } from "../../../utils";
 
 import { routes } from "../../../app/router/routes";
 import { store } from "../../index";
@@ -62,10 +63,20 @@ export const handleBlog =
     }
   };
 
+export const getBlog = (pk) => (dispatch) => {
+  dispatch(actionCreators.setLoading(true));
+  getBlogService(pk).then((res) => {
+    if (res?.status === 200) {
+      dispatch(actionCreators.setBlog(blogMapper(res?.data)));
+    } else {
+      message.error("Some error occured !");
+    }
+  });
+  dispatch(actionCreators.setLoading(false));
+};
+
 export const getBlogData = (pk) => (dispatch) => {
   dispatch(actionCreators.setLoading(true));
-  dispatch(actionCreators.setTitle(""));
-  dispatch(actionCreators.setContent(EditorState.createEmpty()));
   getBlogService(pk).then((res) => {
     if (res?.status === 200) {
       dispatch(actionCreators.setTitle(res?.data?.title));
@@ -81,4 +92,28 @@ export const getBlogData = (pk) => (dispatch) => {
     }
   });
   dispatch(actionCreators.setLoading(false));
+};
+
+export const handleLike = (pk) => (dispatch) => {
+  likeBlogService(pk, userStorage.getUser().pk).then((res) => {
+    if (res?.status === 200) {
+      dispatch(actionCreators.setBlog(blogMapper(res?.data)));
+    }
+  });
+};
+
+export const handleSave = (pk) => (dispatch) => {
+  likeBlogService(pk).then((res) => {
+    if (res === 200) {
+      dispatch(actionCreators.setBlog(blogMapper(res?.data)));
+    }
+  });
+};
+
+export const handlePublish = (pk, mode) => (dispatch) => {
+  likeBlogService(pk).then((res) => {
+    if (res === 200) {
+      dispatch(actionCreators.setBlog(blogMapper(res?.data)));
+    }
+  });
 };

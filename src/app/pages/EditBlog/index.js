@@ -15,7 +15,7 @@ import {
   handleBlog,
   getBlogData,
 } from "../../../store/blog/actions";
-import UpdateBlogSkeleton from "../../skeletons/UpdateBlog";
+import { UpdateBlogSkeleton } from "../../skeletons";
 
 class UpdateBlog extends Component {
   state = {
@@ -114,6 +114,7 @@ class UpdateBlog extends Component {
     );
   }
 }
+
 const mapStateToProps = (state) => {
   return { blog: state.blog };
 };

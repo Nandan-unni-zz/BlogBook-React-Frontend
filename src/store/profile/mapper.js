@@ -1,6 +1,6 @@
 const mapper = (data = {}) => {
   return {
-    id: data?.pk,
+    pk: data?.pk,
     name: data?.name,
     username: data?.username,
     email: data?.email,

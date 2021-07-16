@@ -1,5 +1,6 @@
 import FeedSkeleton from "./Feed";
 import ProfileSkeleton from "./Profile";
-import UpdateBlog from "./UpdateBlog";
+import UpdateBlogSkeleton from "./UpdateBlog";
+import ViewBlogSkeleton from "./ViewBlog";
 
-export { FeedSkeleton, ProfileSkeleton, UpdateBlog };
+export { FeedSkeleton, ProfileSkeleton, UpdateBlogSkeleton, ViewBlogSkeleton };

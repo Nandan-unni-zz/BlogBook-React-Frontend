@@ -60,7 +60,10 @@ class Search extends Component {
         <Navbar backBtn feed profile />
         <div className="search">
           <div className="search-input">
-            <input onChange={({ target }) => this.handleSearch(target.value)} />
+            <input
+              onChange={({ target }) => this.handleSearch(target.value)}
+              placeholder="Start typing to search ..."
+            />
             <span className="material-icons">search</span>
           </div>
           <div className="search-msg">

@@ -3,6 +3,9 @@ import { initialState } from "./state";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_BLOG:
+      return { ...state, blog: action.payload.blog };
+
     case actionTypes.SET_TITLE:
       return { ...state, title: action.payload.title };
 

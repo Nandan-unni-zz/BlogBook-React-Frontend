@@ -12,6 +12,8 @@ import { ellipsis, userStorage } from "../../../utils";
 import actions from "../../../store/feed/actions";
 import { routes } from "../../router/routes";
 import { writerPlaceholder } from "../../../static";
+import DeleteBlog from "../DeleteBlog";
+
 class Feed extends Component {
   state = {
     user: userStorage.getUser(),
@@ -38,8 +40,8 @@ class Feed extends Component {
               </Row>
             ) : (
               this.props?.blogs?.blogs?.map((blog) => (
-                <div className="Blog" key={blog.pk}>
-                  <div className="Blog-Head">
+                <article className="Blog" key={blog.pk}>
+                  <header className="Blog-Head">
                     <div className="Blog-Head-left">
                       <img
                         src={blog.author.dp}
@@ -58,7 +60,7 @@ class Feed extends Component {
                           }
                           style={{ padding: 0 }}
                         >
-                          <Link to={routes.PROFILE(blog.author.username)}>
+                          <Link to={routes.PROFILE(blog.author.pk)}>
                             {blog.author.username}
                           </Link>
                         </Popover>
@@ -94,7 +96,13 @@ class Feed extends Component {
                                 </Link>
                               </Menu.Item>
                               <Menu.Item key="delete" className="Blog-drop">
-                                <Link to={routes.EDIT_BLOG(blog.pk)}>
+                                <div
+                                  onClick={() =>
+                                    DeleteBlog(blog?.pk, blog?.title, () =>
+                                      this.props.removeBlogFromFeed(blog?.pk)
+                                    )
+                                  }
+                                >
                                   <Row align="middle">
                                     <FeatherIcon
                                       icon="trash-2"
@@ -103,7 +111,7 @@ class Feed extends Component {
                                     />
                                     Delete Blog
                                   </Row>
-                                </Link>
+                                </div>
                               </Menu.Item>
                             </Menu>
                           }
@@ -116,7 +124,7 @@ class Feed extends Component {
                         </Link>
                       )}
                     </div>
-                  </div>
+                  </header>
                   <div className="Blog-Body">
                     {window.screen.width > 600 ? (
                       <p>{ellipsis(blog.summary, 600)}</p>
@@ -124,7 +132,7 @@ class Feed extends Component {
                       <p>{ellipsis(blog.summary, 300)}</p>
                     )}
                   </div>
-                  <div className="Blog-Nav">
+                  <footer className="Blog-Nav">
                     <div onClick={() => this.props.likeBlog(blog.pk)}>
                       <Stud
                         type="Like"
@@ -142,8 +150,8 @@ class Feed extends Component {
                         active={blog.isSaved}
                       />
                     </div>
-                  </div>
-                </div>
+                  </footer>
+                </article>
               ))
             )
           ) : (
@@ -163,4 +171,5 @@ export default connect(mapStateToProps, {
   fetchFeed: actions.fetchFeed,
   likeBlog: actions.likeBlog,
   saveBlog: actions.saveBlog,
+  removeBlogFromFeed: actions.removeBlogFromFeed,
 })(Feed);

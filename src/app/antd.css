@@ -19,7 +19,8 @@
 .ant-input,
 .ant-input-affix-wrapper,
 .ant-input-group-addon,
-.ant-dropdown-menu {
+.ant-dropdown-menu,
+.ant-popover-inner {
   border-radius: 6px;
 }
 

@@ -16,6 +16,7 @@ import Settings from "../pages/Settings";
 // Blog
 import CreateBlog from "../pages/CreateBlog";
 import EditBlog from "../pages/EditBlog";
+import ViewBlog from "../pages/ViewBlog";
 
 import { routes } from "./routes";
 
@@ -41,6 +42,11 @@ function Router() {
 
           {/* START: Blog */}
           <Route exact path={routes.CREATE_BLOG} component={CreateBlog} />
+          <Route
+            exact
+            path={routes.VIEW_BLOG(":blogId")}
+            component={ViewBlog}
+          />
           <Route
             exact
             path={routes.EDIT_BLOG(":blogId")}

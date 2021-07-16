@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
 import { Stud } from "../../components";
 import { userStorage } from "../../../utils";
+import { followOrUnfollow } from "../../../store/common/actions";
 
 class ProfileTab extends Component {
   state = {
@@ -99,18 +100,38 @@ class ProfileTab extends Component {
                           </div>
                         </div>
                       </Link>
-                      {avatar.pk !== this.props.userId &&
-                        (profile.followers.some(
-                          (follower) => follower.pk === avatar.pk
-                        ) ? (
-                          <Button type="ghost" size="middle">
-                            Unfollow
-                          </Button>
-                        ) : (
-                          <Button type="primary" size="middle">
-                            Follow
-                          </Button>
-                        ))}
+                      {avatar.pk !== this.state.user.pk ? (
+                        <Button
+                          loading={avatar.pk === this.props.common.followingPk}
+                          onClick={() =>
+                            this.props.followOrUnfollow(avatar.pk, (newData) =>
+                              this.props.postFollowUserUpdate(newData)
+                            )
+                          }
+                          type={
+                            avatar.followers.some(
+                              (following) => following.pk === this.state.user.pk
+                            )
+                              ? "ghost"
+                              : "primary"
+                          }
+                          size="middle"
+                        >
+                          {avatar.followers.some(
+                            (following) => following.pk === this.state.user.pk
+                          )
+                            ? "Unfollow"
+                            : "Follow"}
+                        </Button>
+                      ) : (
+                        <Link to={routes.SETTINGS}>
+                          <Stud
+                            type="Settings"
+                            icon="settings"
+                            theme="#323232"
+                          />
+                        </Link>
+                      )}
                     </div>
                   ))
                 : // END: Following Tab
@@ -137,17 +158,28 @@ class ProfileTab extends Component {
                         </div>
                       </Link>
                       {avatar.pk !== this.state.user.pk ? (
-                        this.state.user.followers.some(
-                          (follower) => follower.pk === avatar.pk
-                        ) ? (
-                          <Button type="ghost" size="middle">
-                            Unfollow
-                          </Button>
-                        ) : (
-                          <Button type="primary" size="middle">
-                            Follow
-                          </Button>
-                        )
+                        <Button
+                          loading={avatar.pk === this.props.common.followingPk}
+                          onClick={() =>
+                            this.props.followOrUnfollow(avatar.pk, (newData) =>
+                              this.props.postFollowUserUpdate(newData)
+                            )
+                          }
+                          type={
+                            avatar.followers.some(
+                              (following) => following.pk === this.state.user.pk
+                            )
+                              ? "ghost"
+                              : "primary"
+                          }
+                          size="middle"
+                        >
+                          {avatar.followers.some(
+                            (following) => following.pk === this.state.user.pk
+                          )
+                            ? "Unfollow"
+                            : "Follow"}
+                        </Button>
                       ) : (
                         <Link to={routes.SETTINGS}>
                           <Stud
@@ -270,10 +302,12 @@ class ProfileTab extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { profile: state.profile, userId: state.auth.userId };
+  return { profile: state.profile, common: state.common };
 };
 
 export default connect(mapStateToProps, {
   fetchWriter: actions.fetchWriter,
   setTab: actions.setTab,
+  followOrUnfollow,
+  postFollowUserUpdate: actions.postFollowUserUpdate,
 })(ProfileTab);

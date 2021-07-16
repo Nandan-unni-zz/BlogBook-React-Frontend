@@ -56,6 +56,14 @@ const actions = {
       })
       .catch((err) => logger.err(err, "Some error occured !"));
   },
+
+  removeBlogFromFeed: (pk) => (dispatch) => {
+    dispatch(
+      actionCreators.setBlogs(
+        store.getState().feed.blogs.filter((blog) => blog?.pk !== pk)
+      )
+    );
+  },
 };
 
 export default actions;

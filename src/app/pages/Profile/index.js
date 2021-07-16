@@ -6,16 +6,22 @@ import { Button, Col, Row, Tooltip } from "antd";
 
 import Navbar from "../../components/Navbar";
 import actions from "../../../store/profile/actions";
+import { followOrUnfollow } from "../../../store/common/actions";
 import { writerPlaceholder } from "../../../static";
 import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
 import ProfileTab from "./ProfileTab";
 import { ProfileSkeleton } from "../../skeletons";
+import { userStorage } from "../../../utils";
 
 class Profile extends Component {
+  state = {
+    user: userStorage.getUser(),
+  };
   componentDidMount() {
     this.props.fetchWriter(this.props.match.params.userId);
   }
+
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.userId !== this.props.match.params.userId)
       this.props.fetchWriter(this.props.match.params.userId);
@@ -25,7 +31,13 @@ class Profile extends Component {
     const profile = this.props.profile;
     return (
       <div className="profile-wrapper">
-        <Navbar createBlog feed settings={profile.isUser} logout />
+        <Navbar
+          createBlog
+          feed
+          settings={profile.isUser}
+          profile={!profile.isUser}
+          logout
+        />
         {profile.loading ? (
           <ProfileSkeleton />
         ) : (
@@ -94,12 +106,39 @@ class Profile extends Component {
                       Settings
                     </Button>
                   </Link>
-                ) : profile.isFollowing ? (
-                  <Button size="large" type="ghost">
+                ) : profile.followers.some(
+                    (follower) => follower?.pk === this.state.user.pk
+                  ) ? (
+                  <Button
+                    loading={
+                      profile?.data?.pk === this.props.common.followingPk
+                    }
+                    size="large"
+                    type="ghost"
+                    onClick={() =>
+                      this.props.followOrUnfollow(
+                        profile?.data?.pk,
+                        (newData) =>
+                          this.props.updateWriter(newData, profile?.data?.pk)
+                      )
+                    }
+                  >
                     Unfollow
                   </Button>
                 ) : (
-                  <Button size="large" type="primary">
+                  <Button
+                    loading={
+                      profile?.data?.pk === this.props.common.followingPk
+                    }
+                    size="large"
+                    type="primary"
+                    onClick={() =>
+                      this.props.followOrUnfollow(
+                        profile?.data?.pk,
+                        (newData) => this.props.updateWriter(newData)
+                      )
+                    }
+                  >
                     Follow
                   </Button>
                 )}
@@ -114,10 +153,12 @@ class Profile extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { profile: state.profile };
+  return { profile: state.profile, common: state.common };
 };
 
 export default connect(mapStateToProps, {
   fetchWriter: actions.fetchWriter,
   setTab: actions.setTab,
+  followOrUnfollow,
+  updateWriter: actions.updateWriter,
 })(Profile);
