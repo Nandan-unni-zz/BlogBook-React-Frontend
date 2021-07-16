@@ -1,31 +1,22 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-// Auth
-import Login from "../pages/Auth/Login";
-import Signup from "../pages/Auth/Signup";
+// Home
+import Login from "../pages/Home/Login";
+import Signup from "../pages/Home/Signup";
 
-// Features
-import Home from "../pages/Features/Home";
-import Feed from "../pages/Features/Feed";
-import Search from "../pages/Features/Search";
+// General
+import Feed from "../pages/Feed";
+import Search from "../pages/Search";
 
-// Writers
-import SetupWriter from "../pages/Writers/SetupWriter";
-import ViewWriter from "../pages/Writers/ViewWriter";
-import UpdateWriter from "../pages/Writers/UpdateWriter";
-import DeleteWriter from "../pages/Writers/DeleteWriter";
+// Writer
+import Profile from "../pages/Profile";
+import Settings from "../pages/Settings";
 
-// Blogs
-import CreateBlog from "../pages/Blogs/CreateBlog";
-import ViewBlog from "../pages/Blogs/ViewBlog";
-import UpdateBlog from "../pages/Blogs/UpdateBlog";
-import DeleteBlog from "../pages/Blogs/DeleteBlog";
-
-// Middlewares
-import NotFound from "../pages/Middlewares/NotFound";
-import SuccessPage from "../pages/Middlewares/SuccessPage";
-import InvalidPage from "../pages/Middlewares/InvalidPage";
+// Blog
+import CreateBlog from "../pages/CreateBlog";
+import EditBlog from "../pages/EditBlog";
+import ViewBlog from "../pages/ViewBlog";
 
 import { routes } from "./routes";
 
@@ -34,45 +25,34 @@ function Router() {
     <div className="Keyblogs">
       <BrowserRouter>
         <Switch>
-          <Route exact path={routes.HOME} component={Login} />
+          {/* START: Home */}
+          <Route exact path={routes.LOGIN} component={Login} />
           <Route exact path={routes.SIGNUP} component={Signup} />
-          <Route exact path={routes.LOGOUT} component={Home} />
+          {/* END: Home */}
 
+          {/* START: General */}
           <Route exact path={routes.FEED} component={Feed} />
           <Route exact path={routes.SEARCH} component={Search} />
-          <Route
-            exact
-            path={routes.SETUP_WRITER(":username")}
-            component={SetupWriter}
-          />
-          <Route
-            exact
-            path={routes.VIEW_WRITER(":username")}
-            component={ViewWriter}
-          />
-          <Route
-            exact
-            path={routes.EDIT_WRITER(":username")}
-            component={UpdateWriter}
-          />
-          <Route
-            exact
-            path="/writer/delete/:username"
-            component={DeleteWriter}
-          />
+          {/* END: General */}
 
+          {/* START: Writer */}
+          <Route exact path={routes.PROFILE(":userId")} component={Profile} />
+          <Route exact path={routes.SETTINGS} component={Settings} />
+          {/* END: Writer */}
+
+          {/* START: Blog */}
           <Route exact path={routes.CREATE_BLOG} component={CreateBlog} />
-          <Route exact path={routes.VIEW_BLOG(":pk")} component={ViewBlog} />
-          <Route exact path={routes.EDIT_BLOG(":pk")} component={UpdateBlog} />
           <Route
             exact
-            path={routes.DELETE_BLOG(":pk")}
-            component={DeleteBlog}
+            path={routes.VIEW_BLOG(":blogId")}
+            component={ViewBlog}
           />
-
-          <Route exact path={routes.SUCCESS} component={SuccessPage} />
-          <Route exact path={routes.INVALID} component={InvalidPage} />
-          <Route exact path="*" component={NotFound} />
+          <Route
+            exact
+            path={routes.EDIT_BLOG(":blogId")}
+            component={EditBlog}
+          />
+          {/* END: Blog */}
         </Switch>
       </BrowserRouter>
     </div>

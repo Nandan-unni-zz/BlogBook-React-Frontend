@@ -1,22 +1,14 @@
 export const routes = {
+  LOGIN: "/",
+  SIGNUP: "/signup/",
+  SIGNUP_SUCCESS: "/signup/success/",
+
   FEED: "/feed/",
   SEARCH: "/search/",
-  LOGIN: "/",
-  HOME: "/",
-  SIGNUP: "/signup",
-  LOGOUT: "/logout/",
-
-  CREATE_WRITER: "/writer/create/",
-  SETUP_WRITER: (username) => `/writer/setup/${username}`,
-  VIEW_WRITER: (username) => `/writer/view/${username}`,
-  EDIT_WRITER: (username) => `/writer/edit/${username}`,
-  DELETE_WRITER: (username) => `/writer/delete/${username}`,
+  SETTINGS: "/settings/",
+  PROFILE: (userId) => `/writer/${userId}/`,
 
   CREATE_BLOG: "/blog/create/",
-  VIEW_BLOG: (blogId) => `/blog/view/${blogId}`,
-  EDIT_BLOG: (blogId) => `/blog/edit/${blogId}`,
-  DELETE_BLOG: (blogId) => `/blog/delete/${blogId}`,
-
-  SUCCESS: "/success/",
-  INVALID: "/invalid/",
+  VIEW_BLOG: (blogId) => `/blog/${blogId}/`,
+  EDIT_BLOG: (blogId) => `/blog/${blogId}/edit/`,
 };

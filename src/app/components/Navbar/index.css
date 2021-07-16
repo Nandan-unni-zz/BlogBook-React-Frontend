@@ -1,0 +1,53 @@
+.Navbar {
+  display: flex;
+  width: 100vw;
+  background-color: rgb(30, 30, 30);
+  align-items: center;
+  transition: 0.2s ease-in-out;
+  z-index: 1;
+}
+.Navbar-fixed {
+  top: 0;
+  position: fixed;
+}
+.Navbar-btw {
+  justify-content: space-between;
+}
+.Navbar-end {
+  justify-content: flex-end;
+}
+.Navbar-left {
+  display: flex;
+}
+.Navbar nav {
+  width: 8vw;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  /* background-color: white; */
+}
+.Navbar nav p {
+  margin: 0;
+  font-size: 1.5vh;
+  font-family: "Ubuntu", sans-serif;
+  color: white;
+}
+.Navbar nav span {
+  color: tomato;
+}
+.Navbar nav:hover span,
+.Navbar nav:active span {
+  color: dodgerblue;
+}
+
+@media only screen and (max-width: 600px) {
+  .Navbar nav {
+    width: 18vw;
+  }
+  .Navbar nav p {
+    font-size: 1.2vh;
+  }
+}

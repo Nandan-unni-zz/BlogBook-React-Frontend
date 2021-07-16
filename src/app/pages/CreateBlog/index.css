@@ -1,0 +1,45 @@
+.blog-portal {
+  width: 90vw;
+  margin: 40px auto 100px auto;
+}
+.blog-portal-head {
+  text-align: center;
+  font-size: 25px;
+  color: tomato;
+  font-weight: 900;
+  margin: 30px 0;
+}
+.blog-portal footer {
+  text-align: center;
+}
+.blog-portal-nav > * {
+  margin: 20px;
+}
+
+/* override the wysiwyg editor block styles */
+.public-DraftStyleDefault-block,
+.richEditor > * {
+  margin: 0;
+}
+.richEditor {
+  padding: 15px;
+  min-height: 360px;
+  cursor: text;
+  border-radius: 5px;
+  width: 100%;
+}
+.richToolbar {
+  border: none;
+}
+.blog-portal .ant-input,
+.richToolbar,
+.richEditor {
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+}
+
+@media only screen and (max-width: 600px) {
+  .blog-portal {
+    width: 85vw;
+  }
+}

@@ -1,0 +1,36 @@
+.settings {
+  display: flex;
+}
+.settings-menu nav {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 15px 20px;
+  min-width: 300px;
+  transition: all 0.2 ease-in-out;
+}
+.settings-menu nav:hover,
+.settings-menu nav.active {
+  background-color: rgb(30, 144, 255, 0.1);
+}
+.settings-menu nav p {
+  margin: 0;
+  margin-left: 10px;
+}
+.settings-menu nav.active span {
+  color: dodgerblue;
+}
+.settings section {
+  margin: 20px 40px;
+  width: 100%;
+}
+.sett-head {
+  color: tomato;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-bottom: 2px solid #eeeeee;
+}
+
+@media only screen and (max-width: 600px) {
+}

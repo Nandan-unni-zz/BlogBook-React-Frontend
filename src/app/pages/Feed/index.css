@@ -1,0 +1,105 @@
+.Feed {
+  background-color: white;
+  min-height: 100vh;
+}
+
+.Blogs {
+  padding-top: 5vh;
+}
+.Blog {
+  font-family: "Montserrat", sans-serif;
+  height: fit-content;
+  width: 80vw;
+  margin: 15px auto;
+  padding: 15px 20px 5px 20px;
+  border-radius: 10px;
+  border: 2px solid rgb(230, 230, 230);
+}
+.Blog-drop {
+  padding: 10px 20px;
+}
+.Blog-drop .drop-view {
+  color: green;
+  margin-right: 10px;
+}
+.Blog-drop .drop-edit {
+  color: dodgerblue;
+  margin-right: 10px;
+}
+.Blog-drop .drop-delete {
+  color: tomato;
+  margin-right: 10px;
+}
+.Blog-Head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Blog-Head h3 {
+  margin: 0;
+}
+.Blog-Head-left {
+  display: flex;
+  align-items: center;
+}
+
+.Blog-Head span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin-left: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  .Blog-Head-left a {
+    width: 100px;
+    overflow: hidden;
+  }
+
+  .Blog-Head span {
+    margin-left: 8px;
+  }
+}
+.Blog-Head img {
+  height: 50px;
+  width: 50px;
+}
+.Blog-Head-right {
+  cursor: pointer;
+}
+.Blog-Read {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+  background-color: white;
+}
+.Blog-Read:hover,
+.Blog-Read:active {
+  border: 1px solid rgb(0, 128, 255);
+  background-color: dodgerblue;
+  color: white;
+}
+.Blog-Body {
+  border-top: 1px solid whitesmoke;
+  border-bottom: 1px solid whitesmoke;
+  margin: 10px 0;
+  padding: 15px 10px;
+  font-size: 14px;
+  text-align: justify;
+  white-space: pre-line;
+  overflow: hidden;
+}
+.Blog-Body > * {
+  margin: 0;
+  padding: 0;
+}
+.Blog-Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: fit-content;
+}

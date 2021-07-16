@@ -1,0 +1,28 @@
+.banner {
+  background-color: var(--bannerBg);
+  display: flex;
+  align-items: center;
+  height: 8vh;
+  padding: 0 80px;
+  transition: height 0.3s ease-in-out;
+}
+.banner img {
+  height: 45px;
+  margin-right: 15px;
+}
+.banner strong {
+  font-size: 32px;
+}
+
+@media only screen and (max-width: 600px) {
+  .banner {
+    padding: 0 50px;
+  }
+  .banner img {
+    height: 40px;
+    margin-right: 15px;
+  }
+  .banner strong {
+    font-size: 30px;
+  }
+}

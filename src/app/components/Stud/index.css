@@ -1,0 +1,21 @@
+.Stud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: fit-content;
+  transition: 0.3s ease-in-out;
+}
+.Stud p {
+  margin: 0;
+  transition: 0.3s ease-in-out;
+}
+.Stud span {
+  border-radius: 1000px;
+  padding: 5px;
+  max-width: 35px;
+  transition: 0.3s ease-in-out;
+}
+
+@media only screen and (max-width: 600px) {
+}
