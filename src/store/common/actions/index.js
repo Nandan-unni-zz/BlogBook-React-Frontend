@@ -8,7 +8,7 @@ import {
 } from "../../../services/api/blog.api";
 import { userStorage } from "../../../utils";
 
-const { getUser, setUser } = userStorage;
+const { getUser } = userStorage;
 
 export const followOrUnfollow = (pk, callback) => (dispatch) => {
   dispatch(actionCreators.setFollowingPk(pk));

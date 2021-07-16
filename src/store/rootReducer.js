@@ -3,6 +3,7 @@ import blogReducer from "./blog/reducer";
 import commonReducer from "./common/reducer";
 import feedReducer from "./feed/reducer";
 import profileReducer from "./profile/reducer";
+import settingsReducer from "./settings/reducer";
 
 const rootReducer = {
   auth: authReducer,
@@ -10,6 +11,7 @@ const rootReducer = {
   common: commonReducer,
   feed: feedReducer,
   profile: profileReducer,
+  settings: settingsReducer,
 };
 
 export default rootReducer;
