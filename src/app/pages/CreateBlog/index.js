@@ -14,6 +14,7 @@ import {
   setContent,
   setSubmitType,
   handleBlog,
+  resetStore,
 } from "../../../store/blog/actions";
 
 class CreateBlog extends Component {
@@ -24,6 +25,10 @@ class CreateBlog extends Component {
   componentDidMount() {
     this.props.setTitle("");
     this.props.setContent(EditorState.createEmpty());
+  }
+
+  componentWillUnmount() {
+    this.props.resetStore();
   }
 
   render() {
@@ -113,6 +118,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  resetStore,
   setTitle,
   setContent,
   setSubmitType,
