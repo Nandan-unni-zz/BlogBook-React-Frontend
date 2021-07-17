@@ -32,7 +32,7 @@ class UpdateBlog extends Component {
         <Navbar feed profile logout />
         <div className="blog-portal">
           <h2 className="blog-portal-head">Edit Blog</h2>
-          {this.props.blog.loading ? (
+          {this.props.blog.loading && this.props.blog.title === "" ? (
             <UpdateBlogSkeleton />
           ) : (
             <Form
@@ -46,7 +46,8 @@ class UpdateBlog extends Component {
               }
               layout="vertical"
               requiredMark={false}
-              initialValues={{ title: this.props.blog.title }}
+              key={!this?.props?.blog?.titleChanged && this?.props?.blog?.title}
+              // initialValues={{ title: this?.props?.blog?.title }}
             >
               <Form.Item
                 label="Title"
@@ -61,6 +62,7 @@ class UpdateBlog extends Component {
                 ]}
               >
                 <Input
+                  defaultValue={this?.props?.blog?.title}
                   onChange={(e) => this.props.setTitle(e.target.value)}
                   size="large"
                   placeholder="Type your title here..."

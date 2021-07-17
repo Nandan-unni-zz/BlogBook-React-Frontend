@@ -4,6 +4,7 @@ import commonReducer from "./common/reducer";
 import feedReducer from "./feed/reducer";
 import profileReducer from "./profile/reducer";
 import settingsReducer from "./settings/reducer";
+import searchReducer from "./search/reducer";
 
 const rootReducer = {
   auth: authReducer,
@@ -12,6 +13,7 @@ const rootReducer = {
   feed: feedReducer,
   profile: profileReducer,
   settings: settingsReducer,
+  search: searchReducer,
 };
 
 export default rootReducer;

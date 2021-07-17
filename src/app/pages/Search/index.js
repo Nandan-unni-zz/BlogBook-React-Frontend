@@ -3,6 +3,7 @@ import "./index.css";
 import { Component } from "react";
 import { Spin, Button } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import { Navbar } from "../../components";
 
@@ -10,48 +11,19 @@ import { writerPlaceholder } from "../../../static";
 import { userStorage } from "../../../utils";
 import { routes } from "../../router/routes";
 import {
-  followWriterService,
-  getWritersService,
-  searchWriterService,
-} from "../../../services/api/writer.api";
+  getInitialData,
+  searchQuery,
+  postFollowResultUpdate,
+} from "../../../store/search/actions";
+import { followOrUnfollow } from "../../../store/common/actions";
 
 class Search extends Component {
   state = {
     user: userStorage.getUser(),
-    results: [],
-    username: "",
-    loading: true,
-    msg: "Start typing to search ...",
-    followingUser: -1,
-  };
-
-  handleFollow = async (pk) => {
-    this.setState({ followingUser: pk });
-    const response = await followWriterService(this.state.user.pk, pk);
-    if (response.status === 200) {
-      this.handleSearch(this.state.username);
-      this.setState({ followingUser: -1 });
-    }
-  };
-
-  handleSearch = async (val) => {
-    this.setState({ loading: true, msg: "", username: val });
-    const response = await searchWriterService({
-      username: this.state.username,
-    });
-    if (response.status === 200)
-      this.setState({
-        results: response.data,
-        loading: false,
-        msg: `${response.data.length} results found`,
-      });
-    else this.setState({ loading: false, msg: "Error in fetching results" });
   };
 
   componentDidMount() {
-    getWritersService().then((result) => {
-      this.setState({ results: result.data, loading: false });
-    });
+    this.props.getInitialData();
   }
 
   render() {
@@ -61,16 +33,16 @@ class Search extends Component {
         <div className="search">
           <div className="search-input">
             <input
-              onChange={({ target }) => this.handleSearch(target.value)}
+              onChange={({ target }) => this.props.searchQuery(target.value)}
               placeholder="Start typing to search ..."
             />
             <span className="material-icons">search</span>
           </div>
           <div className="search-msg">
-            {this.state.loading ? <Spin /> : this.state.msg}
+            {this.props.search.loading ? <Spin /> : this.props.search.msg}
           </div>
           <div className="search-output">
-            {this.state.results.map((result) => (
+            {this.props.search.results.map((result) => (
               <div className="search-card">
                 <Link to={routes.PROFILE(result.pk)} key={result.pk}>
                   <div className="search-card-left">
@@ -86,15 +58,19 @@ class Search extends Component {
                   </div>
                 </Link>
 
-                {result.username !== this.state.user.username &&
+                {result.pk !== this.state.user.pk &&
                   (result.followers.some(
                     (follower) => follower.username === this.state.user.username
                   ) ? (
                     <Button
                       type="ghost"
                       size="middle"
-                      onClick={() => this.handleFollow(result.pk)}
-                      loading={this.state.followingUser === result.pk}
+                      onClick={() =>
+                        this.props.followOrUnfollow(result.pk, (data) =>
+                          this.props.postFollowResultUpdate(data)
+                        )
+                      }
+                      loading={this.props.followingPk === result.pk}
                     >
                       Unfollow
                     </Button>
@@ -102,8 +78,12 @@ class Search extends Component {
                     <Button
                       type="primary"
                       size="middle"
-                      onClick={() => this.handleFollow(result.pk)}
-                      loading={this.state.followingUser === result.pk}
+                      onClick={() =>
+                        this.props.followOrUnfollow(result.pk, (data) =>
+                          this.props.postFollowResultUpdate(data)
+                        )
+                      }
+                      loading={this.props.followingPk === result.pk}
                     >
                       Follow
                     </Button>
@@ -117,4 +97,13 @@ class Search extends Component {
   }
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+  return { search: state.search, followingPk: state.common.followingPk };
+};
+
+export default connect(mapStateToProps, {
+  searchQuery,
+  getInitialData,
+  followOrUnfollow,
+  postFollowResultUpdate,
+})(Search);

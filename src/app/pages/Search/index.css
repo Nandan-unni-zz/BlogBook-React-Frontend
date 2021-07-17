@@ -87,10 +87,10 @@
 
   .search-card-dtl h4 {
     font-size: 15px;
-    width: 140px;
+    max-width: 140px;
   }
   .search-card-dtl p {
     font-size: 13px;
-    width: 140px;
+    max-width: 140px;
   }
 }

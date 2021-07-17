@@ -7,7 +7,7 @@ const reducer = (state = initialState, action) => {
       return { ...state, blog: action.payload.blog };
 
     case actionTypes.SET_TITLE:
-      return { ...state, title: action.payload.title };
+      return { ...state, title: action.payload.title, titleChanged: true };
 
     case actionTypes.SET_CONTENT:
       return { ...state, content: action.payload.content };

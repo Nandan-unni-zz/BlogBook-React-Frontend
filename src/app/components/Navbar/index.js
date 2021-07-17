@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 import { routes } from "../../router/routes";
 import actions from "../../../store/auth/actions";
-import { userStorage } from "../../../utils";
+import { logger, userStorage } from "../../../utils";
 
 const { logout } = actions;
 
@@ -22,11 +22,15 @@ class Navbar extends Component {
   componentDidMount() {
     document.addEventListener("scroll", () => {
       let navbar = document.getElementById("Navbar");
-      let sticky = navbar.offsetTop;
-      if (window.pageYOffset > sticky) {
-        navbar.classList.add("Navbar-fixed");
-      } else {
-        navbar.classList.remove("Navbar-fixed");
+      try {
+        let sticky = navbar?.offsetTop;
+        if (window.pageYOffset > sticky) {
+          navbar?.classList?.add("Navbar-fixed");
+        } else {
+          navbar?.classList?.remove("Navbar-fixed");
+        }
+      } catch (err) {
+        logger.err(err);
       }
     });
   }
@@ -72,7 +76,7 @@ class Navbar extends Component {
           {this.props.search && (
             <Link to={routes.SEARCH}>
               <nav>
-                <span className="material-icons">person_add_alt_1</span>
+                <span className="material-icons">search</span>
                 <p>Search</p>
               </nav>
             </Link>

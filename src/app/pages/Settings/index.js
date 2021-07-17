@@ -14,7 +14,7 @@ class Settings extends Component {
   render() {
     return (
       <div className="settings-wrapper">
-        <Navbar feed profile logout />
+        <Navbar backBtn feed profile logout />
         <div className="settings">
           <menu className="settings-menu">
             <nav
