@@ -9,6 +9,7 @@ import { Navbar } from "../../components";
 import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
 import {
+  resetStore,
   setTitle,
   setContent,
   setSubmitType,
@@ -24,6 +25,10 @@ class UpdateBlog extends Component {
 
   componentDidMount() {
     this.props.getBlogData(this.props.match.params.blogId);
+  }
+
+  componentWillUnmount() {
+    this.props.resetStore();
   }
 
   render() {
@@ -127,4 +132,5 @@ export default connect(mapStateToProps, {
   setSubmitType,
   handleBlog,
   getBlogData,
+  resetStore,
 })(UpdateBlog);

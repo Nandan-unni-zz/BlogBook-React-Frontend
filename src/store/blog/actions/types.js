@@ -1,4 +1,5 @@
 export const actionTypes = {
+  RESET_STORE: "blog/resetStore",
   SET_BLOG: "blog/set/blog",
   SET_LOADING: "blog/set/loading",
   SET_SUBMIT_TYPE: "blog/set/submitType",
