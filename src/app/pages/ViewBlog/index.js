@@ -90,7 +90,7 @@ class ViewBlog extends Component {
                 <footer className="Blog-Nav">
                   <div onClick={() => this.props.handleLike(blog?.pk)}>
                     <Stud
-                      type="Like"
+                      type={blog.likesList}
                       icon="favorite"
                       theme="#ff6347"
                       count={blog.noOfLikes}

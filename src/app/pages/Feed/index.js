@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { Component } from "react";
-import { Dropdown, Menu, Popover, Row, Tag, Tooltip } from "antd";
+import { Dropdown, Menu, Popover, Row, Tag } from "antd";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import FeatherIcon from "feather-icons-react";

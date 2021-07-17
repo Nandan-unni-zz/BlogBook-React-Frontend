@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { routes } from "../../router/routes";
 import actions from "../../../store/auth/actions";
 import { logger, userStorage } from "../../../utils";
+import { config } from "../../../config";
 
 const { logout } = actions;
 
@@ -58,10 +59,10 @@ class Navbar extends Component {
         )}
         <div className="Navbar-left">
           {this.props.api && this.state.user.is_superuser && (
-            <a href="https://blogbookapi.herokuapp.com" rel="noopener">
+            <a href={`${config.BASE_API_URL}/admin`} rel="noopener">
               <nav>
                 <span className="material-icons">construction</span>
-                <p>API</p>
+                <p>Admin</p>
               </nav>
             </a>
           )}
