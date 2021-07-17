@@ -2,7 +2,7 @@ import userStorage from "./userStorage";
 
 const getList = (data = [], ft = "") => {
   let likesList = "";
-  if (data.length > 1) {
+  if (data.length >= 1) {
     likesList += data[0]?.name;
     data.slice(1, 4).map((like) => (likesList += `, ${like?.name}`));
     likesList +=
