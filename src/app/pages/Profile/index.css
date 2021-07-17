@@ -73,6 +73,7 @@
 .profile-nav {
   width: 100%;
   overflow: hidden;
+  padding-bottom: 80px;
 }
 .profile-nav menu {
   width: 100%;
@@ -135,7 +136,7 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid rgb(230, 230, 230);
-  width: 35%;
+  width: 32vw;
   padding: 10px;
   margin: 20px;
   border-radius: 10px;
@@ -166,6 +167,9 @@
 .prof-tab-card h3 {
   margin: 0;
   color: black;
+  max-width: 500px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -203,6 +207,9 @@
     max-height: unset;
     overflow-y: scroll;
   }
+  .prof-tab-card-content {
+    margin-left: 12px;
+  }
   .prof-tab-card {
     width: 80vw;
     margin: 10px;
@@ -213,6 +220,9 @@
   }
   .prof-tab-card h3 {
     font-size: 14px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .prof-tab-card time {
     font-size: 12px;

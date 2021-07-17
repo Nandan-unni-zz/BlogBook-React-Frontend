@@ -23,6 +23,10 @@ export const setContent = (content) => (dispatch) => {
   dispatch(actionCreators.setContent(content));
 };
 
+export const resetStore = () => (dispatch) => {
+  dispatch(actionCreators.resetStore());
+};
+
 export const setSubmitType = (submitType) => (dispatch) => {
   dispatch(actionCreators.setSubmitType(submitType));
 };

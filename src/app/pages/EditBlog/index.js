@@ -9,6 +9,7 @@ import { Navbar } from "../../components";
 import { Link } from "react-router-dom";
 import { routes } from "../../router/routes";
 import {
+  resetStore,
   setTitle,
   setContent,
   setSubmitType,
@@ -24,6 +25,10 @@ class UpdateBlog extends Component {
 
   componentDidMount() {
     this.props.getBlogData(this.props.match.params.blogId);
+  }
+
+  componentWillUnmount() {
+    this.props.resetStore();
   }
 
   render() {
@@ -46,7 +51,8 @@ class UpdateBlog extends Component {
               }
               layout="vertical"
               requiredMark={false}
-              initialValues={{ title: this.props.blog.title }}
+              key={!this?.props?.blog?.titleChanged && this?.props?.blog?.title}
+              // initialValues={{ title: this?.props?.blog?.title }}
             >
               <Form.Item
                 label="Title"
@@ -61,6 +67,7 @@ class UpdateBlog extends Component {
                 ]}
               >
                 <Input
+                  defaultValue={this?.props?.blog?.title}
                   onChange={(e) => this.props.setTitle(e.target.value)}
                   size="large"
                   placeholder="Type your title here..."
@@ -125,4 +132,5 @@ export default connect(mapStateToProps, {
   setSubmitType,
   handleBlog,
   getBlogData,
+  resetStore,
 })(UpdateBlog);

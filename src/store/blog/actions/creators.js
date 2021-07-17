@@ -1,6 +1,10 @@
 import { actionTypes } from "./types";
 
 export const actionCreators = {
+  resetStore: () => {
+    return { type: actionTypes.RESET_STORE };
+  },
+
   setBlog: (blog) => {
     return { type: actionTypes.SET_BLOG, payload: { blog } };
   },

@@ -15,6 +15,10 @@
   border-radius: 10px;
   border: 2px solid rgb(230, 230, 230);
 }
+.Blog-drop-icon {
+  padding: 10px;
+  box-sizing: unset;
+}
 .Blog-drop {
   padding: 10px 20px;
 }
@@ -50,6 +54,11 @@
   justify-content: space-around;
   margin-left: 15px;
 }
+.Blog-Head span h3 {
+  max-width: 800px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 @media only screen and (max-width: 600px) {
   .Blog-Head-left a {
@@ -59,6 +68,9 @@
 
   .Blog-Head span {
     margin-left: 8px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 .Blog-Head img {
