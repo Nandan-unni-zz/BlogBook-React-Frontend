@@ -32,7 +32,7 @@ class UpdateBlog extends Component {
         <Navbar feed profile logout />
         <div className="blog-portal">
           <h2 className="blog-portal-head">Edit Blog</h2>
-          {this.props.blog.loading && this.props.blog.title === "" ? (
+          {this.props.blog.loading ? (
             <UpdateBlogSkeleton />
           ) : (
             <Form
