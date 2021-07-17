@@ -20,8 +20,12 @@
 .ant-input-affix-wrapper,
 .ant-input-group-addon,
 .ant-dropdown-menu,
-.ant-popover-inner {
+.ant-popover-inner,
+.ant-modal-content {
   border-radius: 6px;
+}
+.ant-modal-confirm .ant-modal-body {
+  padding: 25px 25px;
 }
 
 @media only screen and (max-width: 600px) {
