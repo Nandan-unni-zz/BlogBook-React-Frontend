@@ -16,9 +16,10 @@ import Settings from "../pages/Settings";
 // Blog
 import CreateBlog from "../pages/CreateBlog";
 import EditBlog from "../pages/EditBlog";
-import ViewBlog from "../pages/ViewBlog";
+import ReadBlog from "../pages/ReadBlog";
 
 import { routes } from "./routes";
+import Error404 from "../pages/Error/404";
 
 function Router() {
   return (
@@ -44,8 +45,8 @@ function Router() {
           <Route exact path={routes.CREATE_BLOG} component={CreateBlog} />
           <Route
             exact
-            path={routes.VIEW_BLOG(":blogId")}
-            component={ViewBlog}
+            path={routes.READ_BLOG(":blogId")}
+            component={ReadBlog}
           />
           <Route
             exact
@@ -53,6 +54,8 @@ function Router() {
             component={EditBlog}
           />
           {/* END: Blog */}
+
+          <Route path="*" component={Error404} />
         </Switch>
       </BrowserRouter>
     </div>

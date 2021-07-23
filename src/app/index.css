@@ -10,6 +10,7 @@ font-family: 'Ubuntu', sans-serif;
   font-family: "Ubuntu", sans-serif;
   box-sizing: border-box;
   text-decoration: none;
+  scroll-behavior: smooth;
 }
 
 body {

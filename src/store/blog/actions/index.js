@@ -51,7 +51,7 @@ export const handleBlog =
         redirect = routes.FEED;
       } else if (submitMode === "update") {
         res = await updateBlogService(pks.blogPk, data);
-        redirect = routes.VIEW_BLOG(pks.blogPk);
+        redirect = routes.READ_BLOG(pks.blogPk);
       }
       if (res?.status === 200) {
         message.success(`Blog ${submitMode}d and ${submitType}ed`);
@@ -83,6 +83,7 @@ export const getBlogData = (pk) => (dispatch) => {
   dispatch(actionCreators.setLoading(true));
   getBlogService(pk).then((res) => {
     if (res?.status === 200) {
+      dispatch(actionCreators.setAuthor(res?.data?.author?.pk));
       dispatch(actionCreators.setTitle(res?.data?.title));
       dispatch(
         actionCreators.setContent(

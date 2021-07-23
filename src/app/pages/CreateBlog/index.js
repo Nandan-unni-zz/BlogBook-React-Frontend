@@ -45,6 +45,7 @@ class CreateBlog extends Component {
                 this.props.history
               )
             }
+            scrollToFirstError
             layout="vertical"
             requiredMark={false}
           >

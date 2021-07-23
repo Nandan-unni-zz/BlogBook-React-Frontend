@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { Component } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, message } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import { connect } from "react-redux";
 
@@ -17,11 +17,18 @@ import {
   getBlogData,
 } from "../../../store/blog/actions";
 import { UpdateBlogSkeleton } from "../../skeletons";
+import { userStorage } from "../../../utils";
 
 class UpdateBlog extends Component {
   state = {
     submitType: "",
+    user: userStorage.getUser(),
   };
+
+  handle403() {
+    message.error("You can only edit your own blogs!");
+    this.props.history.push(routes.READ_BLOG(this.props.match.params.blogId));
+  }
 
   componentDidMount() {
     this.props.getBlogData(this.props.match.params.blogId);
@@ -39,6 +46,8 @@ class UpdateBlog extends Component {
           <h2 className="blog-portal-head">Edit Blog</h2>
           {this.props.blog.loading ? (
             <UpdateBlogSkeleton />
+          ) : !(this.state.user.pk === this?.props?.blog?.author) ? (
+            this.handle403()
           ) : (
             <Form
               onFinish={() =>
@@ -49,6 +58,7 @@ class UpdateBlog extends Component {
                   this.props.history
                 )
               }
+              scrollToFirstError
               layout="vertical"
               requiredMark={false}
               key={!this?.props?.blog?.titleChanged && this?.props?.blog?.title}
@@ -109,7 +119,7 @@ class UpdateBlog extends Component {
                       Publish
                     </Button>
                   </div>
-                  <Link to={routes.VIEW_BLOG(this.props.match.params.blogId)}>
+                  <Link to={routes.READ_BLOG(this.props.match.params.blogId)}>
                     Cancel
                   </Link>
                 </footer>

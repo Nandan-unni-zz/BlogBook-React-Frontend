@@ -73,14 +73,14 @@ class Feed extends Component {
                         overlay={
                           <Menu>
                             <Menu.Item key="view" className="Blog-drop">
-                              <Link to={routes.VIEW_BLOG(blog.pk)}>
+                              <Link to={routes.READ_BLOG(blog.pk)}>
                                 <Row align="middle">
                                   <FeatherIcon
                                     icon="eye"
                                     size={15}
                                     className="Blog-drop-item drop-view"
                                   />
-                                  View Blog
+                                  Read Blog
                                 </Row>
                               </Link>
                             </Menu.Item>
@@ -123,7 +123,7 @@ class Feed extends Component {
                         />
                       </Dropdown>
                     ) : (
-                      <Link to={routes.VIEW_BLOG(blog.pk)}>
+                      <Link to={routes.READ_BLOG(blog.pk)}>
                         <button className="Blog-Read">Read</button>
                       </Link>
                     )}
@@ -137,7 +137,6 @@ class Feed extends Component {
                   )}
                 </div>
                 <footer className="Blog-Nav">
-                  {console.log(blog.likesList)}
                   <div onClick={() => this.props.likeBlog(blog.pk)}>
                     <Stud
                       type={blog.likesList}

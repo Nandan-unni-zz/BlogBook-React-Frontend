@@ -198,7 +198,7 @@ class ProfileTab extends Component {
                 //   START: Published Blogs Tab
                 profile.selectedTab === 3
                 ? profile.publishedBlogs.map((blog) => (
-                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                    <Link to={routes.READ_BLOG(blog.pk)} key={blog.pk}>
                       <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img
@@ -230,7 +230,7 @@ class ProfileTab extends Component {
                 //   START: Archived Blogs Tab
                 profile.selectedTab === 4
                 ? profile.archivedBlogs.map((blog) => (
-                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                    <Link to={routes.READ_BLOG(blog.pk)} key={blog.pk}>
                       <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img
@@ -262,7 +262,7 @@ class ProfileTab extends Component {
                 //   START: Saved Blogs Tab
                 profile.selectedTab === 5
                 ? profile.savedBlogs.map((blog) => (
-                    <Link to={routes.VIEW_BLOG(blog.pk)} key={blog.pk}>
+                    <Link to={routes.READ_BLOG(blog.pk)} key={blog.pk}>
                       <div className="prof-tab-card">
                         <div className="prof-tab-card-left">
                           <img

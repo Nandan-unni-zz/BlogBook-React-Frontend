@@ -61,7 +61,6 @@ const actions = {
 
   logout: (history) => (dispatch) => {
     const user = userStorage.getUser();
-    console.log(user);
     logoutService(user?.pk)
       .then(() => {
         history.push(routes.LOGIN);

@@ -1,0 +1,10 @@
+.ReadBlog {
+  margin-bottom: 100px;
+}
+/* #16: Partial display fix */
+/* .ReadBlog .Blog-Body {
+  margin-left: 10px;
+  z-index: 1;
+} */
+@media only screen and (max-width: 600px) {
+}

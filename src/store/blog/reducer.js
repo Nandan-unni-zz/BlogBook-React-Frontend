@@ -12,6 +12,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_TITLE:
       return { ...state, title: action.payload.title, titleChanged: true };
 
+    case actionTypes.SET_AUTHOR:
+      return { ...state, author: action.payload.author };
+
     case actionTypes.SET_CONTENT:
       return { ...state, content: action.payload.content };
 
