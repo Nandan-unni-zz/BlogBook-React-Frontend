@@ -11,7 +11,7 @@ const Error404 = () => {
         title="404"
         subTitle={
           <p>
-            No ! Either the page doesn't exist or you have found a bug {""}
+            Either the page doesn't exist or you have found a bug {""}
             <a
               href="https://github.com/Nandan-unni/BlogBook-React-Frontend/issues"
               rel="noopener noreferrer"
