@@ -26,7 +26,6 @@ class UpdateBlog extends Component {
   };
 
   handle403() {
-    console.log("403");
     message.error("You can only edit your own blogs!");
     this.props.history.push(routes.READ_BLOG(this.props.match.params.blogId));
   }

@@ -137,7 +137,6 @@ class Feed extends Component {
                   )}
                 </div>
                 <footer className="Blog-Nav">
-                  {console.log(blog.likesList)}
                   <div onClick={() => this.props.likeBlog(blog.pk)}>
                     <Stud
                       type={blog.likesList}
