@@ -1,3 +1,5 @@
+import "./index.css";
+
 import { Component } from "react";
 import { Popover } from "antd";
 import { AccountCard, Navbar, Stud } from "../../components";
@@ -29,7 +31,7 @@ class ReadBlog extends Component {
   render() {
     const blog = this.props.blog.blog;
     return (
-      <div className="Feed">
+      <div className="Feed ReadBlog">
         <Navbar backBtn feed profile logout />
         <div className="Blogs">
           {this.props.blog.loading ? (
