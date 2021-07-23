@@ -13,6 +13,10 @@ export const actionCreators = {
     return { type: actionTypes.SET_LOADING, payload: { loading } };
   },
 
+  setAuthor: (author) => {
+    return { type: actionTypes.SET_AUTHOR, payload: { author } };
+  },
+
   setTitle: (title) => {
     return { type: actionTypes.SET_TITLE, payload: { title } };
   },

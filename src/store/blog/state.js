@@ -5,6 +5,7 @@ export const initialState = {
   title: "",
   titleChanged: false,
   content: EditorState.createEmpty(),
+  author: -1,
   submitType: "",
   loading: true,
   isPublishing: false,

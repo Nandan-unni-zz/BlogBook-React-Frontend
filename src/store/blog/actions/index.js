@@ -83,6 +83,7 @@ export const getBlogData = (pk) => (dispatch) => {
   dispatch(actionCreators.setLoading(true));
   getBlogService(pk).then((res) => {
     if (res?.status === 200) {
+      dispatch(actionCreators.setAuthor(res?.data?.author?.pk));
       dispatch(actionCreators.setTitle(res?.data?.title));
       dispatch(
         actionCreators.setContent(
