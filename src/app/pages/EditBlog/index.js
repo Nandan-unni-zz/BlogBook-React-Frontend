@@ -49,6 +49,7 @@ class UpdateBlog extends Component {
                   this.props.history
                 )
               }
+              scrollToFirstError
               layout="vertical"
               requiredMark={false}
               key={!this?.props?.blog?.titleChanged && this?.props?.blog?.title}
