@@ -51,7 +51,7 @@ export const handleBlog =
         redirect = routes.FEED;
       } else if (submitMode === "update") {
         res = await updateBlogService(pks.blogPk, data);
-        redirect = routes.VIEW_BLOG(pks.blogPk);
+        redirect = routes.READ_BLOG(pks.blogPk);
       }
       if (res?.status === 200) {
         message.success(`Blog ${submitMode}d and ${submitType}ed`);

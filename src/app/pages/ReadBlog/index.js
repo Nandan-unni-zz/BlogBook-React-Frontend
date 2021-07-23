@@ -8,11 +8,11 @@ import { writerPlaceholder } from "../../../static";
 import { routes } from "../../router/routes";
 import { getBlog, handleLike, handleSave } from "../../../store/blog/actions";
 import { userStorage } from "../../../utils";
-import { ViewBlogSkeleton } from "../../skeletons";
+import { ReadBlogSkeleton } from "../../skeletons";
 import DeleteBlog from "../DeleteBlog";
 import AlterBlog from "../AlterBlog";
 
-class ViewBlog extends Component {
+class ReadBlog extends Component {
   state = {
     user: userStorage.getUser(),
   };
@@ -33,7 +33,7 @@ class ViewBlog extends Component {
         <Navbar backBtn feed profile logout />
         <div className="Blogs">
           {this.props.blog.loading ? (
-            <ViewBlogSkeleton />
+            <ReadBlogSkeleton />
           ) : (
             <article className="Blog">
               <header className="Blog-Head">
@@ -141,4 +141,4 @@ export default connect(mapStateToProps, {
   getBlog,
   handleLike,
   handleSave,
-})(ViewBlog);
+})(ReadBlog);

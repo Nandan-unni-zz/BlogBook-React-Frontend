@@ -109,7 +109,7 @@ class UpdateBlog extends Component {
                       Publish
                     </Button>
                   </div>
-                  <Link to={routes.VIEW_BLOG(this.props.match.params.blogId)}>
+                  <Link to={routes.READ_BLOG(this.props.match.params.blogId)}>
                     Cancel
                   </Link>
                 </footer>
