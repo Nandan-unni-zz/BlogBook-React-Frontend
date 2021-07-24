@@ -2,6 +2,7 @@ import { Result, Button } from "antd";
 import { Link } from "react-router-dom";
 import { Navbar } from "../../components";
 import { routes } from "../../router/routes";
+
 const Error404 = () => {
   return (
     <>

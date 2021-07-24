@@ -31,3 +31,7 @@ strong {
   font-weight: 900;
   cursor: pointer;
 }
+
+.usernameInput {
+  min-width: 30vw;
+}

@@ -18,8 +18,13 @@ import CreateBlog from "../pages/CreateBlog";
 import EditBlog from "../pages/EditBlog";
 import ReadBlog from "../pages/ReadBlog";
 
+// Results
+import Error404 from "../pages/Results/404";
+import SignupSuccess from "../pages/Results/SignupSuccess";
+import EmailSuccess from "../pages/Results/EmailSuccess";
+import EmailFailure from "../pages/Results/EmailFailure";
+
 import { routes } from "./routes";
-import Error404 from "../pages/Error/404";
 
 function Router() {
   return (
@@ -55,7 +60,16 @@ function Router() {
           />
           {/* END: Blog */}
 
+          {/* START: Results */}
+          <Route exact path={routes.SIGNUP_SUCCESS} component={SignupSuccess} />
+          <Route
+            exact
+            path={routes.EMAIL_SUCCESS(":userId")}
+            component={EmailSuccess}
+          />
+          <Route exact path={routes.EMAIL_FAILURE} component={EmailFailure} />
           <Route path="*" component={Error404} />
+          {/* END: Results */}
         </Switch>
       </BrowserRouter>
     </div>
