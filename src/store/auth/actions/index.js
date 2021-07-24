@@ -8,6 +8,7 @@ import {
   logoutService,
   signupService,
 } from "../../../services/api/auth.api";
+import { getWriterService } from "../../../services/api/writer.api";
 
 const actions = {
   signup: (name, email, password, cpassword, history) => (dispatch) => {
@@ -36,6 +37,16 @@ const actions = {
       dispatch(actionCreators.signupError());
       message.error("Passwords didn't match !");
     }
+  },
+
+  autoLogin: (pk) => (dispatch) => {
+    getWriterService(pk).then((res) => {
+      if (res?.status === 200) {
+        dispatch(actionCreators.loginSuccess(res?.data));
+        userStorage.setUser(res?.data);
+        dispatch(actionCreators.setUserId(res?.data?.pk));
+      }
+    });
   },
 
   login: (email, password, history) => (dispatch) => {
