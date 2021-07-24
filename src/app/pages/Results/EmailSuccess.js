@@ -33,7 +33,11 @@ class EmailSuccess extends Component {
       return Promise.reject(
         new Error("Username can only have alpahbets, numbers or underscores")
       );
-    } else if (this.state.usernames.some((item) => item.username === val)) {
+    } else if (
+      this.state.usernames.some(
+        (item) => item.username?.toLowerCase() === val?.toLowerCase()
+      )
+    ) {
       this.setState({ isAvailable: false });
       return Promise.reject(new Error("Username already taken"));
     } else {
