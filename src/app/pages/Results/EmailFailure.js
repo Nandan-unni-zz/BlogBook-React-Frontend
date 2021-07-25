@@ -1,4 +1,4 @@
-import { Button, Form, Input, Result, Row } from "antd";
+import { Button, Form, Input, message, Result, Row } from "antd";
 
 import { Banner } from "../../components";
 
@@ -19,7 +19,13 @@ const EmailFailure = () => {
               />
             </Form.Item>
             &nbsp; &nbsp; &nbsp;
-            <Button type="primary" size="large">
+            <Button
+              type="primary"
+              onClick={() =>
+                message.info("This feature is currently inactive !")
+              }
+              size="large"
+            >
               Request a new one
             </Button>
           </Row>

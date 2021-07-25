@@ -1,4 +1,4 @@
-import { Button, Row, Result } from "antd";
+import { Button, Row, Result, message } from "antd";
 import { Banner } from "../../components";
 
 const SignupSuccess = () => {
@@ -17,7 +17,13 @@ const SignupSuccess = () => {
               </Button>
             </a>
             &nbsp; &nbsp; &nbsp;
-            <Button type="primary" size="large">
+            <Button
+              type="primary"
+              size="large"
+              onClick={() =>
+                message.info("This feature is currently inactive !")
+              }
+            >
               Resend Confirmation Mail
             </Button>
           </Row>
